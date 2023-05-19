@@ -48,7 +48,7 @@ const Index: NextPage = () => {
             <h3 className='text-lg text-gray-700 md:text-2xl'>
               Results for {checkFor}
             </h3>
-            <div className=':md:grid-cols-4 grid grid-cols-2 gap-4'>
+            <div className='grid grid-cols-2 gap-3 md:grid-cols-4'>
               {data?.map((service) => (
                 <NicknameCheckCard
                   key={service}
