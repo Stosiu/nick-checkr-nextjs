@@ -7,6 +7,7 @@ import '@fontsource/poppins/800.css';
 
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -73,6 +74,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
+      <Analytics />
     </>
   );
 }
