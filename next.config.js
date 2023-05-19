@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  experimental: {
-    scrollRestoration: true,
-  },
   reactStrictMode: true,
   webpack(config) {
     config.module.rules.push({
