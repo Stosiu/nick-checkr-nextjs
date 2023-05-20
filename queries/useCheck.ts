@@ -12,7 +12,3 @@ export const useCheck = (nick: string, service: string) => useQuery<AVAILABILITY
   retry: false,
   staleTime: 1000 * 60 * 10,
 });
-
-export const useServicesNames = () => useQuery<string[]>(['services'], async () => {
-  return await axios.get<string[]>('/api/services').then(({ data }) => data);
-});

@@ -6,10 +6,9 @@ import React, { useState } from 'react';
 import { Layout } from '~/components/Layout';
 import { NicknameCheckCard } from '~/components/NicknameCheckCard';
 import Girl from '~/public/images/girl.jpg';
-import { useServicesNames } from '~/queries/useCheck';
+import { NicknameCheckersService } from '~/services/nickname-checkers';
 
-const Index: NextPage = () => {
-  const { data } = useServicesNames();
+const Index: NextPage<{ services: string[] }> = ({ services }) => {
   const [search, setSearch] = useState('');
   const [checkFor, setCheckFor] = useState<string | null>(null);
 
@@ -75,24 +74,25 @@ const Index: NextPage = () => {
                       </button>
                     </div>
                   ) : (
-                    <div className='flex flex-col gap-2 md:flex-row'>
-                      <form onSubmit={handleCheck}>
-                        <input
-                          className='min-w-[200px] rounded-md border px-4 py-2 text-sm md:max-w-[220px]'
-                          placeholder='Nick to check'
-                          value={search}
-                          onChange={(e) => setSearch(e.target.value)}
-                        />
+                    <form
+                      className='flex flex-col gap-2 md:flex-row'
+                      onSubmit={handleCheck}
+                    >
+                      <input
+                        className='min-w-[200px] rounded-md border px-4 py-2 text-sm md:max-w-[220px]'
+                        placeholder='Nick to check'
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                      />
 
-                        <button
-                          type='submit'
-                          className='whitespace-nowrap rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50'
-                          disabled={search === ''}
-                        >
-                          Check availability
-                        </button>
-                      </form>
-                    </div>
+                      <button
+                        className='whitespace-nowrap rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50'
+                        disabled={search === ''}
+                        type='submit'
+                      >
+                        Check availability
+                      </button>
+                    </form>
                   )}
                 </div>
               </div>
@@ -110,7 +110,7 @@ const Index: NextPage = () => {
         {checkFor && (
           <div className='flex flex-col justify-center gap-2 md:mx-auto md:max-w-7xl'>
             <div className='grid grid-cols-2 gap-3 md:grid-cols-6'>
-              {data?.map((service) => (
+              {services.map((service) => (
                 <NicknameCheckCard
                   key={service}
                   nickname={checkFor}
@@ -123,6 +123,14 @@ const Index: NextPage = () => {
       </div>
     </Layout>
   );
+};
+
+export const getStaticProps = async () => {
+  return {
+    props: {
+      services: NicknameCheckersService.getServicesNames(),
+    },
+  };
 };
 
 export default Index;
