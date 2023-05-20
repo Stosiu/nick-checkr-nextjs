@@ -94,7 +94,7 @@ export const NicknameCheckCard = ({ nickname, service, className }: Props) => {
         className
       )}
     >
-      <h3 className='text-overflow-ellipsis overflow-hidden whitespace-nowrap text-lg font-semibold text-gray-900 md:text-xl'>
+      <h3 className='overflow-ellipsis overflow-hidden whitespace-nowrap text-lg font-semibold text-gray-900 md:text-xl'>
         {service}
       </h3>
       <p
