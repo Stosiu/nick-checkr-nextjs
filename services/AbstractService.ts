@@ -18,11 +18,13 @@ export enum ErrorType {
   UNIQUE = 'UNIQUE', // returns HTTP 4xx if the username is not taken or disabled. Since disabled usernames cannot be taken again, we check the response body.
 }
 
-export interface ServiceData  {
+export interface ServiceData {
   service: string;
   url: string;
   errorType: ErrorType;
-  errorMsg: null | string;
+  errorMsg?: null | string;
+  _testAvailableNickname?: string;
+  _testTakenNickname?: string;
 }
 
 export class AbstractService<T = any> implements ServiceData {
@@ -31,53 +33,57 @@ export class AbstractService<T = any> implements ServiceData {
     readonly service: string,
     readonly url: string,
     readonly errorType: ErrorType,
-    readonly errorMsg: null | string,
+    readonly errorMsg?: null | string,
   ) {
-    if(errorType === ErrorType.UNIQUE && !isString(errorMsg)) {
+    if (errorType === ErrorType.UNIQUE && !isString(errorMsg)) {
       throw new Error(`errorMsg must be a string when errorType is ${ErrorType.UNIQUE} for ${service}`);
     }
 
-    if(errorType === ErrorType.NOT_STANDARD && !isString(errorMsg)) {
+    if (errorType === ErrorType.NOT_STANDARD && !isString(errorMsg)) {
       throw new Error(`errorMsg must be a string when errorType is ${ErrorType.NOT_STANDARD} for ${service}`);
     }
   }
 
   async checkIfAvailable(nick: string): Promise<AVAILABILITY_RESPONSE> {
     const url = this.url.replace('{}', nick);
-    console.log(`🎣 Checking ${nick} on ${this.service}`)
 
     try {
       const data = await this.axios<T>(url, REQUEST_OPTIONS);
-      const res = this.parseIsAvailableResponse(data.status, data.data);
-
-      return res ? AVAILABILITY_RESPONSE.AVAILABLE : AVAILABILITY_RESPONSE.TAKEN;
+      return this.parseIsAvailableResponse(data.status, data.data);
     } catch (e: unknown) {
       if (isAxiosError(e) && e.response) {
-        const res = this.parseIsAvailableResponse(e.response.status, e.response.data);
-
-        return res ? AVAILABILITY_RESPONSE.AVAILABLE : AVAILABILITY_RESPONSE.TAKEN;
+        return this.parseIsAvailableResponse(e.response.status, e.response.data);
       }
 
       if (e instanceof Error && e.message.includes('timeout')) {
         return AVAILABILITY_RESPONSE.TIMEOUT;
       }
 
-      console.error(`🤬 Error checking ${nick} on ${this.service} - ${e instanceof Error ? e.message : 'unknown error'}`)
+      console.error(`🤬 Error checking ${nick} on ${this.service} - ${e instanceof Error ? e.message : 'unknown error'}`);
 
       throw e;
     }
   }
 
-  parseIsAvailableResponse(status: number, body?: unknown): boolean {
+  parseIsAvailableResponse(status: number, body?: unknown): AVAILABILITY_RESPONSE {
     const doesBodyContainErrorMsg = Boolean(isString(body) && this.errorMsg && body.includes(this.errorMsg));
+    let isAvailable = false;
 
     switch (this.errorType) {
       case ErrorType.UNIQUE:
-        return status !== 200 && doesBodyContainErrorMsg;
+        isAvailable = status !== 200 && doesBodyContainErrorMsg;
+        break;
       case ErrorType.NOT_STANDARD:
-        return doesBodyContainErrorMsg;
+        isAvailable = doesBodyContainErrorMsg;
+        break;
       default:
-        return status !== 200;
+        if (status !== 200 && status !== 404) {
+          return AVAILABILITY_RESPONSE.ERROR;
+        }
+
+        isAvailable = status !== 200;
     }
+
+    return isAvailable ? AVAILABILITY_RESPONSE.AVAILABLE : AVAILABILITY_RESPONSE.TAKEN;
   }
 }

@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { Layout } from '~/components/Layout';
 import { NicknameCheckCard } from '~/components/NicknameCheckCard';
 import Girl from '~/public/images/girl.jpg';
-import { NicknameCheckersService } from '~/services/NicknameCheckerService';
+import { NicknameCheckerService } from '~/services/NicknameCheckerService';
 
 const Index: NextPage<{ services: string[] }> = ({ services }) => {
   const [search, setSearch] = useState('');
@@ -128,7 +128,7 @@ const Index: NextPage<{ services: string[] }> = ({ services }) => {
 export const getStaticProps = async () => {
   return {
     props: {
-      services: NicknameCheckersService.getServicesNames(),
+      services: NicknameCheckerService.getServicesNames(),
     },
   };
 };

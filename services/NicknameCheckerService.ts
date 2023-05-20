@@ -7,7 +7,7 @@ class _NicknameCheckersService {
   services: AbstractService[];
   axios: AxiosInstance = axios.create({
     timeout: 10000,
-    maxRedirects: 0,
+    maxRedirects: 10,
   });
 
   constructor() {
@@ -46,8 +46,8 @@ class _NicknameCheckersService {
   }
 }
 
-const NicknameCheckersService = new _NicknameCheckersService();
+const NicknameCheckerService = new _NicknameCheckersService();
 
 export {
-  NicknameCheckersService,
+  NicknameCheckerService,
 }

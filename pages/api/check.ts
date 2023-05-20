@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { NicknameCheckersService } from '~/services/NicknameCheckerService';
+import { NicknameCheckerService } from '~/services/NicknameCheckerService';
 import rateLimit from '~/utils/rate-limit';
 
 const limiter = rateLimit({
@@ -21,7 +21,7 @@ export const check = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).json({ error: 'Invalid nick or service' });
   }
 
-  const isAvailable = await NicknameCheckersService.checkIfAvailableInService(
+  const isAvailable = await NicknameCheckerService.checkIfAvailableInService(
     nick,
     service
   );
