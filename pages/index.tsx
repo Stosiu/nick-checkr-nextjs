@@ -13,7 +13,8 @@ const Index: NextPage = () => {
   const [search, setSearch] = useState('');
   const [checkFor, setCheckFor] = useState<string | null>(null);
 
-  const handleCheckClick = () => {
+  const handleCheck = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (search === '') {
       return;
     }
@@ -75,20 +76,22 @@ const Index: NextPage = () => {
                     </div>
                   ) : (
                     <div className='flex flex-col gap-2 md:flex-row'>
-                      <input
-                        className='min-w-[200px] rounded-md border px-4 py-2 text-sm md:max-w-[220px]'
-                        placeholder='Nick to check'
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                      />
+                      <form onSubmit={handleCheck}>
+                        <input
+                          className='min-w-[200px] rounded-md border px-4 py-2 text-sm md:max-w-[220px]'
+                          placeholder='Nick to check'
+                          value={search}
+                          onChange={(e) => setSearch(e.target.value)}
+                        />
 
-                      <button
-                        className='whitespace-nowrap rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50'
-                        disabled={search === ''}
-                        onClick={handleCheckClick}
-                      >
-                        Check availability
-                      </button>
+                        <button
+                          type='submit'
+                          className='whitespace-nowrap rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50'
+                          disabled={search === ''}
+                        >
+                          Check availability
+                        </button>
+                      </form>
                     </div>
                   )}
                 </div>
