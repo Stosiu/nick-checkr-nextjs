@@ -20,8 +20,7 @@ export const Layout = ({ children }: Props) => {
               >
                 stosiu
               </a>
-              .<br className='md:hidden' />
-              {' '}All Rights Reserved.
+              .<br className='md:hidden' /> All Rights Reserved.
             </span>
           </div>
         </div>

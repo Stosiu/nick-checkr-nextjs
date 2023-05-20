@@ -76,7 +76,7 @@ const Index: NextPage = () => {
                   ) : (
                     <div className='flex flex-col gap-2 md:flex-row'>
                       <input
-                        className='rounded-md border px-4 py-2 md:max-w-[220px]'
+                        className='min-w-[200px] rounded-md border px-4 py-2 text-sm md:max-w-[220px]'
                         placeholder='Nick to check'
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
