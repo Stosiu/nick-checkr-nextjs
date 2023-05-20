@@ -26,6 +26,7 @@ export const check = async (req: NextApiRequest, res: NextApiResponse) => {
     service
   );
 
+  res.setHeader('Cache-Control', 's-maxage=3600');
   res.status(200).json(isAvailable);
 };
 
