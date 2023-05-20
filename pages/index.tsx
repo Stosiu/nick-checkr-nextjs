@@ -5,12 +5,12 @@ import React, { useState } from 'react';
 
 import { Layout } from '~/components/Layout';
 import { NicknameCheckCard } from '~/components/NicknameCheckCard';
-import Girl from '~/public/girl.jpg';
+import Girl from '~/public/images/girl.jpg';
 import { useServicesNames } from '~/queries/useCheck';
 
 const Index: NextPage = () => {
   const { data } = useServicesNames();
-  const [search, setSearch] = useState('stosiu');
+  const [search, setSearch] = useState('');
   const [checkFor, setCheckFor] = useState<string | null>(null);
 
   const handleCheckClick = () => {
@@ -23,7 +23,7 @@ const Index: NextPage = () => {
 
   return (
     <Layout>
-      <NextSeo title='NickChekr - Check if you nick is taken!' />
+      <NextSeo title='NickChekr - uncover your nickname availability on 100+ websites' />
 
       <div className='flex flex-col justify-center gap-4 pt-4 md:pt-8'>
         <div className='bg-white'>
@@ -76,14 +76,14 @@ const Index: NextPage = () => {
                   ) : (
                     <div className='flex flex-col gap-2 md:flex-row'>
                       <input
-                        className='rounded-md border px-4 py-2'
+                        className='rounded-md border px-4 py-2 md:max-w-[220px]'
                         placeholder='Nick to check'
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                       />
 
                       <button
-                        className='rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50'
+                        className='whitespace-nowrap rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50'
                         disabled={search === ''}
                         onClick={handleCheckClick}
                       >
