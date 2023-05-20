@@ -5,7 +5,7 @@ import startCase from 'lodash/startCase';
 import { useMemo } from 'react';
 
 import { useCheck } from '~/queries/useCheck';
-import { AVAILABILITY_RESPONSE } from '~/services/nickname-checkers/service';
+import { AVAILABILITY_RESPONSE } from '~/services/AbstractService';
 
 const computedText = (data: UseQueryResult<AVAILABILITY_RESPONSE>) => {
   if (data.isLoading) {

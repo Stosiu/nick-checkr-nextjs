@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { Layout } from '~/components/Layout';
 import { NicknameCheckCard } from '~/components/NicknameCheckCard';
 import Girl from '~/public/images/girl.jpg';
-import { NicknameCheckersService } from '~/services/nickname-checkers';
+import { NicknameCheckersService } from '~/services/NicknameCheckerService';
 
 const Index: NextPage<{ services: string[] }> = ({ services }) => {
   const [search, setSearch] = useState('');

@@ -25,7 +25,7 @@ export interface ServiceData  {
   errorMsg: null | string;
 }
 
-export class Service<T = any> implements ServiceData {
+export class AbstractService<T = any> implements ServiceData {
   constructor(
     readonly axios: AxiosInstance,
     readonly service: string,

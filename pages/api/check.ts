@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { NicknameCheckersService } from '~/services/nickname-checkers';
+import { NicknameCheckersService } from '~/services/NicknameCheckerService';
 import rateLimit from '~/utils/rate-limit';
 
 const limiter = rateLimit({

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import qs from 'query-string';
-import { AVAILABILITY_RESPONSE } from '~/services/nickname-checkers/service';
+import { AVAILABILITY_RESPONSE } from '~/services/AbstractService';
 
 export const useCheck = (nick: string, service: string, options?: UseQueryOptions<AVAILABILITY_RESPONSE>) => useQuery<AVAILABILITY_RESPONSE>(['check-nickname', nick, service], async () => {
   const params = qs.stringify({ nick, service });

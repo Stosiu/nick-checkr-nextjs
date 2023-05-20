@@ -1,4 +1,4 @@
-import { ErrorType, ServiceData } from './service';
+import { ErrorType, ServiceData } from '../AbstractService';
 
 export const servicesList: ServiceData[] = [
   {
