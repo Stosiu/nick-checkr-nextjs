@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         defaultTitle='NickCheckr | Is your nick available?'
         description='NickCheckr is a tool to check if your nick is available on the most popular social media platforms.'
         openGraph={{
-          // images: [{ url: `${SITE_URL}/og-image-v2.jpg` }],
+          images: [{ url: `${SITE_URL}/og-image.jpg` }],
           locale: 'en_IE',
           siteName: 'NickCheckr',
           type: 'website',

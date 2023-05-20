@@ -21,7 +21,7 @@ export const Layout = ({ children }: Props) => {
                 stosiu
               </a>
               .<br className='md:hidden' />
-              All Rights Reserved.
+              {' '}All Rights Reserved.
             </span>
           </div>
         </div>
