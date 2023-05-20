@@ -65,8 +65,18 @@ interface ComputedCardProps {
 
 export const NicknameCheckCard = ({ nickname, service, className }: Props) => {
   const data = useCheck(nickname, service);
+  const randomHoverRotation = useMemo(() => {
+    const idx = random(0, 5);
 
-  const generatedRandom = useMemo(() => random(-5, 50), []);
+    return [
+      '-hover:rotate-[5deg]',
+      '-hover:rotate-[3deg]',
+      '-hover:rotate-[2deg]',
+      'hover:rotate-[5deg]',
+      'hover:rotate-[3deg]',
+      'hover:rotate-[2deg]',
+    ][idx];
+  }, []);
   const computed: ComputedCardProps = useMemo(() => {
     return {
       containerClass: computedContainerClass(data),
@@ -78,15 +88,13 @@ export const NicknameCheckCard = ({ nickname, service, className }: Props) => {
   return (
     <div
       className={cx(
-        'flex flex-col border-2 border-gray-900 rounded-xl duration-200 px-4 p-2 md:p-4 transition-all transform-gpu',
-        `hover:scale-105 ${
-          generatedRandom < 0 ? '-' : ''
-        }hover:rotate-[${Math.abs(generatedRandom)}deg]`,
+        'flex relative flex-col border-2 border-gray-900 rounded-xl duration-200 px-4 p-2 md:p-4 transition-all transform-gpu',
+        `${randomHoverRotation} hover:scale-105`,
         computed.containerClass,
         className
       )}
     >
-      <h3 className='text-overflow-ellipsis text-gray-900 overflow-hidden whitespace-nowrap text-lg font-semibold md:text-xl'>
+      <h3 className='text-overflow-ellipsis overflow-hidden whitespace-nowrap text-lg font-semibold text-gray-900 md:text-xl'>
         {service}
       </h3>
       <p
