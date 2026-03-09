@@ -1,12 +1,14 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { parseAsString, useQueryState } from 'nuqs';
 
+import { CheckSummary } from '@/components/check-summary';
 import type { CheckState } from '@/components/nickname-check-card';
 import { ProgressBar } from '@/components/progress-bar';
 import { ResultsGrid, type ServiceEntry } from '@/components/results-grid';
 import { SearchForm } from '@/components/search-form';
+import { useBlobCache } from '@/hooks/use-blob-cache';
 
 interface Props {
   services: ServiceEntry[];
@@ -40,6 +42,23 @@ export function HomeContent({ services }: Props) {
     errors: Object.values(statuses).filter((s) => s === 'error').length,
   };
 
+  const { checkCount, saveResults } = useBlobCache(searchNick);
+  const checked = counts.available + counts.taken + counts.errors;
+  const isComplete = !!searchNick && checked === counts.total && counts.total > 0;
+
+  const [hasSaved, setHasSaved] = useState(false);
+
+  useEffect(() => {
+    if (isComplete && !hasSaved) {
+      setHasSaved(true);
+      saveResults(statuses);
+    }
+  }, [isComplete, hasSaved, saveResults, statuses]);
+
+  useEffect(() => {
+    setHasSaved(false);
+  }, [searchNick]);
+
   return (
     <div className="noise dot-grid container mx-auto space-y-8 px-4 py-8">
       <section className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] px-6 py-16 text-center sm:px-16 md:py-24">
@@ -62,6 +81,7 @@ export function HomeContent({ services }: Props) {
 
       <section className="space-y-6">
         {searchNick && <ProgressBar {...counts} />}
+        {searchNick && <CheckSummary checkCount={checkCount} isComplete={isComplete} />}
         <ResultsGrid
           nickname={searchNick}
           services={services}
