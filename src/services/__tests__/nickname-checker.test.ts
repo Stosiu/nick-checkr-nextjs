@@ -3,21 +3,19 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { CheckMethod } from '../abstract-service';
 import { services } from '../data/services';
 
-const mockHttpClient = vi.fn();
+const mockFetch = vi.fn();
 
-vi.mock('got-scraping', () => ({
-  gotScraping: async (opts: { url: string }) => {
-    const result = await mockHttpClient(opts.url);
-    return { statusCode: result.status, body: result.body };
+vi.mock('impit', () => ({
+  Impit: class {
+    fetch = mockFetch;
   },
 }));
 
-// Import after mock setup
 const { nicknameChecker } = await import('../nickname-checker');
 const { AvailabilityStatus } = await import('../abstract-service');
 
 beforeEach(() => {
-  mockHttpClient.mockReset();
+  mockFetch.mockReset();
 });
 
 describe('NicknameChecker', () => {
@@ -40,19 +38,17 @@ describe('NicknameChecker with mocked responses', () => {
         it(`${service.name}: detects available nick`, async () => {
           switch (service.checkMethod) {
             case CheckMethod.Standard:
-              mockHttpClient.mockResolvedValueOnce({ status: 404, body: 'Not Found' });
+              mockFetch.mockResolvedValueOnce(new Response('Not Found', { status: 404 }));
               break;
             case CheckMethod.BodyMatch:
-              mockHttpClient.mockResolvedValueOnce({
-                status: 200,
-                body: `page content ${service.bodyMatch} more content`,
-              });
+              mockFetch.mockResolvedValueOnce(
+                new Response(`page content ${service.bodyMatch} more content`, { status: 200 }),
+              );
               break;
             case CheckMethod.NotFoundBodyMatch:
-              mockHttpClient.mockResolvedValueOnce({
-                status: 404,
-                body: `content ${service.bodyMatch} here`,
-              });
+              mockFetch.mockResolvedValueOnce(
+                new Response(`content ${service.bodyMatch} here`, { status: 404 }),
+              );
               break;
           }
 
@@ -65,16 +61,15 @@ describe('NicknameChecker with mocked responses', () => {
         it(`${service.name}: detects taken nick`, async () => {
           switch (service.checkMethod) {
             case CheckMethod.Standard:
-              mockHttpClient.mockResolvedValueOnce({ status: 200, body: 'profile page' });
+              mockFetch.mockResolvedValueOnce(new Response('profile page', { status: 200 }));
               break;
             case CheckMethod.BodyMatch:
-              mockHttpClient.mockResolvedValueOnce({
-                status: 200,
-                body: 'normal profile page without the match string',
-              });
+              mockFetch.mockResolvedValueOnce(
+                new Response('normal profile page without the match string', { status: 200 }),
+              );
               break;
             case CheckMethod.NotFoundBodyMatch:
-              mockHttpClient.mockResolvedValueOnce({ status: 200, body: 'active profile' });
+              mockFetch.mockResolvedValueOnce(new Response('active profile', { status: 200 }));
               break;
           }
 

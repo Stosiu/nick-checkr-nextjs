@@ -24,8 +24,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.35.2",
-    "got-scraping": "^4.2.1",
     "gray-matter": "^4.0.3",
+    "impit": "^0.10.1",
     "lru-cache": "^11.2.6",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",
@@ -48,7 +48,10 @@
     "unist-util-visit": "^5.1.0"
   },
   "pnpm": {
-    "ignoredBuiltDependencies": ["sharp", "unrs-resolver"]
+    "ignoredBuiltDependencies": [
+      "sharp",
+      "unrs-resolver"
+    ]
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.1",

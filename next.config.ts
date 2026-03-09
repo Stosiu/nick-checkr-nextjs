@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: dirname(fileURLToPath(import.meta.url)),
   },
-  serverExternalPackages: ['got-scraping'],
+  serverExternalPackages: ['impit'],
   env: {
     NEXT_PUBLIC_APP_VERSION: version,
   },

@@ -1,31 +1,30 @@
-import { gotScraping } from 'got-scraping';
+import { Impit } from 'impit';
 
 import { AbstractService, TimeoutError, type CheckResult, type HttpClient } from './abstract-service';
 import { services } from './data/services';
 
 const TIMEOUT_MS = 10_000;
 
+const impit = new Impit({ browser: 'chrome' });
+
 function createHttpClient(): HttpClient {
   return async (url: string) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
     try {
-      const response = await gotScraping({
-        url,
-        timeout: { request: TIMEOUT_MS },
-        followRedirect: true,
-        maxRedirects: 10,
-        throwHttpErrors: false,
-        headerGeneratorOptions: {
-          browsers: ['chrome'],
-          operatingSystems: ['macos'],
-          locales: ['en-US'],
-        },
+      const response = await impit.fetch(url, {
+        signal: controller.signal,
       });
-      return { status: response.statusCode, body: response.body };
+      const body = await response.text();
+      return { status: response.status, body };
     } catch (e: unknown) {
-      if (e instanceof Error && 'code' in e && e.code === 'ETIMEDOUT') {
+      if (e instanceof Error && e.name === 'AbortError') {
         throw new TimeoutError(TIMEOUT_MS);
       }
       throw e;
+    } finally {
+      clearTimeout(timer);
     }
   };
 }
