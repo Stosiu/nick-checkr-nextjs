@@ -31,6 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       authors: [siteConfig.name],
       tags: thought.tags,
       url,
+      ...(thought.image && {
+        images: [`/images/thoughts/${slug}/${thought.image}`],
+      }),
     },
     twitter: {
       card: 'summary_large_image',

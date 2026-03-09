@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import { siteConfig } from '@/config/site';
@@ -5,6 +6,12 @@ import { nicknameChecker } from '@/services/nickname-checker';
 import { services } from '@/services/data/services';
 
 import { HomeContent } from './home-content';
+
+export const metadata: Metadata = {
+  title: `NickCheckr | Check username availability across ${services.length}+ platforms`,
+  description: `Check if your nickname is available on ${services.length}+ websites instantly. Scan social media, developer platforms, gaming, and more — all at once.`,
+  alternates: { canonical: '/' },
+};
 
 export default function Home() {
   const serviceEntries = nicknameChecker.getServiceEntries();

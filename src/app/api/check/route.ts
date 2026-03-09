@@ -5,6 +5,9 @@ import { nicknameChecker } from '@/services/nickname-checker';
 import { AvailabilityStatus } from '@/services';
 import { rateLimit } from '@/utils/rate-limit';
 
+const NICK_PATTERN = /^[a-zA-Z0-9]([a-zA-Z0-9._-]{0,38}[a-zA-Z0-9])?$/;
+const validServices = new Set(nicknameChecker.getServiceNames());
+
 const limiter = rateLimit({
   interval: 60_000,
   uniqueTokenPerInterval: 500,
@@ -19,7 +22,16 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Missing nick or service' }, { status: 400 });
   }
 
-  const ip = request.headers.get('x-forwarded-for') ?? 'anonymous';
+  if (!NICK_PATTERN.test(nick)) {
+    return NextResponse.json({ error: 'Invalid nickname format' }, { status: 400 });
+  }
+
+  if (!validServices.has(service)) {
+    return NextResponse.json({ error: 'Unknown service' }, { status: 400 });
+  }
+
+  const forwarded = request.headers.get('x-forwarded-for');
+  const ip = forwarded ? forwarded.split(',')[0].trim() : 'anonymous';
   const { success, remaining } = limiter.check(1000, ip);
 
   if (!success) {
