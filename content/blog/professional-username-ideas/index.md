@@ -123,4 +123,4 @@ Inconsistency is the other big mistake. Being `msmith` on GitHub but `michael.sm
 
 ## Lock it down
 
-Once you've picked a professional username, [check its availability across 170+ platforms](https://nickcheckr.com) and register it on every platform that matters to your career. Even platforms you don't actively use. Your [username can be taken at any time](/blog/username-already-taken), and reclaiming it later is harder than claiming it now. Five minutes of defensive registration saves you from a fragmented professional identity.
+Once you've picked a professional username, [check its availability across 200+ platforms](https://nickcheckr.com) and register it on every platform that matters to your career. Even platforms you don't actively use. Your [username can be taken at any time](/blog/username-already-taken), and reclaiming it later is harder than claiming it now. Five minutes of defensive registration saves you from a fragmented professional identity.

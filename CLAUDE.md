@@ -1,6 +1,6 @@
 # NickCheckr
 
-Username availability checker across 170+ platforms, organized by category.
+Username availability checker across 200+ platforms, organized by category.
 
 ## Stack
 
@@ -21,7 +21,7 @@ All source files live under `src/`:
 - `src/app/api/check/` - Check API with rate limiting + in-memory cache
 - `src/components/` - React components (`ui/` for shadcn)
 - `src/services/` - Nickname checking services (AbstractService pattern)
-- `src/services/data/services.ts` - 173 services with categories
+- `src/services/data/services.ts` - 208 services with categories
 - `src/hooks/` - Custom React hooks
 - `src/lib/` - Utilities: `cache.ts` (server cache), `fetch-queue.ts` (client concurrency limiter), `blog.ts` (blog processing), `utils.ts` (shadcn `cn()`)
 - `src/config/` - Site configuration
@@ -39,7 +39,7 @@ All source files live under `src/`:
 
 Add an entry to `src/services/data/services.ts` following the `ServiceDefinition` interface. Each service requires a `category` field.
 
-Categories: Social Media, Developer, Content & Blogging, Creative & Design, Music & Audio, Video & Streaming, Gaming, Professional, Community, Finance & Crypto, Messaging, Education & Learning, Photography.
+Categories: Social Media, Developer, Content & Blogging, Creative & Design, Music & Audio, Video & Streaming, Gaming, Professional, Community, Finance & Crypto, Messaging, Education & Learning, Photography, Marketplace, Fitness & Sports.
 
 Check methods:
 - `CheckMethod.Standard` - Returns 404 when username is not found

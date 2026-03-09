@@ -233,4 +233,61 @@ export const services: ServiceDefinition[] = [
 
   // Additional Community
   { name: 'Grailed', url: 'https://www.grailed.com/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Developer (additional batch)
+  { name: 'GitLab', url: 'https://gitlab.com/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'npm', url: 'https://www.npmjs.com/~{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Codeforces', url: 'https://codeforces.com/profile/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'CodeChef', url: 'https://www.codechef.com/users/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'AtCoder', url: 'https://atcoder.jp/users/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'tourist', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'TryHackMe', url: 'https://tryhackme.com/p/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'HackTheBox', url: 'https://forum.hackthebox.com/u/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/user/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Crowdin', url: 'https://crowdin.com/profile/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Social Media (additional batch)
+  { name: 'Clubhouse', url: 'https://www.clubhouse.com/@{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Lemmy', url: 'https://lemmy.world/u/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Gaming (additional batch)
+  { name: 'osu!', url: 'https://osu.ppy.sh/users/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'peppy', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Speedrun.com', url: 'https://www.speedrun.com/users/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'BoardGameGeek', url: 'https://boardgamegeek.com/user/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Fortnite Tracker', url: 'https://fortnitetracker.com/profile/all/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'ninja', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'PSN Profiles', url: 'https://psnprofiles.com/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'AniList', url: 'https://anilist.co/user/{}/', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Newgrounds', url: 'https://{}.newgrounds.com', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Trakt', url: 'https://trakt.tv/users/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'TETR.IO', url: 'https://ch.tetr.io/u/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Music & Audio (additional batch)
+  { name: 'Discogs', url: 'https://www.discogs.com/user/{}', category: 'Music & Audio', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'MuseScore', url: 'https://musescore.com/user/{}', category: 'Music & Audio', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Professional (additional batch)
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'ResearchGate', url: 'https://www.researchgate.net/profile/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Ko-fi', url: 'https://ko-fi.com/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Cameo', url: 'https://www.cameo.com/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'snoopdogg', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Beacons', url: 'https://beacons.ai/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Carrd', url: 'https://{}.carrd.co', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Bio.link', url: 'https://bio.link/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Bento', url: 'https://bento.me/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Marketplace
+  { name: 'Etsy', url: 'https://www.etsy.com/people/{}', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Depop', url: 'https://www.depop.com/{}/', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Content & Blogging (additional batch)
+  { name: 'Archive.org', url: 'https://archive.org/details/@{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Education & Learning (additional batch)
+  { name: 'freeCodeCamp', url: 'https://www.freecodecamp.org/{}', category: 'Education & Learning', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Memrise', url: 'https://www.memrise.com/user/{}/', category: 'Education & Learning', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Video & Streaming (additional batch)
+  { name: 'Trovo', url: 'https://trovo.live/s/{}', category: 'Video & Streaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Fitness & Sports
+  { name: 'Strava', url: 'https://www.strava.com/athletes/{}', category: 'Fitness & Sports', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
 ];

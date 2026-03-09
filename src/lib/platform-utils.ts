@@ -58,6 +58,10 @@ const categoryDescriptions: Record<string, string> = {
     'Education platforms track your learning progress and achievements under your username. A consistent handle lets you share your learning journey.',
   Photography:
     'Photography platforms are your visual portfolio. A clean username makes your profile URL memorable and professional when sharing your work.',
+  Marketplace:
+    'Marketplace platforms tie your username to your seller reputation and buyer trust. A consistent handle across marketplaces strengthens your brand and makes you easier to find.',
+  'Fitness & Sports':
+    'Fitness and sports platforms track your activities and connect you with communities. Your username is how training partners and followers find your profile.',
 };
 
 const platformInfo: Record<

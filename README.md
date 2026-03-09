@@ -1,12 +1,12 @@
 # NickCheckr
 
-Check username availability across 170+ platforms instantly. One search, every platform.
+Check username availability across 200+ platforms instantly. One search, every platform.
 
 **Live at [nickcheckr.com](https://nickcheckr.com)**
 
 ## What it does
 
-Enter a username and NickCheckr checks availability across 173 services organized into 13 categories: Social Media, Developer, Content & Blogging, Creative & Design, Music & Audio, Video & Streaming, Gaming, Professional, Community, Finance & Crypto, Messaging, Education & Learning, and Photography.
+Enter a username and NickCheckr checks availability across 208 services organized into 15 categories: Social Media, Developer, Content & Blogging, Creative & Design, Music & Audio, Video & Streaming, Gaming, Professional, Community, Finance & Crypto, Messaging, Education & Learning, Photography, Marketplace, and Fitness & Sports.
 
 Results show up in real-time as each platform responds. Available usernames link directly to the signup page. Taken usernames link to the existing profile.
 
@@ -44,7 +44,7 @@ src/
 ├── services/               # Username checking engine
 │   ├── abstract-service.ts # Base service with check methods
 │   ├── nickname-checker.ts # Orchestrator singleton
-│   └── data/services.ts    # 173 service definitions
+│   └── data/services.ts    # 208 service definitions
 ├── hooks/                  # Custom React hooks
 ├── lib/                    # Utilities (cache, fetch queue, blog processing)
 ├── config/                 # Site configuration
