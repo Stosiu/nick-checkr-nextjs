@@ -2,22 +2,22 @@ import fs from 'fs';
 import path from 'path';
 import type { Root, Element, ElementContent } from 'hast';
 
-const THOUGHTS_DIR = path.join(process.cwd(), 'content/thoughts');
-const IMAGES_DIR = path.join(process.cwd(), 'public/images/thoughts');
+const BLOG_DIR = path.join(process.cwd(), 'content/blog');
+const IMAGES_DIR = path.join(process.cwd(), 'public/images/blog');
 
-export type ThoughtImage = {
+export type PostImage = {
   src: string;
   width: number;
   height: number;
   blurDataURL: string;
 };
 
-export type ThoughtMeta = {
+export type PostMeta = {
   slug: string;
   title: string;
   date: string;
   tags: string[];
-  image: ThoughtImage | null;
+  image: PostImage | null;
   description: string | null;
   imageCaption: string | null;
   tldr: string | null;
@@ -32,20 +32,20 @@ export type TocEntry = {
   level: number;
 };
 
-export type Thought = ThoughtMeta & {
+export type Post = PostMeta & {
   html: string;
   toc: TocEntry[];
 };
 
 function getSlugs(): string[] {
-  if (!fs.existsSync(THOUGHTS_DIR)) return [];
+  if (!fs.existsSync(BLOG_DIR)) return [];
   return fs
-    .readdirSync(THOUGHTS_DIR, { withFileTypes: true })
+    .readdirSync(BLOG_DIR, { withFileTypes: true })
     .filter((d) => d.isDirectory())
     .map((d) => d.name);
 }
 
-async function generateImageData(slug: string, filename: string): Promise<ThoughtImage | null> {
+async function generateImageData(slug: string, filename: string): Promise<PostImage | null> {
   const imagePath = path.join(IMAGES_DIR, slug, filename);
   if (!fs.existsSync(imagePath)) return null;
 
@@ -56,15 +56,15 @@ async function generateImageData(slug: string, filename: string): Promise<Though
   const blurDataURL = `data:image/${metadata.format};base64,${blurBuffer.toString('base64')}`;
 
   return {
-    src: `/images/thoughts/${slug}/${filename}`,
+    src: `/images/blog/${slug}/${filename}`,
     width: metadata.width ?? 1200,
     height: metadata.height ?? 630,
     blurDataURL,
   };
 }
 
-async function parseThought(slug: string): Promise<(Omit<ThoughtMeta, 'image'> & { imageFilename: string | null }) | null> {
-  const filePath = path.join(THOUGHTS_DIR, slug, 'index.md');
+async function parsePost(slug: string): Promise<(Omit<PostMeta, 'image'> & { imageFilename: string | null }) | null> {
+  const filePath = path.join(BLOG_DIR, slug, 'index.md');
   if (!fs.existsSync(filePath)) return null;
 
   const { default: matter } = await import('gray-matter');
@@ -89,19 +89,19 @@ async function parseThought(slug: string): Promise<(Omit<ThoughtMeta, 'image'> &
   };
 }
 
-export async function getAllThoughts(): Promise<ThoughtMeta[]> {
+export async function getAllPosts(): Promise<PostMeta[]> {
   const slugs = getSlugs();
-  const thoughts = await Promise.all(
+  const posts = await Promise.all(
     slugs.map(async (slug) => {
-      const parsed = await parseThought(slug);
+      const parsed = await parsePost(slug);
       if (!parsed) return null;
       const { imageFilename, ...rest } = parsed;
       const image = imageFilename ? await generateImageData(slug, imageFilename) : null;
-      return { ...rest, image } as ThoughtMeta;
+      return { ...rest, image } as PostMeta;
     }),
   );
-  return thoughts
-    .filter((t): t is ThoughtMeta => t !== null)
+  return posts
+    .filter((t): t is PostMeta => t !== null)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -206,22 +206,22 @@ async function renderMarkdown(content: string): Promise<{ html: string; toc: Toc
   return { html, toc };
 }
 
-export async function getRelatedThoughts(slug: string, tags: string[], count = 2): Promise<ThoughtMeta[]> {
-  const all = await getAllThoughts();
+export async function getRelatedPosts(slug: string, tags: string[], count = 2): Promise<PostMeta[]> {
+  const all = await getAllPosts();
   const others = all.filter((t) => t.slug !== slug);
 
   const scored = others.map((t) => {
     const shared = t.tags.filter((tag) => tags.includes(tag)).length;
-    return { thought: t, score: shared };
+    return { post: t, score: shared };
   });
 
-  scored.sort((a, b) => b.score - a.score || new Date(b.thought.date).getTime() - new Date(a.thought.date).getTime());
+  scored.sort((a, b) => b.score - a.score || new Date(b.post.date).getTime() - new Date(a.post.date).getTime());
 
-  return scored.slice(0, count).map((s) => s.thought);
+  return scored.slice(0, count).map((s) => s.post);
 }
 
-export async function getThoughtBySlug(slug: string): Promise<Thought | null> {
-  const parsed = await parseThought(slug);
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  const parsed = await parsePost(slug);
   if (!parsed) return null;
 
   const { imageFilename, ...rest } = parsed;

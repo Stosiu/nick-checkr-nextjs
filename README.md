@@ -91,7 +91,7 @@ Add an entry to `src/services/data/services.ts`:
 
 ## Blog
 
-Blog posts live in `content/thoughts/<slug>/index.md` with frontmatter (title, date, tags, description, image). The blog supports search, tag filtering, pagination, table of contents, and social sharing.
+Blog posts live in `content/blog/<slug>/index.md` with frontmatter (title, date, tags, description, image). The blog supports search, tag filtering, pagination, table of contents, and social sharing.
 
 ## License
 

@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Clock, Lightbulb } from 'lucide-react';
 import { siteConfig } from '@/config/site';
-import { getThoughtBySlug, getAllThoughts, getRelatedThoughts } from '@/lib/thoughts';
-import { ThoughtContent } from '@/components/thought-content';
-import { ThoughtProgress } from '@/components/thought-progress';
-import { ThoughtToc } from '@/components/thought-toc';
+import { getPostBySlug, getAllPosts, getRelatedPosts } from '@/lib/blog';
+import { BlogContent } from '@/components/blog-content';
+import { BlogProgress } from '@/components/blog-progress';
+import { BlogToc } from '@/components/blog-toc';
 import { ShareButtons } from '@/components/share-buttons';
-import { RelatedThoughts } from '@/components/related-thoughts';
+import { RelatedPosts } from '@/components/related-posts';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -16,29 +16,29 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const thought = await getThoughtBySlug(slug);
-  if (!thought) return {};
+  const post = await getPostBySlug(slug);
+  if (!post) return {};
 
   const url = `${siteConfig.url}/blog/${slug}`;
   return {
-    title: thought.title,
-    description: thought.description ?? thought.content.slice(0, 160).replace(/\n/g, ' '),
+    title: post.title,
+    description: post.description ?? post.content.slice(0, 160).replace(/\n/g, ' '),
     openGraph: {
-      title: thought.title,
-      description: thought.description ?? undefined,
+      title: post.title,
+      description: post.description ?? undefined,
       type: 'article',
-      publishedTime: thought.date,
+      publishedTime: post.date,
       authors: [siteConfig.name],
-      tags: thought.tags,
+      tags: post.tags,
       url,
-      ...(thought.image && {
-        images: [`/images/thoughts/${slug}/${thought.image}`],
+      ...(post.image && {
+        images: [`/images/blog/${slug}/${post.image}`],
       }),
     },
     twitter: {
       card: 'summary_large_image',
-      title: thought.title,
-      description: thought.description ?? undefined,
+      title: post.title,
+      description: post.description ?? undefined,
     },
     alternates: {
       canonical: url,
@@ -47,23 +47,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const thoughts = await getAllThoughts();
-  return thoughts.map((t) => ({ slug: t.slug }));
+  const posts = await getAllPosts();
+  return posts.map((t) => ({ slug: t.slug }));
 }
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const thought = await getThoughtBySlug(slug);
-  if (!thought) notFound();
+  const post = await getPostBySlug(slug);
+  if (!post) notFound();
 
   const url = `${siteConfig.url}/blog/${slug}`;
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: thought.title,
-    description: thought.description,
-    datePublished: thought.date,
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
     author: {
       '@type': 'Person',
       name: siteConfig.name,
@@ -74,14 +74,14 @@ export default async function BlogPostPage({ params }: Props) {
       name: siteConfig.name,
     },
     url,
-    keywords: thought.tags.join(', '),
-    wordCount: thought.wordCount,
-    timeRequired: `PT${thought.readingTime}M`,
+    keywords: post.tags.join(', '),
+    wordCount: post.wordCount,
+    timeRequired: `PT${post.readingTime}M`,
   };
 
   return (
     <div className="noise dot-grid">
-      <ThoughtProgress />
+      <BlogProgress />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -96,21 +96,21 @@ export default async function BlogPostPage({ params }: Props) {
             Back to Blog
           </Link>
 
-          <h1 className="mb-3 text-3xl font-bold">{thought.title}</h1>
+          <h1 className="mb-3 text-3xl font-bold">{post.title}</h1>
           <div className="mb-4 flex items-center gap-3">
-            <time className="font-mono text-sm text-white/30">{thought.date}</time>
+            <time className="font-mono text-sm text-white/30">{post.date}</time>
             <span className="text-base text-white/30">&middot;</span>
             <span className="flex items-center gap-1.5 text-sm text-white/30">
               <Clock className="h-3.5 w-3.5" />
-              {thought.readingTime} min read
+              {post.readingTime} min read
             </span>
             <span className="text-base text-white/30">&middot;</span>
             <span className="font-mono text-sm text-white/30">
-              {thought.wordCount.toLocaleString()} words
+              {post.wordCount.toLocaleString()} words
             </span>
           </div>
           <div className="mb-4 flex flex-wrap gap-1.5">
-            {thought.tags.map((tag) => (
+            {post.tags.map((tag) => (
               <Link
                 key={tag}
                 href={`/blog?tag=${encodeURIComponent(tag)}`}
@@ -122,37 +122,37 @@ export default async function BlogPostPage({ params }: Props) {
             ))}
           </div>
           <div className="mb-8">
-            <ShareButtons url={url} title={thought.title} />
+            <ShareButtons url={url} title={post.title} />
           </div>
 
-          {thought.tldr && (
+          {post.tldr && (
             <div className="mb-10 rounded-lg border border-brand-400/20 bg-brand-400/[0.04] p-4">
               <div className="mb-2 flex items-center gap-2">
                 <Lightbulb className="h-4 w-4 text-brand-400" />
                 <span className="text-sm font-semibold text-brand-400">TL;DR</span>
               </div>
-              <p className="text-sm leading-relaxed text-white/70">{thought.tldr}</p>
+              <p className="text-sm leading-relaxed text-white/70">{post.tldr}</p>
             </div>
           )}
 
-          <ThoughtToc
-            entries={thought.toc}
-            title={thought.title}
+          <BlogToc
+            entries={post.toc}
+            title={post.title}
             backHref="/blog"
             backLabel="Back to Blog"
           />
-          <ThoughtContent
-            html={thought.html}
-            coverImage={thought.image}
-            coverAlt={thought.title}
-            coverCaption={thought.imageCaption ?? undefined}
+          <BlogContent
+            html={post.html}
+            coverImage={post.image}
+            coverAlt={post.title}
+            coverCaption={post.imageCaption ?? undefined}
           />
-          <RelatedThoughts thoughts={await getRelatedThoughts(slug, thought.tags)} />
+          <RelatedPosts posts={await getRelatedPosts(slug, post.tags)} />
         </div>
 
-        <ThoughtToc
-          entries={thought.toc}
-          title={thought.title}
+        <BlogToc
+          entries={post.toc}
+          title={post.title}
           backHref="/blog"
           backLabel="Back to Blog"
           desktop

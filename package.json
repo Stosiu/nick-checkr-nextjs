@@ -47,6 +47,9 @@
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0"
   },
+  "pnpm": {
+    "ignoredBuiltDependencies": ["sharp", "unrs-resolver"]
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.1",
     "@types/hast": "^3.0.4",

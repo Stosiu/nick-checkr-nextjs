@@ -1,35 +1,35 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { siteConfig } from '@/config/site';
-import { getAllThoughts } from '@/lib/thoughts';
-import { ThoughtsList } from '@/components/thoughts-list';
+import { getAllPosts } from '@/lib/blog';
+import { BlogList } from '@/components/blog-list';
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Thoughts on usernames, online identity, and the platforms we use.',
+  description: 'Tips and guides on usernames, online identity, and the platforms we use.',
   openGraph: {
     title: `Blog — ${siteConfig.name}`,
-    description: 'Thoughts on usernames, online identity, and the platforms we use.',
+    description: 'Tips and guides on usernames, online identity, and the platforms we use.',
     type: 'website',
     url: `${siteConfig.url}/blog`,
   },
 };
 
 export default async function BlogPage() {
-  const thoughts = await getAllThoughts();
+  const posts = await getAllPosts();
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Blog',
-    description: 'Thoughts on usernames, online identity, and the platforms we use.',
+    description: 'Tips and guides on usernames, online identity, and the platforms we use.',
     url: `${siteConfig.url}/blog`,
     author: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url },
-    hasPart: thoughts.map((thought) => ({
+    hasPart: posts.map((post) => ({
       '@type': 'Article',
-      headline: thought.title,
-      datePublished: thought.date,
-      url: `${siteConfig.url}/blog/${thought.slug}`,
+      headline: post.title,
+      datePublished: post.date,
+      url: `${siteConfig.url}/blog/${post.slug}`,
     })),
   };
 
@@ -39,10 +39,10 @@ export default async function BlogPage() {
       <div className="mx-auto max-w-4xl px-6 pb-20 pt-12">
         <h1 className="mb-2 text-3xl font-bold">Blog</h1>
         <p className="mb-8 text-sm text-white/40">
-          Thoughts on usernames, online identity, and the platforms we use.
+          Tips and guides on usernames, online identity, and the platforms we use.
         </p>
         <Suspense>
-          <ThoughtsList thoughts={thoughts} />
+          <BlogList posts={posts} />
         </Suspense>
       </div>
     </div>

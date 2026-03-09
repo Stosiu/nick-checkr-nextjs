@@ -23,7 +23,7 @@ All source files live under `src/`:
 - `src/services/` - Nickname checking services (AbstractService pattern)
 - `src/services/data/services.ts` - 173 services with categories
 - `src/hooks/` - Custom React hooks
-- `src/lib/` - Utilities: `cache.ts` (server cache), `fetch-queue.ts` (client concurrency limiter), `thoughts.ts` (blog processing), `utils.ts` (shadcn `cn()`)
+- `src/lib/` - Utilities: `cache.ts` (server cache), `fetch-queue.ts` (client concurrency limiter), `blog.ts` (blog processing), `utils.ts` (shadcn `cn()`)
 - `src/config/` - Site configuration
 - `src/utils/` - Rate limiter
 
@@ -75,13 +75,13 @@ Include `testAvailableNick` and `testTakenNick` for integration tests.
 
 ## Blog Pipeline
 
-Blog posts live in `content/thoughts/<slug>/index.md` with frontmatter:
+Blog posts live in `content/blog/<slug>/index.md` with frontmatter:
 
 - `title` (required)
 - `date` (required, YYYY-MM-DD)
 - `tags` (array of strings)
 - `description` (optional, used for SEO)
-- `image` (optional, filename in `public/images/thoughts/<slug>/`)
+- `image` (optional, filename in `public/images/blog/<slug>/`)
 - `imageCaption` (optional)
 - `tldr` (optional, shown in highlight box)
 
@@ -98,7 +98,7 @@ Content strategy and topic list: `docs/plans/2026-03-09-content-strategy-design.
 - `tldr` is a single paragraph shown in a highlight box — write it as a direct, useful summary, not a teaser
 - Sentence case for all headings (capitalize only the first word and proper nouns)
 - No intro fluff — open with the useful information or the direct answer
-- Cover images go in `public/images/thoughts/<slug>/cover.jpg` (convert from PNG with `magick input.png -quality 85 -resize '1200x>' output.jpg`)
+- Cover images go in `public/images/blog/<slug>/cover.jpg` (convert from PNG with `magick input.png -quality 85 -resize '1200x>' output.jpg`)
 
 ### Cross-linking rules
 

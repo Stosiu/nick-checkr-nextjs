@@ -6,29 +6,29 @@ import NextLink from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useQueryState, parseAsArrayOf, parseAsString, parseAsInteger } from 'nuqs';
 import { Search, X, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
-import type { ThoughtMeta } from '@/lib/thoughts';
+import type { PostMeta } from '@/lib/blog';
 
 const PAGE_SIZE = 12;
 const MotionLink = motion.create(NextLink);
 
 type Props = {
-  thoughts: ThoughtMeta[];
+  posts: PostMeta[];
 };
 
-export function ThoughtsList({ thoughts }: Props) {
+export function BlogList({ posts }: Props) {
   const [query, setQuery] = useQueryState('q', parseAsString.withDefault(''));
   const [activeTags, setActiveTags] = useQueryState('tag', parseAsArrayOf(parseAsString, ',').withDefault([]));
   const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1));
 
   const tagCounts = useMemo(() => {
     const counts = new Map<string, number>();
-    for (const thought of thoughts) {
-      for (const tag of thought.tags) {
+    for (const post of posts) {
+      for (const tag of post.tags) {
         counts.set(tag, (counts.get(tag) ?? 0) + 1);
       }
     }
     return counts;
-  }, [thoughts]);
+  }, [posts]);
 
   const allTags = useMemo(() => {
     return Array.from(tagCounts.keys()).sort();
@@ -40,20 +40,20 @@ export function ThoughtsList({ thoughts }: Props) {
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase();
-    return thoughts.filter((thought) => {
+    return posts.filter((post) => {
       const matchesQuery =
         !q ||
-        thought.title.toLowerCase().includes(q) ||
-        thought.tags.some((tag) => tag.toLowerCase().includes(q)) ||
-        thought.content.toLowerCase().includes(q);
+        post.title.toLowerCase().includes(q) ||
+        post.tags.some((tag) => tag.toLowerCase().includes(q)) ||
+        post.content.toLowerCase().includes(q);
 
       const matchesTags =
         activeTags.length === 0 ||
-        activeTags.every((tag) => thought.tags.includes(tag));
+        activeTags.every((tag) => post.tags.includes(tag));
 
       return matchesQuery && matchesTags;
     });
-  }, [thoughts, query, activeTags]);
+  }, [posts, query, activeTags]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
@@ -121,10 +121,10 @@ export function ThoughtsList({ thoughts }: Props) {
         <>
           <AnimatePresence mode="popLayout">
             <div className="grid gap-4">
-              {paginated.map((thought, i) => (
+              {paginated.map((post, i) => (
                 <MotionLink
-                  key={thought.slug}
-                  href={`/blog/${thought.slug}`}
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
                   layout
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -135,23 +135,23 @@ export function ThoughtsList({ thoughts }: Props) {
                   <div className="flex gap-5">
                     <div className="min-w-0 flex-1">
                       <h2 className="mb-1 text-lg font-semibold text-white/90 transition-colors group-hover:text-white">
-                        {thought.title}
+                        {post.title}
                       </h2>
-                      {thought.description && (
-                        <p className="mb-2 line-clamp-2 text-sm text-white/40">{thought.description}</p>
+                      {post.description && (
+                        <p className="mb-2 line-clamp-2 text-sm text-white/40">{post.description}</p>
                       )}
                       <div className="flex items-center gap-2 font-mono text-xs text-white/30">
-                        <time>{thought.date}</time>
+                        <time>{post.date}</time>
                         <span className="text-sm text-white/30">&middot;</span>
                         <span className="flex items-center gap-1">
                           <Clock className="h-3 w-3" />
-                          {thought.readingTime} min read
+                          {post.readingTime} min read
                         </span>
                         <span className="text-sm text-white/30">&middot;</span>
-                        <span>{thought.wordCount.toLocaleString()} words</span>
+                        <span>{post.wordCount.toLocaleString()} words</span>
                       </div>
                       <div className="mt-2 flex flex-wrap gap-1.5">
-                        {thought.tags.map((tag) => (
+                        {post.tags.map((tag) => (
                           <button
                             key={tag}
                             onClick={(e) => {
@@ -172,15 +172,15 @@ export function ThoughtsList({ thoughts }: Props) {
                         ))}
                       </div>
                     </div>
-                    {thought.image && (
+                    {post.image && (
                       <div className="w-36 shrink-0 self-center overflow-hidden rounded-lg border border-white/[0.06]">
                         <Image
-                          src={thought.image.src}
-                          alt={thought.title}
-                          width={thought.image.width}
-                          height={thought.image.height}
+                          src={post.image.src}
+                          alt={post.title}
+                          width={post.image.width}
+                          height={post.image.height}
                           placeholder="blur"
-                          blurDataURL={thought.image.blurDataURL}
+                          blurDataURL={post.image.blurDataURL}
                           className="h-auto w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                         />
                       </div>

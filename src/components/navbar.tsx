@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { getThoughtsCount } from '@/lib/thoughts-count';
+import { getPostCount } from '@/lib/blog-count';
 
 export function Navbar() {
-  const blogCount = getThoughtsCount();
+  const blogCount = getPostCount();
 
   return (
     <nav className="sticky top-0 z-50 border-b border-white/[0.06] bg-black/80 backdrop-blur-md">

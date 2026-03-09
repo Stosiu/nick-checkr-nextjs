@@ -3,11 +3,11 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { X } from 'lucide-react';
-import type { ThoughtImage } from '@/lib/thoughts';
+import type { PostImage } from '@/lib/blog';
 
 type Props = {
   html: string;
-  coverImage?: ThoughtImage | null;
+  coverImage?: PostImage | null;
   coverAlt?: string;
   coverCaption?: string;
 };
@@ -19,7 +19,7 @@ type LightboxState = {
   naturalHeight?: number;
 };
 
-export function ThoughtContent({ html, coverImage, coverAlt, coverCaption }: Props) {
+export function BlogContent({ html, coverImage, coverAlt, coverCaption }: Props) {
   const proseRef = useRef<HTMLDivElement>(null);
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
   const [visible, setVisible] = useState(false);
@@ -64,7 +64,7 @@ export function ThoughtContent({ html, coverImage, coverAlt, coverCaption }: Pro
       heading.classList.add('group', 'relative');
       const anchor = document.createElement('a');
       anchor.href = `#${id}`;
-      anchor.className = 'thought-heading-anchor';
+      anchor.className = 'blog-heading-anchor';
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.setAttribute('width', '14');
       svg.setAttribute('height', '14');
@@ -144,7 +144,7 @@ export function ThoughtContent({ html, coverImage, coverAlt, coverCaption }: Pro
 
       <div
         ref={proseRef}
-        className="prose prose-invert prose-thoughts max-w-none"
+        className="prose prose-invert prose-blog max-w-none"
         dangerouslySetInnerHTML={{ __html: html }}
       />
 

@@ -13,7 +13,7 @@ const DONE_MESSAGES = [
   'You read the whole thing? Respect.',
 ];
 
-export function ThoughtProgress() {
+export function BlogProgress() {
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(false);
   const [done, setDone] = useState(false);

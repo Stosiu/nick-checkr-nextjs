@@ -1,14 +1,14 @@
 import type { MetadataRoute } from 'next';
 
 import { siteConfig } from '@/config/site';
-import { getAllThoughts } from '@/lib/thoughts';
+import { getAllPosts } from '@/lib/blog';
 import { getServiceSlug } from '@/lib/platform-utils';
 import { services } from '@/services/data/services';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const thoughts = await getAllThoughts();
+  const posts = await getAllPosts();
 
-  const blogPosts: MetadataRoute.Sitemap = thoughts.map((post) => ({
+  const blogPosts: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${siteConfig.url}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     priority: 0.6,

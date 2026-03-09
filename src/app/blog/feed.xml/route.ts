@@ -1,5 +1,5 @@
 import { siteConfig } from '@/config/site';
-import { getAllThoughts } from '@/lib/thoughts';
+import { getAllPosts } from '@/lib/blog';
 
 function escapeXml(str: string): string {
   return str
@@ -11,9 +11,9 @@ function escapeXml(str: string): string {
 }
 
 export async function GET() {
-  const thoughts = await getAllThoughts();
+  const posts = await getAllPosts();
 
-  const items = thoughts
+  const items = posts
     .map(
       (post) => `    <item>
       <title>${escapeXml(post.title)}</title>
@@ -29,7 +29,7 @@ export async function GET() {
   <channel>
     <title>${escapeXml(siteConfig.name)}</title>
     <link>${siteConfig.url}/blog</link>
-    <description>Thoughts and articles from ${escapeXml(siteConfig.name)}</description>
+    <description>Tips and guides from ${escapeXml(siteConfig.name)}</description>
     <language>en-us</language>
     <atom:link href="${siteConfig.url}/blog/feed.xml" rel="self" type="application/rss+xml"/>
 ${items}

@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link2, Check, ArrowLeft } from 'lucide-react';
 import { FaXTwitter, FaLinkedinIn, FaRedditAlien, FaHackerNews } from 'react-icons/fa6';
 import { FaRegCopy } from 'react-icons/fa';
-import type { TocEntry } from '@/lib/thoughts';
+import type { TocEntry } from '@/lib/blog';
 
 type Props = {
   entries: TocEntry[];
@@ -14,7 +14,7 @@ type Props = {
   desktop?: boolean;
 };
 
-export function ThoughtToc({ entries, title, backHref, backLabel, desktop }: Props) {
+export function BlogToc({ entries, title, backHref, backLabel, desktop }: Props) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [copiedLink, setCopiedLink] = useState(false);

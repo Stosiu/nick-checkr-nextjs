@@ -264,7 +264,7 @@ html {
   transform: translateY(20px);
 }
 
-.prose-thoughts {
+.prose-blog {
   --tw-prose-body: rgba(255, 255, 255, 0.7);
   --tw-prose-headings: rgba(255, 255, 255, 0.95);
   --tw-prose-links: #34d399;
@@ -282,7 +282,7 @@ html {
   --tw-prose-td-borders: rgba(255, 255, 255, 0.1);
 }
 
-.thought-heading-anchor {
+.blog-heading-anchor {
   position: absolute;
   left: -2.25rem;
   top: 50%;
@@ -301,21 +301,21 @@ html {
   cursor: pointer;
 }
 
-.prose-thoughts :is(h2, h3, h4):hover .thought-heading-anchor {
+.prose-blog :is(h2, h3, h4):hover .blog-heading-anchor {
   opacity: 1;
 }
 
-.thought-heading-anchor:hover {
+.blog-heading-anchor:hover {
   color: var(--color-brand-400);
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-.prose-thoughts figure {
+.prose-blog figure {
   margin: 2rem 0;
   text-align: center;
 }
 
-.prose-thoughts figure img {
+.prose-blog figure img {
   margin: 0 auto;
   border-radius: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -323,11 +323,11 @@ html {
   transition: opacity 0.2s;
 }
 
-.prose-thoughts figure img:hover {
+.prose-blog figure img:hover {
   opacity: 0.9;
 }
 
-.prose-thoughts figcaption {
+.prose-blog figcaption {
   margin-top: 0.5rem;
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.4);
