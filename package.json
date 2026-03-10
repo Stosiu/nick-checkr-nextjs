@@ -1,6 +1,6 @@
 {
   "name": "nick-checkr-nextjs",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "description": "Check username availability across 170+ platforms instantly",
   "license": "MIT",
   "repository": {
@@ -24,6 +24,7 @@
     "@vercel/blob": "^2.3.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "es-toolkit": "^1.45.1",
     "framer-motion": "^12.35.2",
     "gray-matter": "^4.0.3",
     "impit": "^0.10.1",
@@ -64,6 +65,7 @@
     "eslint": "^9.39.4",
     "eslint-config-next": "16.1.6",
     "jsdom": "^28.1.0",
+    "react-grab": "^0.1.27",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"

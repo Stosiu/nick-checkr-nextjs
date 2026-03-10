@@ -60,7 +60,7 @@ export function HomeContent({ services }: Props) {
   }, [searchNick]);
 
   return (
-    <div className="noise dot-grid container mx-auto space-y-8 px-4 py-8">
+    <div className="noise dot-grid container mx-auto space-y-8 px-4 py-4 md:py-8">
       <section className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] px-6 py-16 text-center sm:px-16 md:py-24">
         <div className="relative z-10 mx-auto max-w-2xl space-y-6">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Clock, Lightbulb } from 'lucide-react';
+import { capitalize } from 'es-toolkit';
 import { siteConfig } from '@/config/site';
 import { getPostBySlug, getAllPosts, getRelatedPosts } from '@/lib/blog';
 import { BlogContent } from '@/components/blog-content';
@@ -113,7 +114,7 @@ export default async function BlogPostPage({ params }: Props) {
                 href={`/blog?tag=${encodeURIComponent(tag)}`}
               >
                 <span className="rounded-full border border-white/[0.08] bg-white/[0.04] px-2 py-0.5 text-xs text-white/40 transition-colors hover:border-white/[0.15] hover:text-white/60">
-                  {tag}
+                  {capitalize(tag)}
                 </span>
               </Link>
             ))}

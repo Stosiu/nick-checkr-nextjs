@@ -44,7 +44,7 @@ export default async function BlogPage() {
   return (
     <div className="noise dot-grid">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="mx-auto max-w-5xl px-4 pb-20 pt-12">
+      <div className="mx-auto max-w-5xl px-4 pb-20 pt-6 md:pt-12">
         <h1 className="mb-2 text-3xl font-bold">Blog</h1>
         <p className="mb-8 text-sm text-white/40">
           Tips and guides on usernames, online identity, and the platforms we use.

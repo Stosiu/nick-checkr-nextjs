@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, Clock } from 'lucide-react';
+import { capitalize } from 'es-toolkit';
 import type { PostMeta } from '@/lib/blog';
 
 export function RelatedPosts({ posts }: { posts: PostMeta[] }) {
@@ -32,7 +33,7 @@ export function RelatedPosts({ posts }: { posts: PostMeta[] }) {
                   key={tag}
                   className="rounded-full border border-white/[0.08] bg-white/[0.04] px-2 py-0.5 text-[10px] text-white/40"
                 >
-                  {tag}
+                  {capitalize(tag)}
                 </span>
               ))}
             </div>
