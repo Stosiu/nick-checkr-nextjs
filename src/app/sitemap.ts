@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 import { siteConfig } from '@/config/site';
 import { getAllPosts } from '@/lib/blog';
-import { getServiceSlug } from '@/lib/platform-utils';
+import { getAllCategories, getCategorySlug, getServiceSlug } from '@/lib/platform-utils';
 import { services } from '@/services/data/services';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -12,6 +12,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${siteConfig.url}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     priority: 0.6,
+  }));
+
+  const categoryPages: MetadataRoute.Sitemap = getAllCategories().map((category) => ({
+    url: `${siteConfig.url}/check/category/${getCategorySlug(category)}`,
+    priority: 0.85,
   }));
 
   const checkPages: MetadataRoute.Sitemap = services.map((service) => ({
@@ -27,6 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteConfig.url}/contact`, changeFrequency: 'monthly', priority: 0.5 },
     { url: `${siteConfig.url}/privacy`, changeFrequency: 'monthly', priority: 0.3 },
     { url: `${siteConfig.url}/disclaimer`, changeFrequency: 'monthly', priority: 0.3 },
+    ...categoryPages,
     ...checkPages,
     ...blogPosts,
   ];

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 import { siteConfig } from '@/config/site';
-import { getCategoryIcon, getPlatformIcon, getServiceSlug, getServicesByCategory } from '@/lib/platform-utils';
+import { getCategoryIcon, getCategorySlug, getPlatformIcon, getServiceSlug, getServicesByCategory } from '@/lib/platform-utils';
 import { services } from '@/services/data/services';
 
 export const metadata: Metadata = {
@@ -57,7 +57,12 @@ export default function CheckIndexPage() {
               >
                 <h2 className="flex items-center gap-2 border-b border-white/[0.06] pb-2 text-lg font-bold text-white">
                   <CatIcon className="h-4.5 w-4.5 text-brand-400" />
-                  {category}
+                  <Link
+                    href={`/check/category/${getCategorySlug(category)}`}
+                    className="hover:text-brand-400 transition-colors"
+                  >
+                    {category}
+                  </Link>
                   <span className="ml-1 text-sm font-normal text-white/30">
                     {categoryServices.length} platforms
                   </span>

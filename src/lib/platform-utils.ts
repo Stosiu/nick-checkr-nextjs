@@ -52,6 +52,21 @@ export function getAllCategories(): string[] {
   return [...new Set(services.map((s) => s.category))];
 }
 
+export function getCategorySlug(category: string): string {
+  return category
+    .toLowerCase()
+    .replace(/\s+&\s+/g, '-')
+    .replace(/\s+/g, '-');
+}
+
+export function getCategoryBySlug(slug: string): string | undefined {
+  return getAllCategories().find((c) => getCategorySlug(c) === slug);
+}
+
+export function getAllCategorySlugs(): string[] {
+  return getAllCategories().map(getCategorySlug);
+}
+
 export function getServicesByCategory(): Map<string, ServiceDefinition[]> {
   const map = new Map<string, ServiceDefinition[]>();
   for (const s of services) {

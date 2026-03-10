@@ -40,12 +40,12 @@ const POPULAR_PLATFORMS = [
 ];
 
 const CATEGORIES = [
-  { name: 'Social Media', id: 'social-media' },
-  { name: 'Developer', id: 'developer' },
-  { name: 'Gaming', id: 'gaming' },
-  { name: 'Creative & Design', id: 'creative-design' },
-  { name: 'Professional', id: 'professional' },
-  { name: 'Community', id: 'community' },
+  { name: 'Social Media', slug: 'social-media' },
+  { name: 'Developer', slug: 'developer' },
+  { name: 'Gaming', slug: 'gaming' },
+  { name: 'Creative & Design', slug: 'creative-design' },
+  { name: 'Professional', slug: 'professional' },
+  { name: 'Community', slug: 'community' },
 ];
 
 export function Footer() {
@@ -81,9 +81,9 @@ export function Footer() {
               </h4>
               <ul className="space-y-1.5">
                 {CATEGORIES.map((c) => (
-                  <li key={c.id}>
+                  <li key={c.slug}>
                     <Link
-                      href={`/check#${c.id}`}
+                      href={`/check/category/${c.slug}`}
                       className="text-xs text-white/30 transition-colors hover:text-white/60"
                     >
                       {c.name}
