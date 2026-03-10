@@ -23,6 +23,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: siteConfig.url, priority: 1.0 },
     { url: `${siteConfig.url}/check`, priority: 0.9 },
     { url: `${siteConfig.url}/blog`, priority: 0.7 },
+    { url: `${siteConfig.url}/about`, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${siteConfig.url}/contact`, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${siteConfig.url}/privacy`, changeFrequency: 'monthly', priority: 0.3 },
+    { url: `${siteConfig.url}/disclaimer`, changeFrequency: 'monthly', priority: 0.3 },
     ...checkPages,
     ...blogPosts,
   ];

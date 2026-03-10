@@ -57,30 +57,13 @@ export function Footer() {
       <div className="glow-divider" />
       <div className="px-4 py-10">
         <div className="mx-auto max-w-6xl space-y-8">
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
             <div>
               <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
                 Popular Checkers
               </h4>
               <ul className="space-y-1.5">
-                {POPULAR_PLATFORMS.slice(0, 6).map((p) => (
-                  <li key={p.slug}>
-                    <Link
-                      href={`/check/${p.slug}`}
-                      className="text-xs text-white/30 transition-colors hover:text-white/60"
-                    >
-                      {p.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
-                More Platforms
-              </h4>
-              <ul className="space-y-1.5">
-                {POPULAR_PLATFORMS.slice(6).map((p) => (
+                {POPULAR_PLATFORMS.map((p) => (
                   <li key={p.slug}>
                     <Link
                       href={`/check/${p.slug}`}
@@ -147,6 +130,60 @@ export function Footer() {
                   >
                     GitHub
                   </a>
+                </li>
+                <li>
+                  <Link
+                    href="/llms.txt"
+                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                  >
+                    LLM API
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+                Company
+              </h4>
+              <ul className="space-y-1.5">
+                <li>
+                  <Link
+                    href="/about"
+                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+                Legal
+              </h4>
+              <ul className="space-y-1.5">
+                <li>
+                  <Link
+                    href="/privacy"
+                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/disclaimer"
+                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                  >
+                    Disclaimer
+                  </Link>
                 </li>
               </ul>
             </div>
