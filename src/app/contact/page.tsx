@@ -37,10 +37,10 @@ export default function ContactPage() {
             Have a question about {siteConfig.name}, want to suggest a platform
             we should add, or just want to say hello? Drop us a line at{' '}
             <a
-              href="mailto:alex@thedigitalbunch.com"
+              href="mailto:nickcheckr@stosiu.dev"
               className="text-brand-400 hover:text-brand-300"
             >
-              alex@thedigitalbunch.com
+              nickcheckr@stosiu.dev
             </a>
             . We read every message.
           </p>
@@ -55,10 +55,10 @@ export default function ContactPage() {
             campaign, or exploring a partnership, we are open to the
             conversation. Reach out at{' '}
             <a
-              href="mailto:alex@thedigitalbunch.com?subject=[ADVERTISING] Partnership Inquiry - NickCheckr"
+              href="mailto:nickcheckr@stosiu.dev?subject=[ADVERTISING] Partnership Inquiry - NickCheckr"
               className="text-brand-400 hover:text-brand-300"
             >
-              alex@thedigitalbunch.com
+              nickcheckr@stosiu.dev
             </a>{' '}
             with details about what you have in mind.
           </p>
@@ -73,10 +73,10 @@ export default function ContactPage() {
             tips. If you have a topic that fits and you can write clearly without
             filler, send your pitch to{' '}
             <a
-              href="mailto:alex@thedigitalbunch.com?subject=[GUEST POST] Submission - NickCheckr"
+              href="mailto:nickcheckr@stosiu.dev?subject=[GUEST POST] Submission - NickCheckr"
               className="text-brand-400 hover:text-brand-300"
             >
-              alex@thedigitalbunch.com
+              nickcheckr@stosiu.dev
             </a>
             . Include a brief outline and a link to something you have written
             before.

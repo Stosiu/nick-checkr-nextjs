@@ -106,10 +106,10 @@ export default function PrivacyPage() {
       <p className="text-white/70 leading-relaxed mb-4">
         If you have questions or concerns about this policy, email us at{' '}
         <a
-          href="mailto:alex@thedigitalbunch.com"
+          href="mailto:nickcheckr@stosiu.dev"
           className="text-emerald-400 hover:text-emerald-300 underline underline-offset-2"
         >
-          alex@thedigitalbunch.com
+          nickcheckr@stosiu.dev
         </a>
         .
       </p>

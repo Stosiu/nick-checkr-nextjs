@@ -60,7 +60,7 @@ NickCheckr is open source: https://github.com/Stosiu/nick-checkr-nextjs
 
 ## Contact
 
-Email: alex@thedigitalbunch.com
+Email: nickcheckr@stosiu.dev
 Built by stosiu: https://stosiu.dev
 `;
 
