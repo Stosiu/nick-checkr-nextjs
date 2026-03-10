@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowRight, CheckCircle2, ExternalLink, Globe, HelpCircle, Lightbulb, ShieldCheck, XCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronDown, ExternalLink, Globe, HelpCircle, Lightbulb, ShieldCheck, XCircle } from 'lucide-react';
 
+import { PlatformCheck } from '@/components/platform-check';
 import { siteConfig } from '@/config/site';
 import {
   getAllServiceSlugs,
   getCategoryDescription,
   getCategoryIcon,
+  getCategorySlug,
   getPlatformIcon,
   getPlatformInfo,
   getServiceBySlug,
@@ -137,7 +139,7 @@ export default async function PlatformPage({ params }: Props) {
             </Link>
             <span>/</span>
             <Link
-              href={`/check#${service.category.toLowerCase().replace(/\s+&\s+/g, '-').replace(/\s+/g, '-')}`}
+              href={`/check/category/${getCategorySlug(service.category)}`}
               className="hover:text-white/60 transition-colors"
             >
               {service.category}
@@ -180,6 +182,9 @@ export default async function PlatformPage({ params }: Props) {
             </a>
           </div>
         </header>
+
+        {/* Quick single-service check */}
+        <PlatformCheck serviceName={service.name} totalPlatforms={services.length} />
 
         {/* Platform info cards */}
         <section className="space-y-6">
@@ -314,9 +319,10 @@ export default async function PlatformPage({ params }: Props) {
                 key={item.question}
                 className="group rounded-xl border border-white/[0.06] bg-white/[0.02]"
               >
-                <summary className="flex cursor-pointer items-center gap-3 p-4 text-sm font-medium text-white/70 hover:text-white transition-colors">
+                <summary className="flex cursor-pointer items-center gap-3 p-4 text-sm font-medium text-white/70 hover:text-white transition-colors [&::-webkit-details-marker]:hidden [&::marker]:hidden">
                   <HelpCircle className="h-4 w-4 shrink-0 text-brand-400" />
-                  {item.question}
+                  <span className="flex-1">{item.question}</span>
+                  <ChevronDown className="h-4 w-4 shrink-0 text-white/30 transition-transform duration-200 group-open:rotate-180" />
                 </summary>
                 <p className="px-4 pb-4 pl-11 text-sm leading-relaxed text-white/40">
                   {item.answer}
@@ -364,7 +370,7 @@ export default async function PlatformPage({ params }: Props) {
                 return (
                   <Link
                     key={category}
-                    href={`/check#${category.toLowerCase().replace(/\s+&\s+/g, '-').replace(/\s+/g, '-')}`}
+                    href={`/check/category/${getCategorySlug(category)}`}
                     className="flex items-center gap-1.5 rounded-full border border-white/[0.06] bg-white/[0.02] px-3.5 py-1.5 text-sm text-white/50 transition-colors hover:border-white/[0.12] hover:text-white/70"
                   >
                     <CatIcon className="h-3.5 w-3.5 text-white/30" />
