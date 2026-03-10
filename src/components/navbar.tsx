@@ -15,8 +15,14 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <Link
+            href="/check"
+            className="rounded-full px-3 py-1.5 text-xs text-white/50 transition-all hover:text-white/70"
+          >
+            Platforms
+          </Link>
+          <Link
             href="/blog"
-            className="flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-xs text-white/50 transition-all hover:border-white/[0.15] hover:text-white/70"
+            className="flex items-center gap-2 rounded-full px-3 py-1.5 text-xs text-white/50 transition-all hover:text-white/70"
           >
             Blog
             {blogCount > 0 && (
@@ -28,6 +34,18 @@ export function Navbar() {
                 </span>
               </>
             )}
+          </Link>
+          <Link
+            href="/about"
+            className="rounded-full px-3 py-1.5 text-xs text-white/50 transition-all hover:text-white/70"
+          >
+            About
+          </Link>
+          <Link
+            href="/contact"
+            className="rounded-full px-3 py-1.5 text-xs text-white/50 transition-all hover:text-white/70"
+          >
+            Contact
           </Link>
           <Link
             href="/"
