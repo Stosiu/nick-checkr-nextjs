@@ -484,6 +484,54 @@ export const services: ServiceDefinition[] = [
   { name: 'Campsite.bio', url: 'https://campsite.bio/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Stan Store', url: 'https://stan.store/{}', category: 'Professional', checkMethod: CheckMethod.BodyMatch, bodyMatch: '<title>Stan - Your Creator Store</title>', testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
 
+  // Social Media (Fediverse & Other)
+  { name: 'Fosstodon', url: 'https://fosstodon.org/@{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Hachyderm', url: 'https://hachyderm.io/@{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Steemit', url: 'https://steemit.com/@{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Tenor', url: 'https://tenor.com/users/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Developer (Additional)
+  { name: 'HackerEarth', url: 'https://www.hackerearth.com/@{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Read the Docs', url: 'https://readthedocs.org/profiles/{}/', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Asciinema', url: 'https://asciinema.org/~{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Laracasts', url: 'https://laracasts.com/@{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'CodersRank', url: 'https://profile.codersrank.io/user/{}', category: 'Developer', checkMethod: CheckMethod.BodyMatch, bodyMatch: 'is not a registered member', testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Zotero', url: 'https://www.zotero.org/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Hackaday.io', url: 'https://hackaday.io/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Content & Blogging (Additional)
+  { name: 'Tapas', url: 'https://tapas.io/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Open Library', url: 'https://openlibrary.org/people/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Creative & Design (Additional)
+  { name: 'Thingiverse', url: 'https://www.thingiverse.com/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Cults3D', url: 'https://www.cults3d.com/en/users/{}/3d-models', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'GrabCAD', url: 'https://grabcad.com/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Weasyl', url: 'https://www.weasyl.com/~{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Domestika', url: 'https://www.domestika.org/en/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Saatchi Art', url: 'https://www.saatchiart.com/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Music & Audio (Additional)
+  { name: 'Traktrain', url: 'https://traktrain.com/{}', category: 'Music & Audio', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Freesound', url: 'https://freesound.org/people/{}/', category: 'Music & Audio', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Video & Streaming (Additional)
+  { name: 'DonationAlerts', url: 'https://www.donationalerts.com/r/{}', category: 'Video & Streaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Gaming (Additional)
+  { name: 'Metacritic', url: 'https://www.metacritic.com/user/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Community (Additional)
+  { name: 'Geocaching', url: 'https://www.geocaching.com/p/default.aspx?u={}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'OpenHumans', url: 'https://www.openhumans.org/member/{}/', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Wikidata', url: 'https://www.wikidata.org/wiki/User:{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Marketplace (Additional)
+  { name: 'Creator Spring', url: 'https://{}.creator-spring.com', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Fitness & Sports (Additional)
+  { name: 'Smashrun', url: 'https://smashrun.com/{}', category: 'Fitness & Sports', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
   // Domain Names (DNS-over-HTTPS via Cloudflare)
   { name: '.com', url: 'https://cloudflare-dns.com/dns-query?name={}.com&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
   { name: '.org', url: 'https://cloudflare-dns.com/dns-query?name={}.org&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },

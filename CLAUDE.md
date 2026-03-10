@@ -1,6 +1,6 @@
 # NickCheckr
 
-Username and domain availability checker across 430+ platforms, organized by category.
+Username and domain availability checker across 460+ platforms, organized by category.
 
 ## Stack
 
@@ -21,7 +21,7 @@ All source files live under `src/`:
 - `src/app/api/check/` - Check API with rate limiting + in-memory cache
 - `src/components/` - React components (`ui/` for shadcn)
 - `src/services/` - Nickname checking services (AbstractService pattern)
-- `src/services/data/services.ts` - 431 services with categories (including 105 domain TLDs)
+- `src/services/data/services.ts` - 463 services with categories (including 105 domain TLDs)
 - `src/hooks/` - Custom React hooks
 - `src/lib/` - Utilities: `cache.ts` (server cache), `fetch-queue.ts` (client concurrency limiter), `blog.ts` (blog processing), `utils.ts` (shadcn `cn()`)
 - `src/config/` - Site configuration
