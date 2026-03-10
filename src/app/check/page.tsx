@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 import { siteConfig } from '@/config/site';
-import { getServiceSlug, getServicesByCategory } from '@/lib/platform-utils';
+import { getCategoryIcon, getPlatformIcon, getServiceSlug, getServicesByCategory } from '@/lib/platform-utils';
 import { services } from '@/services/data/services';
 
 export const metadata: Metadata = {
@@ -44,34 +44,42 @@ export default function CheckIndexPage() {
         </header>
 
         <nav className="space-y-10">
-          {[...grouped.entries()].map(([category, categoryServices]) => (
-            <section
-              key={category}
-              id={category
-                .toLowerCase()
-                .replace(/\s+&\s+/g, '-')
-                .replace(/\s+/g, '-')}
-              className="space-y-3"
-            >
-              <h2 className="border-b border-white/[0.06] pb-2 text-lg font-bold text-white">
-                {category}
-                <span className="ml-2 text-sm font-normal text-white/30">
-                  {categoryServices.length} platforms
-                </span>
-              </h2>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                {categoryServices.map((service) => (
-                  <Link
-                    key={service.name}
-                    href={`/check/${getServiceSlug(service.name)}`}
-                    className="rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2.5 text-sm font-medium text-white/60 transition-colors hover:border-brand-400/30 hover:text-white"
-                  >
-                    {service.name}
-                  </Link>
-                ))}
-              </div>
-            </section>
-          ))}
+          {[...grouped.entries()].map(([category, categoryServices]) => {
+            const CatIcon = getCategoryIcon(category);
+            return (
+              <section
+                key={category}
+                id={category
+                  .toLowerCase()
+                  .replace(/\s+&\s+/g, '-')
+                  .replace(/\s+/g, '-')}
+                className="space-y-3"
+              >
+                <h2 className="flex items-center gap-2 border-b border-white/[0.06] pb-2 text-lg font-bold text-white">
+                  <CatIcon className="h-4.5 w-4.5 text-brand-400" />
+                  {category}
+                  <span className="ml-1 text-sm font-normal text-white/30">
+                    {categoryServices.length} platforms
+                  </span>
+                </h2>
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                  {categoryServices.map((service) => {
+                    const Icon = getPlatformIcon(service.name, service.category);
+                    return (
+                      <Link
+                        key={service.name}
+                        href={`/check/${getServiceSlug(service.name)}`}
+                        className="flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2.5 text-sm font-medium text-white/60 transition-colors hover:border-brand-400/30 hover:text-white"
+                      >
+                        <Icon className="h-3.5 w-3.5 shrink-0 text-white/30" />
+                        {service.name}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })}
         </nav>
 
         <section className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 text-center space-y-4">

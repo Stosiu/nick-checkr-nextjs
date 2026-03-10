@@ -1,5 +1,36 @@
-import { services } from '@/services/data/services';
+import type { LucideIcon } from 'lucide-react';
+import {
+  AtSign,
+  Bitcoin,
+  Camera,
+  Code,
+  Codepen,
+  Dribbble,
+  Dumbbell,
+  Facebook,
+  Figma,
+  Gamepad2,
+  Github,
+  Gitlab,
+  Globe,
+  GraduationCap,
+  Instagram,
+  Linkedin,
+  MessageCircle,
+  Music,
+  Palette,
+  Pencil,
+  ShoppingBag,
+  Slack,
+  Trello,
+  Twitch,
+  Twitter,
+  Video,
+  Youtube,
+} from 'lucide-react';
+
 import type { ServiceDefinition } from '@/services/abstract-service';
+import { services } from '@/services/data/services';
 
 export function getServiceSlug(name: string): string {
   return name.toLowerCase().replace(/[\s.]+/g, '-');
@@ -272,6 +303,48 @@ const platformInfo: Record<
     tips: 'Your Duolingo username is visible on leaderboards and friend lists. Pick something fun and recognizable.',
   },
 };
+
+const platformIcons: Record<string, LucideIcon> = {
+  Instagram,
+  Facebook,
+  Twitter,
+  YouTube: Youtube,
+  Twitch,
+  LinkedIn: Linkedin,
+  GitHub: Github,
+  GitLab: Gitlab,
+  Dribbble,
+  Figma,
+  CodePen: Codepen,
+  Slack,
+  Trello,
+};
+
+const categoryIcons: Record<string, LucideIcon> = {
+  'Social Media': AtSign,
+  Developer: Code,
+  'Content & Blogging': Pencil,
+  'Creative & Design': Palette,
+  'Music & Audio': Music,
+  'Video & Streaming': Video,
+  Gaming: Gamepad2,
+  Professional: Linkedin,
+  Community: MessageCircle,
+  'Finance & Crypto': Bitcoin,
+  Messaging: MessageCircle,
+  'Education & Learning': GraduationCap,
+  Photography: Camera,
+  Marketplace: ShoppingBag,
+  'Fitness & Sports': Dumbbell,
+};
+
+export function getPlatformIcon(name: string, category: string): LucideIcon {
+  return platformIcons[name] ?? categoryIcons[category] ?? Globe;
+}
+
+export function getCategoryIcon(category: string): LucideIcon {
+  return categoryIcons[category] ?? Globe;
+}
 
 export function getCategoryDescription(category: string): string {
   return (
