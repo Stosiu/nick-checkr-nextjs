@@ -109,10 +109,10 @@ export default function DisclaimerPage() {
           <p className="mt-3">
             Questions about this disclaimer can be sent to{" "}
             <a
-              href="mailto:contact@nickcheckr.com"
+              href="mailto:alex@thedigitalbunch.com"
               className="text-brand-400 hover:underline"
             >
-              contact@nickcheckr.com
+              alex@thedigitalbunch.com
             </a>
             .
           </p>
