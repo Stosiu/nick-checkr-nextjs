@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Mail } from 'lucide-react';
 
 import { type CheckState, NicknameCheckCard } from './nickname-check-card';
 
@@ -140,6 +140,19 @@ export function ResultsGrid({ nickname, services, onStatusChange }: Props) {
           </div>
         );
       })}
+
+      <div className="rounded-lg border border-dashed border-white/[0.08] bg-white/[0.02] px-5 py-6 text-center">
+        <p className="mb-3 text-sm text-white/40">
+          Missing a platform? Let us know and we&apos;ll add it.
+        </p>
+        <a
+          href="mailto:nickcheckr@stosiu.dev?subject=Platform suggestion for NickCheckr"
+          className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.04] px-4 py-2 text-sm font-medium text-white/60 transition-colors hover:border-brand-400/30 hover:bg-brand-400/[0.06] hover:text-brand-400"
+        >
+          <Mail className="h-4 w-4" />
+          Suggest a service
+        </a>
+      </div>
     </div>
   );
 }
