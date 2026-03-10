@@ -1,27 +1,25 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { siteConfig } from '@/config/site';
+import { services } from '@/services/data/services';
 
 export const metadata: Metadata = {
   title: `About ${siteConfig.name}`,
-  description:
-    'NickCheckr checks username availability across 200+ platforms in seconds. Open source, built for anyone who wants a consistent online identity.',
+  description: `NickCheckr checks username availability across ${services.length}+ platforms in seconds. Open source, built for anyone who wants a consistent online identity.`,
   openGraph: {
     title: `About ${siteConfig.name}`,
-    description:
-      'Check username availability across 200+ platforms instantly. Free, open source, and fast.',
-    url: `${siteConfig.url}/about`,
+    description: `Check username availability across ${services.length}+ platforms instantly. Free, open source, and fast.`,
+    url: '/about',
     siteName: siteConfig.name,
     type: 'website',
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: `About ${siteConfig.name}`,
-    description:
-      'Check username availability across 200+ platforms instantly. Free, open source, and fast.',
+    description: `Check username availability across ${services.length}+ platforms instantly. Free, open source, and fast.`,
   },
   alternates: {
-    canonical: `${siteConfig.url}/about`,
+    canonical: '/about',
   },
 };
 
@@ -31,7 +29,7 @@ const jsonLd = {
   name: siteConfig.name,
   url: siteConfig.url,
   description:
-    'Username availability checker across 200+ platforms, organized by category.',
+    `Username availability checker across ${services.length}+ platforms, organized by category.`,
   founder: {
     '@type': 'Person',
     name: 'stosiu',
@@ -41,7 +39,7 @@ const jsonLd = {
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto max-w-3xl px-4 py-16">
+    <div className="container mx-auto max-w-5xl px-4 py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -53,7 +51,7 @@ export default function AboutPage() {
 
       <p className="text-lg text-white/70 leading-relaxed mb-12">
         A free, open-source tool that checks whether your desired username is
-        available across 208 platforms. One search, real-time results, no
+        available across {services.length}+ platforms. One search, real-time results, no
         account required.
       </p>
 
@@ -84,7 +82,7 @@ export default function AboutPage() {
         <Link href="/" className="text-brand-400 hover:underline">
           the search bar
         </Link>{' '}
-        and NickCheckr checks it against 208 services simultaneously. Results
+        and NickCheckr checks it against {services.length}+ services simultaneously. Results
         come back in real time as each platform responds. Green means
         available. Red means taken. You get a clear picture in seconds instead
         of opening 20 browser tabs and checking each site manually.
@@ -101,7 +99,7 @@ export default function AboutPage() {
         page. Categories help you focus on the platforms that matter to your use
         case. A game developer cares about Steam, Itch.io, and Discord. A
         photographer cares about 500px, Flickr, and Instagram. You do not need
-        to scroll through 208 results when only 30 are relevant to you.
+        to scroll through {services.length}+ results when only 30 are relevant to you.
       </p>
 
       <h2 className="text-2xl font-bold text-white mb-4 mt-12">
@@ -125,7 +123,7 @@ export default function AboutPage() {
       </p>
 
       <h2 className="text-2xl font-bold text-white mb-4 mt-12">
-        208 services and counting
+        {services.length}+ services and counting
       </h2>
       <p className="text-white/70 leading-relaxed mb-4">
         The service list covers the obvious platforms like Instagram, TikTok,
@@ -190,7 +188,7 @@ export default function AboutPage() {
           Ready to check your username?
         </h2>
         <p className="text-white/70 mb-6">
-          Search across 208 platforms in seconds. Free, no signup required.
+          Search across {services.length}+ platforms in seconds. Free, no signup required.
         </p>
         <Link
           href="/"

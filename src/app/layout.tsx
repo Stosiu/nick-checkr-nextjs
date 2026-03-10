@@ -6,6 +6,7 @@ import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
 import { Providers } from '@/components/providers';
 import { siteConfig } from '@/config/site';
+import { services } from '@/services/data/services';
 import { cn } from '@/lib/utils';
 
 import './globals.css';
@@ -32,13 +33,11 @@ export const metadata: Metadata = {
     default: 'NickCheckr | Is your nick available?',
     template: '%s | NickCheckr',
   },
-  description:
-    'Check if your nickname is available on 100+ websites instantly. Scan social media, developer platforms, and more.',
+  description: `Check if your nickname is available on ${services.length}+ websites instantly. Scan social media, developer platforms, and more.`,
   openGraph: {
     siteName: 'NickCheckr',
     type: 'website',
     locale: 'en_US',
-    images: ['/og-image.jpg'],
   },
   twitter: { card: 'summary_large_image' },
   icons: {

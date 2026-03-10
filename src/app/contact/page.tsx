@@ -8,9 +8,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Contact Us | ${siteConfig.name}`,
     description: `Get in touch with the ${siteConfig.name} team. Reach out about general inquiries, advertising, guest posts, or bug reports.`,
-    url: `${siteConfig.url}/contact`,
+    url: '/contact',
     siteName: siteConfig.name,
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Contact Us | ${siteConfig.name}`,
+    description: `Get in touch with the ${siteConfig.name} team. Reach out about general inquiries, advertising, guest posts, or bug reports.`,
+  },
+  alternates: {
+    canonical: '/contact',
   },
 };
 
@@ -18,7 +26,7 @@ export default function ContactPage() {
   const githubIssuesUrl = `${siteConfig.social.github}/nick-checkr-nextjs/issues`;
 
   return (
-    <div className="container mx-auto max-w-3xl px-4 py-16">
+    <div className="container mx-auto max-w-5xl px-4 py-16">
       <h1 className="mb-4 text-4xl font-bold tracking-tight text-white">
         Contact us
       </h1>

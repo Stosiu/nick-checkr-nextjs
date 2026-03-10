@@ -1,14 +1,33 @@
 import type { Metadata } from "next";
 
+import { siteConfig } from '@/config/site';
+
 export const metadata: Metadata = {
   title: "Disclaimer",
   description:
     "Disclaimer for NickCheckr — limitations, accuracy of results, and liability information.",
+  openGraph: {
+    title: `Disclaimer | ${siteConfig.name}`,
+    description:
+      "Disclaimer for NickCheckr — limitations, accuracy of results, and liability information.",
+    url: '/disclaimer',
+    siteName: siteConfig.name,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Disclaimer | ${siteConfig.name}`,
+    description:
+      "Disclaimer for NickCheckr — limitations, accuracy of results, and liability information.",
+  },
+  alternates: {
+    canonical: '/disclaimer',
+  },
 };
 
 export default function DisclaimerPage() {
   return (
-    <main className="container mx-auto max-w-3xl px-4 py-16">
+    <main className="container mx-auto max-w-5xl px-4 py-16">
       <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
         Disclaimer
       </h1>

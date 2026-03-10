@@ -1,19 +1,39 @@
 import type { Metadata } from 'next';
 
+import { siteConfig } from '@/config/site';
+import { services } from '@/services/data/services';
+
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
     'How NickCheckr handles your data when checking username availability across platforms.',
+  openGraph: {
+    title: `Privacy Policy | ${siteConfig.name}`,
+    description:
+      'How NickCheckr handles your data when checking username availability across platforms.',
+    url: '/privacy',
+    siteName: siteConfig.name,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Privacy Policy | ${siteConfig.name}`,
+    description:
+      'How NickCheckr handles your data when checking username availability across platforms.',
+  },
+  alternates: {
+    canonical: '/privacy',
+  },
 };
 
 export default function PrivacyPage() {
   return (
-    <main className="container mx-auto max-w-3xl px-4 py-16">
+    <main className="container mx-auto max-w-5xl px-4 py-16">
       <h1 className="text-3xl font-bold text-white mb-2">Privacy Policy</h1>
       <p className="text-white/50 mb-8">Effective March 2026</p>
 
       <p className="text-white/70 leading-relaxed mb-4">
-        NickCheckr lets you check whether a username is available across 200+
+        NickCheckr lets you check whether a username is available across {services.length}+
         platforms. This policy explains what data we handle, how we handle it,
         and what we don&apos;t do with it. We tried to keep this readable.
       </p>
