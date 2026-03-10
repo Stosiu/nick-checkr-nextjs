@@ -55,7 +55,7 @@ export function Footer() {
   return (
     <footer className="mt-auto">
       <div className="glow-divider" />
-      <div className="px-4 py-10">
+      <div className="px-4 py-8 sm:py-10">
         <div className="mx-auto max-w-6xl space-y-8">
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
             <div>

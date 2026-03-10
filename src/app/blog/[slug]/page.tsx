@@ -84,7 +84,7 @@ export default async function BlogPostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <article className="mx-auto max-w-5xl px-4 pb-20 pt-12 xl:grid xl:grid-cols-[1fr_14rem] xl:items-start xl:gap-10">
+      <article className="mx-auto max-w-5xl px-4 pb-20 pt-6 md:pt-12 xl:grid xl:grid-cols-[1fr_14rem] xl:items-start xl:gap-10">
         <div className="min-w-0">
           <Link
             href="/blog"
@@ -94,16 +94,16 @@ export default async function BlogPostPage({ params }: Props) {
             Back to Blog
           </Link>
 
-          <h1 className="mb-3 text-3xl font-bold">{post.title}</h1>
-          <div className="mb-4 flex items-center gap-3">
+          <h1 className="mb-3 text-2xl font-bold sm:text-3xl">{post.title}</h1>
+          <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1">
             <time className="font-mono text-sm text-white/30">{post.date}</time>
             <span className="text-base text-white/30">&middot;</span>
             <span className="flex items-center gap-1.5 text-sm text-white/30">
               <Clock className="h-3.5 w-3.5" />
               {post.readingTime} min read
             </span>
-            <span className="text-base text-white/30">&middot;</span>
-            <span className="font-mono text-sm text-white/30">
+            <span className="hidden text-base text-white/30 sm:inline">&middot;</span>
+            <span className="hidden font-mono text-sm text-white/30 sm:inline">
               {post.wordCount.toLocaleString()} words
             </span>
           </div>

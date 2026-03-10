@@ -130,7 +130,7 @@ export default async function PlatformPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <article className="container mx-auto max-w-5xl space-y-12 px-4 py-12">
+      <article className="container mx-auto max-w-5xl space-y-8 px-4 py-6 sm:space-y-12 md:py-12">
         {/* Hero */}
         <header className="space-y-4">
           <div className="flex items-center gap-2 text-sm text-white/40">
@@ -383,7 +383,7 @@ export default async function PlatformPage({ params }: Props) {
         </section>
 
         {/* CTA */}
-        <section className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 text-center space-y-4">
+        <section className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 text-center space-y-4 sm:p-8">
           <h2 className="text-2xl font-bold text-white">
             Check all {services.length} platforms at once
           </h2>

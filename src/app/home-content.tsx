@@ -61,15 +61,15 @@ export function HomeContent({ services }: Props) {
 
   return (
     <div className="noise dot-grid container mx-auto space-y-8 px-4 py-4 md:py-8">
-      <section className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] px-6 py-16 text-center sm:px-16 md:py-24">
-        <div className="relative z-10 mx-auto max-w-2xl space-y-6">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+      <section className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] px-4 py-10 text-center sm:px-8 md:px-16 md:py-24">
+        <div className="relative z-10 mx-auto max-w-2xl space-y-4 sm:space-y-6">
+          <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
             Is your nick taken?
           </h1>
-          <p className="text-lg text-white/40">
+          <p className="text-base text-white/40 sm:text-lg">
             Find out across {services.length}+ platforms at once.
           </p>
-          <div className="flex justify-center pt-4">
+          <div className="flex justify-center pt-2 sm:pt-4">
             <SearchForm
               onSearch={handleSearch}
               onClear={handleClear}

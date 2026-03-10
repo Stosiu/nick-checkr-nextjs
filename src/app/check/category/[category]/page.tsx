@@ -107,7 +107,7 @@ export default async function CategoryPage({ params }: Props) {
         categoryServices={categoryServices}
       />
 
-      <div className="container mx-auto max-w-5xl space-y-12 px-4 py-12">
+      <div className="container mx-auto max-w-5xl space-y-8 px-4 py-6 sm:space-y-12 md:py-12">
         <header className="space-y-4">
           <div className="flex items-center gap-2 text-sm text-white/40">
             <Link href="/check" className="hover:text-white/60 transition-colors">
@@ -163,7 +163,7 @@ export default async function CategoryPage({ params }: Props) {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 text-center space-y-4">
+        <section className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 text-center space-y-4 sm:p-8">
           <h2 className="text-2xl font-bold text-white">
             Why check {category.toLowerCase()} usernames?
           </h2>

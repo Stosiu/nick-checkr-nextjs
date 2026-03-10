@@ -21,7 +21,7 @@ export function NavbarClient({ blogCount }: { blogCount: number }) {
   return (
     <nav className="sticky top-0 z-50 border-b border-white/[0.06] bg-black/80 backdrop-blur-md">
       <div className="container mx-auto flex items-center justify-between px-4 py-2.5 md:py-4">
-        <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
+        <Link href="/" className="flex items-center gap-2.5" onClick={() => { setOpen(false); window.scrollTo(0, 0); }}>
           <Image src="/favicon-32x32.png" alt="" width={24} height={24} className="shrink-0" />
           <span className="text-xl font-bold tracking-tight">
             <span className="text-white">Nick</span>
@@ -104,8 +104,8 @@ export function NavbarClient({ blogCount }: { blogCount: number }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 top-[calc(var(--nav-h))] z-40 bg-black/60 backdrop-blur-sm md:hidden"
-              onClick={() => setOpen(false)}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+              onClick={() => { setOpen(false); window.scrollTo(0, 0); }}
             />
             <motion.div
               initial={{ opacity: 0, y: -8 }}
@@ -124,7 +124,7 @@ export function NavbarClient({ blogCount }: { blogCount: number }) {
                 >
                   <Link
                     href={link.href}
-                    onClick={() => setOpen(false)}
+                    onClick={() => { setOpen(false); window.scrollTo(0, 0); }}
                     className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm tracking-wide transition-colors hover:bg-white/[0.06] ${
                       pathname.startsWith(link.href)
                         ? 'bg-white/[0.04] text-white'
@@ -149,7 +149,7 @@ export function NavbarClient({ blogCount }: { blogCount: number }) {
               >
                 <Link
                   href="/"
-                  onClick={() => setOpen(false)}
+                  onClick={() => { setOpen(false); window.scrollTo(0, 0); }}
                   className="flex items-center justify-center gap-2 rounded-lg bg-brand-500 px-5 py-3 text-sm font-semibold tracking-wide text-white shadow-[0_0_20px_rgba(16,185,129,0.15)] transition-all hover:bg-brand-400"
                 >
                   Check Nickname

@@ -26,8 +26,8 @@ export default function ContactPage() {
   const githubIssuesUrl = `${siteConfig.social.github}/nick-checkr-nextjs/issues`;
 
   return (
-    <div className="container mx-auto max-w-5xl px-4 py-16">
-      <h1 className="mb-4 text-4xl font-bold tracking-tight text-white">
+    <div className="container mx-auto max-w-5xl px-4 py-8 md:py-16">
+      <h1 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
         Contact us
       </h1>
       <p className="mb-10 text-lg text-white/60">
@@ -37,7 +37,7 @@ export default function ContactPage() {
       </p>
 
       <div className="space-y-6">
-        <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-6">
+        <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-4 sm:p-6">
           <h2 className="mb-2 text-xl font-semibold text-white">
             General inquiries
           </h2>
@@ -54,7 +54,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-6">
+        <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-4 sm:p-6">
           <h2 className="mb-2 text-xl font-semibold text-white">
             Advertising & partnerships
           </h2>
@@ -72,7 +72,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-6">
+        <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-4 sm:p-6">
           <h2 className="mb-2 text-xl font-semibold text-white">
             Write for us
           </h2>
@@ -91,7 +91,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-6">
+        <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-4 sm:p-6">
           <h2 className="mb-2 text-xl font-semibold text-white">
             Bug reports & feedback
           </h2>
@@ -112,7 +112,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-6">
+        <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-4 sm:p-6">
           <h2 className="mb-2 text-xl font-semibold text-white">
             Response time
           </h2>

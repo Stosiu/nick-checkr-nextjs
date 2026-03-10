@@ -39,13 +39,13 @@ const jsonLd = {
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto max-w-5xl px-4 py-16">
+    <div className="container mx-auto max-w-5xl px-4 py-8 md:py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <h1 className="text-4xl font-bold tracking-tight text-white mb-6">
+      <h1 className="text-3xl font-bold tracking-tight text-white mb-6 sm:text-4xl">
         About {siteConfig.name}
       </h1>
 
@@ -183,7 +183,7 @@ export default function AboutPage() {
         individual platforms.
       </p>
 
-      <div className="mt-16 rounded-lg border border-white/[0.06] bg-white/[0.02] p-8 text-center">
+      <div className="mt-10 rounded-lg border border-white/[0.06] bg-white/[0.02] p-5 text-center sm:mt-16 sm:p-8">
         <h2 className="text-2xl font-bold text-white mb-3">
           Ready to check your username?
         </h2>

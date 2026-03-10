@@ -1,6 +1,6 @@
 'use client';
 
-import { RotateCcw, Search } from 'lucide-react';
+import { ArrowRight, RotateCcw, Search } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -24,7 +24,7 @@ export function SearchForm({ onSearch, onClear, currentSearch }: Props) {
 
   if (currentSearch) {
     return (
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
         <div className="flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.04] px-4 py-2">
           <span className="font-mono text-lg font-bold text-brand-400">{currentSearch}</span>
         </div>
@@ -44,15 +44,18 @@ export function SearchForm({ onSearch, onClear, currentSearch }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full max-w-lg gap-2">
-      <Input
-        placeholder="Enter a nickname..."
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        className="h-12 flex-1 text-base"
-      />
+    <form onSubmit={handleSubmit} className="flex w-full max-w-lg flex-col gap-2 sm:flex-row">
+      <div className="relative flex-1">
+        <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
+        <Input
+          placeholder="Enter a nickname..."
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          className="h-12 pl-10 text-base"
+        />
+      </div>
       <Button type="submit" disabled={!value.trim()} className="h-12 px-6 text-base">
-        <Search className="mr-2 h-5 w-5" />
+        <ArrowRight className="mr-2 h-5 w-5" />
         Search everywhere
       </Button>
     </form>

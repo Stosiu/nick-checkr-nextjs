@@ -53,7 +53,7 @@ export default function CheckIndexPage() {
           />
         </nav>
 
-        <section className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 text-center space-y-4">
+        <section className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 text-center space-y-4 sm:p-8">
           <h2 className="text-2xl font-bold text-white">
             Check all {services.length} platforms at once
           </h2>
