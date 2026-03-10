@@ -4,6 +4,7 @@ import { CheckMethod } from '../abstract-service';
 import { services } from '../data/services';
 
 const mockFetch = vi.fn();
+const mockDnsFetch = vi.fn();
 
 vi.mock('impit', () => ({
   Impit: class {
@@ -11,11 +12,15 @@ vi.mock('impit', () => ({
   },
 }));
 
+const originalFetch = globalThis.fetch;
+globalThis.fetch = mockDnsFetch;
+
 const { nicknameChecker } = await import('../nickname-checker');
 const { AvailabilityStatus } = await import('../abstract-service');
 
 beforeEach(() => {
   mockFetch.mockReset();
+  mockDnsFetch.mockReset();
 });
 
 describe('NicknameChecker', () => {
@@ -50,6 +55,11 @@ describe('NicknameChecker with mocked responses', () => {
                 new Response(`content ${service.bodyMatch} here`, { status: 404 }),
               );
               break;
+            case CheckMethod.DNS:
+              mockDnsFetch.mockResolvedValueOnce(
+                new Response(JSON.stringify({ Status: 3 }), { status: 200 }),
+              );
+              break;
           }
 
           const result = await nicknameChecker.check(service.testAvailableNick!, service.name);
@@ -70,6 +80,11 @@ describe('NicknameChecker with mocked responses', () => {
               break;
             case CheckMethod.NotFoundBodyMatch:
               mockFetch.mockResolvedValueOnce(new Response('active profile', { status: 200 }));
+              break;
+            case CheckMethod.DNS:
+              mockDnsFetch.mockResolvedValueOnce(
+                new Response(JSON.stringify({ Status: 0, Answer: [{ data: '1.2.3.4' }] }), { status: 200 }),
+              );
               break;
           }
 

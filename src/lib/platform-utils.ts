@@ -33,7 +33,7 @@ import type { ServiceDefinition } from '@/services/abstract-service';
 import { services } from '@/services/data/services';
 
 export function getServiceSlug(name: string): string {
-  return name.toLowerCase().replace(/[\s.]+/g, '-');
+  return name.toLowerCase().replace(/[\s.]+/g, '-').replace(/^-+/, '');
 }
 
 export function getServiceBySlug(slug: string): ServiceDefinition | undefined {
@@ -93,6 +93,8 @@ const categoryDescriptions: Record<string, string> = {
     'Marketplace platforms tie your username to your seller reputation and buyer trust. A consistent handle across marketplaces strengthens your brand and makes you easier to find.',
   'Fitness & Sports':
     'Fitness and sports platforms track your activities and connect you with communities. Your username is how training partners and followers find your profile.',
+  'Domain Names':
+    'Domain names are the foundation of your online presence. Checking if your preferred name is available as a domain helps you secure a matching website alongside your usernames.',
 };
 
 const platformInfo: Record<
@@ -336,6 +338,7 @@ const categoryIcons: Record<string, LucideIcon> = {
   Photography: Camera,
   Marketplace: ShoppingBag,
   'Fitness & Sports': Dumbbell,
+  'Domain Names': Globe,
 };
 
 export function getPlatformIcon(name: string, category: string): LucideIcon {

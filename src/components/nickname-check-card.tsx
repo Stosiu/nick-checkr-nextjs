@@ -52,6 +52,11 @@ const statusConfig = {
 };
 
 function buildProfileLink(urlTemplate: string, nickname: string): string {
+  if (urlTemplate.includes('cloudflare-dns.com')) {
+    const match = urlTemplate.match(/name=\{\}\.(\S+?)&/);
+    const tld = match?.[1] ?? 'com';
+    return `https://www.namecheap.com/domains/registration/results/?domain=${nickname}.${tld}`;
+  }
   return urlTemplate.replace('{}', nickname);
 }
 

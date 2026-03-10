@@ -275,4 +275,265 @@ export const services: ServiceDefinition[] = [
 
   // Fitness & Sports
   { name: 'Strava', url: 'https://www.strava.com/athletes/{}', category: 'Fitness & Sports', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Social Media
+  { name: 'Mastodon.online', url: 'https://mastodon.online/@{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Pixelfed', url: 'https://pixelfed.social/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'CounterSocial', url: 'https://counter.social/@{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'th3j35t3r', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Lemmy.ml', url: 'https://lemmy.ml/u/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Misskey.io', url: 'https://misskey.io/@{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Truth Social', url: 'https://truthsocial.com/@{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'realDonaldTrump', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Gettr', url: 'https://gettr.com/user/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Plurk', url: 'https://www.plurk.com/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Hubzilla', url: 'https://hubzilla.org/channel/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Developer
+  { name: 'npm Package', url: 'https://www.npmjs.com/package/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'react', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'CodeSandbox', url: 'https://codesandbox.io/u/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'StackBlitz', url: 'https://stackblitz.com/@{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Launchpad', url: 'https://launchpad.net/~{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'OpenHub', url: 'https://openhub.net/accounts/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Repl.it', url: 'https://repl.it/@{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Libraries.io', url: 'https://libraries.io/github/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Pub.dev', url: 'https://pub.dev/publishers/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'google.dev', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'CoCalc', url: 'https://cocalc.com/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Hex.pm', url: 'https://hex.pm/users/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Gitea', url: 'https://gitea.com/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Sourcehut', url: 'https://sr.ht/~{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'sircmpwn', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'NotABug', url: 'https://notabug.org/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Bugcrowd', url: 'https://bugcrowd.com/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Gaming
+  { name: 'GOG.com', url: 'https://www.gog.com/u/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'RetroAchievements', url: 'https://retroachievements.org/user/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'Scott', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Tabletopia', url: 'https://tabletopia.com/users/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Grouvee', url: 'https://www.grouvee.com/user/{}/', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Backloggd', url: 'https://www.backloggd.com/u/{}/', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'RAWG', url: 'https://rawg.io/@{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Nexus Mods', url: 'https://www.nexusmods.com/users/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Modrinth', url: 'https://modrinth.com/user/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'CurseForge', url: 'https://www.curseforge.com/members/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'GameBanana', url: 'https://gamebanana.com/members/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Marketplace
+  { name: 'Shopify', url: 'https://{}.myshopify.com', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'apple', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Poshmark', url: 'https://poshmark.com/closet/{}', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Envato', url: 'https://codecanyon.net/user/{}', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'developer', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Society6', url: 'https://society6.com/{}', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Zazzle', url: 'https://www.zazzle.com/store/{}', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Teespring', url: 'https://www.teespring.com/stores/{}', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Storenvy', url: 'https://{}.storenvy.com', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'BigCartel', url: 'https://{}.bigcartel.com', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Food & Lifestyle
+  { name: 'Untappd', url: 'https://untappd.com/user/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'TripAdvisor', url: 'https://www.tripadvisor.com/Profile/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'AllTrails', url: 'https://www.alltrails.com/members/{}', category: 'Fitness & Sports', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Vivino', url: 'https://www.vivino.com/users/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Professional
+  { name: 'Wellfound', url: 'https://wellfound.com/u/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Polywork', url: 'https://www.polywork.com/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Contra', url: 'https://contra.com/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Lnk.Bio', url: 'https://lnk.bio/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Taplink', url: 'https://taplink.cc/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Notion', url: 'https://{}.notion.site', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Read.cv', url: 'https://read.cv/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Hashnode Blog', url: 'https://{}.hashnode.dev', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Peerlist', url: 'https://peerlist.io/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Daily.dev', url: 'https://app.daily.dev/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Music & Audio
+  { name: 'Rate Your Music', url: 'https://rateyourmusic.com/~{}', category: 'Music & Audio', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Setlist.fm', url: 'https://www.setlist.fm/user/{}', category: 'Music & Audio', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Deezer', url: 'https://www.deezer.com/profile/{}', category: 'Music & Audio', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Community
+  { name: 'Ask.fm', url: 'https://ask.fm/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Wikimedia', url: 'https://meta.wikimedia.org/wiki/User:{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'Alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Trello', url: 'https://trello.com/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Goodreads Author', url: 'https://www.goodreads.com/author/show/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'LibraryThing', url: 'https://www.librarything.com/profile/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Mastodon.world', url: 'https://mastodon.world/@{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+
+  // AI & ML
+  { name: 'Replicate', url: 'https://replicate.com/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'stability-ai', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Weights & Biases', url: 'https://wandb.ai/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'wandb', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'CivitAI', url: 'https://civitai.com/user/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Creative & Design
+  { name: 'Threadless', url: 'https://www.threadless.com/@{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Pixiv', url: 'https://www.pixiv.net/users/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Artfol', url: 'https://artfol.co/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Cara', url: 'https://cara.app/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Drawcrowd', url: 'https://drawcrowd.com/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Content & Blogging
+  { name: 'Write.as', url: 'https://write.as/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Bear Blog', url: 'https://{}.bearblog.dev', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Micro.blog', url: 'https://micro.blog/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Neocities', url: 'https://neocities.org/site/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Tumblelog', url: 'https://www.tumblelog.com/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Podcasting
+  { name: 'Podbean', url: 'https://{}.podbean.com', category: 'Music & Audio', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Anchor', url: 'https://anchor.fm/{}', category: 'Music & Audio', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Podomatic', url: 'https://www.podomatic.com/podcasts/{}', category: 'Music & Audio', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Finance & Crypto
+  { name: 'Coinbase', url: 'https://www.coinbase.com/{}', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Rarible', url: 'https://rarible.com/{}', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Foundation', url: 'https://foundation.app/@{}', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Mirror', url: 'https://mirror.xyz/{}', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Zora', url: 'https://zora.co/{}', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Education & Learning
+  { name: 'Skillshare', url: 'https://www.skillshare.com/profile/{}', category: 'Education & Learning', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Brilliant', url: 'https://brilliant.org/profile/{}/', category: 'Education & Learning', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Brainly', url: 'https://brainly.com/profile/{}', category: 'Education & Learning', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Quizlet', url: 'https://quizlet.com/{}', category: 'Education & Learning', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Sololearn', url: 'https://www.sololearn.com/profile/{}', category: 'Education & Learning', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Photography
+  { name: 'Photobucket', url: 'https://photobucket.com/u/{}', category: 'Photography', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Glass', url: 'https://glass.photo/{}', category: 'Photography', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Vero', url: 'https://vero.co/{}', category: 'Photography', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Fitness & Sports
+  { name: 'Komoot', url: 'https://www.komoot.com/user/{}', category: 'Fitness & Sports', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'TrainingPeaks', url: 'https://www.trainingpeaks.com/athlete/{}', category: 'Fitness & Sports', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Peloton', url: 'https://members.onepeloton.com/members/{}', category: 'Fitness & Sports', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Video & Streaming
+  { name: 'PeerTube', url: 'https://peertube.tv/accounts/{}', category: 'Video & Streaming', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Nebula', url: 'https://nebula.tv/{}', category: 'Video & Streaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Loom', url: 'https://www.loom.com/share/{}', category: 'Video & Streaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Messaging
+  { name: 'Discord', url: 'https://discord.com/invite/{}', category: 'Messaging', checkMethod: CheckMethod.Standard, testTakenNick: 'discord', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Matrix', url: 'https://matrix.to/#/@{}:matrix.org', category: 'Messaging', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+
+  // Writing & Reading
+  { name: 'Royal Road', url: 'https://www.royalroad.com/profile/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Additional Community
+  { name: 'Lemmy.world', url: 'https://lemmy.world/u/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Tildes', url: 'https://tildes.net/user/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Cohost', url: 'https://cohost.org/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'staff', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Minds', url: 'https://www.minds.com/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'ottman', testAvailableNick: 'alex3232e2e2e' },
+
+  // Hosting & Platforms
+  { name: 'Vercel', url: 'https://vercel.com/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'vercel', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Render', url: 'https://{}.onrender.com', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Heroku', url: 'https://{}.herokuapp.com', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'api', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Netlify', url: 'https://{}.netlify.app', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'app', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'GitHub Pages', url: 'https://{}.github.io', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Fly.io', url: 'https://{}.fly.dev', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'api', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Railway', url: 'https://{}.up.railway.app', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'api', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Surge', url: 'https://{}.surge.sh', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Webflow', url: 'https://{}.webflow.io', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Social Media
+  { name: 'Diaspora', url: 'https://diaspora.social/people/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Friendica', url: 'https://friendica.world/profile/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Funkwhale', url: 'https://open.audio/@{}', category: 'Music & Audio', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Developer
+  { name: 'Postman', url: 'https://www.postman.com/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Bower', url: 'https://bower.io/search/?q={}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'jquery', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'CPAN', url: 'https://metacpan.org/author/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'RJBS', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'AUR', url: 'https://aur.archlinux.org/account/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'OpenStreetMap', url: 'https://www.openstreetmap.org/user/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Conan.io', url: 'https://conan.io/center/recipes/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'boost', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'F-Droid', url: 'https://f-droid.org/packages/{}/', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'org.mozilla.firefox', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Homebrew', url: 'https://formulae.brew.sh/formula/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'git', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Gaming
+  { name: 'GGn Profile', url: 'https://gazellegames.net/user.php?action=profile&name={}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Roblox Group', url: 'https://www.roblox.com/groups/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Smashboards', url: 'https://smashboards.com/members/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Lolchess', url: 'https://lolchess.gg/profile/na/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Playstv', url: 'https://plays.tv/u/{}', category: 'Gaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Marketplace
+  { name: 'Gumroad Store', url: 'https://{}.gumroad.com', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Sellfy', url: 'https://sellfy.com/{}', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Paddle', url: 'https://{}.paddle.com', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'LemonSqueezy', url: 'https://{}.lemonsqueezy.com', category: 'Marketplace', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Community
+  { name: 'Meetup', url: 'https://www.meetup.com/members/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Reddit Sub', url: 'https://www.reddit.com/r/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'programming', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Amino', url: 'https://aminoapps.com/u/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Voat', url: 'https://voat.co/user/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Saidit', url: 'https://saidit.net/user/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Raddle', url: 'https://raddle.me/user/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Professional
+  { name: 'Upwork', url: 'https://www.upwork.com/freelancers/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Topmate', url: 'https://topmate.io/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Superpeer', url: 'https://superpeer.com/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Cal.com', url: 'https://cal.com/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Savee', url: 'https://savee.it/{}/', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Wix', url: 'https://{}.wixsite.com', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Squarespace', url: 'https://{}.squarespace.com', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Content & Blogging
+  { name: 'Penzu', url: 'https://penzu.com/public/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Vocal', url: 'https://vocal.media/authors/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Svbtle', url: 'https://{}.svbtle.com', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Typeshare', url: 'https://typeshare.co/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Video & Streaming
+  { name: 'YouNow', url: 'https://www.younow.com/{}', category: 'Video & Streaming', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Finance & Crypto
+  { name: 'LooksRare', url: 'https://looksrare.org/accounts/{}', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Blur', url: 'https://blur.io/{}', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Creative & Design
+  { name: 'Dribble Shot', url: 'https://dribbble.com/shots/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Awwwards', url: 'https://www.awwwards.com/{}/', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Layers', url: 'https://layers.to/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Education & Learning
+  { name: 'Pluralsight', url: 'https://app.pluralsight.com/profile/{}', category: 'Education & Learning', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Treehouse', url: 'https://teamtreehouse.com/{}', category: 'Education & Learning', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'DataCamp', url: 'https://www.datacamp.com/profile/{}', category: 'Education & Learning', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Edx', url: 'https://profile.edx.org/{}', category: 'Education & Learning', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // More Photography
+  { name: 'GuruShots', url: 'https://gurushots.com/{}', category: 'Photography', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+
+  // Domain Names (DNS-over-HTTPS via Cloudflare)
+  { name: '.com', url: 'https://cloudflare-dns.com/dns-query?name={}.com&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.org', url: 'https://cloudflare-dns.com/dns-query?name={}.org&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.net', url: 'https://cloudflare-dns.com/dns-query?name={}.net&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.io', url: 'https://cloudflare-dns.com/dns-query?name={}.io&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'github', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.co', url: 'https://cloudflare-dns.com/dns-query?name={}.co&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.dev', url: 'https://cloudflare-dns.com/dns-query?name={}.dev&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'web', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.app', url: 'https://cloudflare-dns.com/dns-query?name={}.app&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.me', url: 'https://cloudflare-dns.com/dns-query?name={}.me&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'about', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.xyz', url: 'https://cloudflare-dns.com/dns-query?name={}.xyz&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'abc', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.ai', url: 'https://cloudflare-dns.com/dns-query?name={}.ai&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.gg', url: 'https://cloudflare-dns.com/dns-query?name={}.gg&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'discord', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.tv', url: 'https://cloudflare-dns.com/dns-query?name={}.tv&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'twitch', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.fm', url: 'https://cloudflare-dns.com/dns-query?name={}.fm&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'last', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.us', url: 'https://cloudflare-dns.com/dns-query?name={}.us&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.cc', url: 'https://cloudflare-dns.com/dns-query?name={}.cc&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.biz', url: 'https://cloudflare-dns.com/dns-query?name={}.biz&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.info', url: 'https://cloudflare-dns.com/dns-query?name={}.info&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.de', url: 'https://cloudflare-dns.com/dns-query?name={}.de&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.eu', url: 'https://cloudflare-dns.com/dns-query?name={}.eu&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.uk', url: 'https://cloudflare-dns.com/dns-query?name={}.uk&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.ca', url: 'https://cloudflare-dns.com/dns-query?name={}.ca&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.in', url: 'https://cloudflare-dns.com/dns-query?name={}.in&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.mobi', url: 'https://cloudflare-dns.com/dns-query?name={}.mobi&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.ws', url: 'https://cloudflare-dns.com/dns-query?name={}.ws&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.ee', url: 'https://cloudflare-dns.com/dns-query?name={}.ee&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.at', url: 'https://cloudflare-dns.com/dns-query?name={}.at&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.ru', url: 'https://cloudflare-dns.com/dns-query?name={}.ru&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.jp', url: 'https://cloudflare-dns.com/dns-query?name={}.jp&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.cn', url: 'https://cloudflare-dns.com/dns-query?name={}.cn&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
+  { name: '.do', url: 'https://cloudflare-dns.com/dns-query?name={}.do&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
 ];

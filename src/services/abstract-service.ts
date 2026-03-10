@@ -14,6 +14,7 @@ export enum CheckMethod {
   Standard = 'STANDARD',
   BodyMatch = 'BODY_MATCH',
   NotFoundBodyMatch = 'NOT_FOUND_BODY_MATCH',
+  DNS = 'DNS',
 }
 
 export interface ServiceDefinition {
@@ -42,7 +43,7 @@ export class AbstractService implements ServiceDefinition {
     readonly checkMethod: CheckMethod,
     readonly bodyMatch?: string | null,
   ) {
-    if (checkMethod !== CheckMethod.Standard && typeof bodyMatch !== 'string') {
+    if (checkMethod !== CheckMethod.Standard && checkMethod !== CheckMethod.DNS && typeof bodyMatch !== 'string') {
       throw new Error(
         `bodyMatch is required for checkMethod "${checkMethod}" on service "${name}"`,
       );
@@ -71,6 +72,19 @@ export class AbstractService implements ServiceDefinition {
       body.includes(this.bodyMatch);
 
     switch (this.checkMethod) {
+      case CheckMethod.DNS: {
+        try {
+          const json = JSON.parse(body ?? '{}');
+          return {
+            status: json.Status === 3
+              ? AvailabilityStatus.Available
+              : AvailabilityStatus.Taken,
+          };
+        } catch {
+          return { status: AvailabilityStatus.Error, errorDetail: 'DNS parse error' };
+        }
+      }
+
       case CheckMethod.NotFoundBodyMatch:
         return {
           status: status !== 200 && bodyContainsMatch
