@@ -234,7 +234,7 @@ The "word + and + word" format (inkandhoney, saltandstone) creates a natural pai
 
 Having a great pair means nothing if one name is available and the other isn't. Here's the process:
 
-Check both at the same time. Use [NickCheckr](https://nickcheckr.com) to search each name across 170+ platforms in one go. If "ember" is available on Instagram but "frost" isn't, you need a backup pair, not a mismatched set.
+Check both at the same time. Use [NickCheckr](https://nickcheckr.com) to search each name across 200+ platforms in one go. If "ember" is available on Instagram but "frost" isn't, you need a backup pair, not a mismatched set.
 
 Register fast. Once you find a pair that's open on the platforms you care about, sign up immediately. Usernames get claimed constantly. Don't spend a week deciding between your top three pairs. Pick one and go.
 

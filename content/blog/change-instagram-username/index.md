@@ -44,7 +44,7 @@ This matters more than the steps above.
 
 Your Instagram username is probably not the only place you use that handle. If you're switching to something new, you want it available on Twitter/X, TikTok, YouTube, GitHub, Reddit, and wherever else you have accounts.
 
-Use our [Instagram username checker](/check/instagram) to verify the name is free on Instagram, then [check your new username across 170+ platforms](https://nickcheckr.com) before committing to the change. Nothing is worse than changing your Instagram handle only to find out the matching Twitter name is taken by a bot account from 2014.
+Use our [Instagram username checker](/check/instagram) to verify the name is free on Instagram, then [check your new username across 200+ platforms](https://nickcheckr.com) before committing to the change. Nothing is worse than changing your Instagram handle only to find out the matching Twitter name is taken by a bot account from 2014.
 
 For more on this, read our guide on [how to choose the same username everywhere](/blog/same-username-everywhere).
 
@@ -132,7 +132,7 @@ Changing your Instagram username takes 30 seconds. Dealing with the consequences
 Before you make the switch:
 
 1. **Search the name on Instagram** to make sure it's actually available and not just a deactivated account
-2. **Run it through [NickCheckr](https://nickcheckr.com)** to check availability across 170+ platforms at once
+2. **Run it through [NickCheckr](https://nickcheckr.com)** to check availability across 200+ platforms at once
 3. **Secure the name on your other important platforms first** — claim it on Twitter/X, TikTok, YouTube, and everywhere else before you reveal your new handle on Instagram
 4. **Update all your existing links and bios** that point to your old Instagram URL
 5. **Accept that your old username is gone** the moment you tap Save

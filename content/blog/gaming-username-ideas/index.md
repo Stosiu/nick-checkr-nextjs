@@ -313,6 +313,6 @@ Claim it everywhere, not just on one platform. You might only play on Steam righ
 
 The worst thing you can do is fall in love with a name, claim it on one platform, and then find out it's taken on three others. That fragmented identity makes it harder for people to find you and harder for you to build any kind of consistent presence online. And changing your username later means losing whatever recognition you've built.
 
-[NickCheckr](https://nickcheckr.com) searches across 170+ platforms at once. Type in a name from any of these lists, and you'll see exactly where it's available in seconds. No more checking Steam, then Xbox, then Discord, then Twitch one at a time. If your first pick is taken somewhere, you'll know immediately and can try the next one on the list instead of discovering the problem six months in.
+[NickCheckr](https://nickcheckr.com) searches across 200+ platforms at once. Type in a name from any of these lists, and you'll see exactly where it's available in seconds. No more checking Steam, then Xbox, then Discord, then Twitch one at a time. If your first pick is taken somewhere, you'll know immediately and can try the next one on the list instead of discovering the problem six months in.
 
 Your gamertag is the first thing people see. Pick one worth remembering.

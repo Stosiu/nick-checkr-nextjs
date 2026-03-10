@@ -74,7 +74,7 @@ Also consider: will you be comfortable with this username next to a serious comm
 
 If you already have a username you like on other platforms, try to get it on Reddit too. Consistent handles across services make you easier to find and lend credibility to your online presence. The catch is that Reddit's no-change policy means you need to [check availability and claim it quickly](/blog/same-username-everywhere) before someone else does.
 
-You can [check your username across 170+ platforms](https://nickcheckr.com) in one search to see where it's open.
+You can [check your username across 200+ platforms](https://nickcheckr.com) in one search to see where it's open.
 
 ### Don't use your real name unless you mean it
 
@@ -102,4 +102,4 @@ Check other platforms before you commit. If you want `quietcactus` on Reddit, ma
 
 ## Check before you commit
 
-Reddit gives you exactly one shot at your username. No edits, no do-overs. Before you sign up, [run your username through NickCheckr](https://nickcheckr.com) to check availability on Reddit and 170+ other platforms simultaneously. Find something available everywhere, claim it, and never think about it again.
+Reddit gives you exactly one shot at your username. No edits, no do-overs. Before you sign up, [run your username through NickCheckr](https://nickcheckr.com) to check availability on Reddit and 200+ other platforms simultaneously. Find something available everywhere, claim it, and never think about it again.

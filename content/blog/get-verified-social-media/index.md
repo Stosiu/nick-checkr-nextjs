@@ -99,4 +99,4 @@ For platforms where free verification still exists (Instagram's notable figure p
 
 Before you chase verification on any platform, make sure your username situation is solid. A verified account with a messy, inconsistent handle across platforms undermines the whole point.
 
-[Check your username across 170+ platforms on NickCheckr](https://nickcheckr.com) to see where your handle is available, where it's taken, and where you might need to make changes before your verification push.
+[Check your username across 200+ platforms on NickCheckr](https://nickcheckr.com) to see where your handle is available, where it's taken, and where you might need to make changes before your verification push.

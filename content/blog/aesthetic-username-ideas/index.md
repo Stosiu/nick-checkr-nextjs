@@ -326,4 +326,4 @@ Third, if your first choice is taken, don't just add numbers to the end. That de
 
 ## Check your favorites
 
-Run any name from this list through [NickCheckr](https://nickcheckr.com) to see where it's available. It checks 170+ platforms in a few seconds, so you don't have to sign up on each one individually to find out.
+Run any name from this list through [NickCheckr](https://nickcheckr.com) to see where it's available. It checks 200+ platforms in a few seconds, so you don't have to sign up on each one individually to find out.

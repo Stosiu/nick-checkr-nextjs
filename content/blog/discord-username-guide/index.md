@@ -97,4 +97,4 @@ Think long-term. Discord limits username changes. Whatever you pick, you're like
 
 ## Check your Discord username
 
-Not sure if the username you want is available on Discord? Use our [Discord username checker](/check/discord) to find out instantly. Or check it across 170+ platforms at once with [NickCheckr](https://nickcheckr.com) to lock down a consistent handle everywhere.
+Not sure if the username you want is available on Discord? Use our [Discord username checker](/check/discord) to find out instantly. Or check it across 200+ platforms at once with [NickCheckr](https://nickcheckr.com) to lock down a consistent handle everywhere.
