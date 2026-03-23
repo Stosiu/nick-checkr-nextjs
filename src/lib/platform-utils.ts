@@ -33,7 +33,12 @@ import type { ServiceDefinition } from '@/services/abstract-service';
 import { services } from '@/services/data/services';
 
 export function getServiceSlug(name: string): string {
-  return name.toLowerCase().replace(/[\s.]+/g, '-').replace(/^-+/, '');
+  return name
+    .toLowerCase()
+    .replace(/[\s.]+/g, '-')
+    .replace(/[^a-z0-9-]/g, '')
+    .replace(/-{2,}/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 export function getServiceBySlug(slug: string): ServiceDefinition | undefined {
