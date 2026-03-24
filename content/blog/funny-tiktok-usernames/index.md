@@ -293,4 +293,4 @@ One more thing: your username and your display name are different. The username 
 
 Also worth noting: a funny username doesn't mean you can't be taken seriously. Some of the biggest creators on the platform got there with joke names and never changed them. The name gets you noticed. The content keeps people around. Pick something that makes you laugh, make sure it's available, and go make something worth watching.
 
-[Check any username across 200+ platforms at NickCheckr](https://nickcheckr.com) — it takes two seconds and saves you from discovering name conflicts after you've already committed.
+[Check any username across 200+ platforms at NickCheckr](https://nickcheckr.stosiu.dev) — it takes two seconds and saves you from discovering name conflicts after you've already committed.

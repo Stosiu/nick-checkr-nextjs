@@ -61,7 +61,7 @@ The worst approach is picking a username, claiming it on your favorite platform,
 
 Search first. Across everything.
 
-You can [check your username across 200+ platforms at once](https://nickcheckr.com) with NickCheckr. Type in a username and you'll immediately see where it's available and where it's taken.
+You can [check your username across 200+ platforms at once](https://nickcheckr.stosiu.dev) with NickCheckr. Type in a username and you'll immediately see where it's available and where it's taken.
 
 ### Prioritize the platforms that matter
 
@@ -155,10 +155,10 @@ The process is simple:
 
 1. Audit your current usernames
 2. Pick a candidate that's short, clean, and easy to say
-3. [Check availability across 200+ platforms](https://nickcheckr.com) before you commit
+3. [Check availability across 200+ platforms](https://nickcheckr.stosiu.dev) before you commit
 4. Claim it everywhere, including platforms you don't use yet
 5. Update your existing accounts to match
 
 If you want to [change your Instagram username](/blog/change-instagram-username) to match a new universal handle, that's straightforward and we've covered it separately.
 
-Run your preferred name through [NickCheckr](https://nickcheckr.com) and see where you stand.
+Run your preferred name through [NickCheckr](https://nickcheckr.stosiu.dev) and see where you stand.

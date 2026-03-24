@@ -49,7 +49,7 @@ Warm, rural, garden-adjacent. Think linen tablecloths, wildflower bouquets, and 
 - acornlight
 - barleymoon
 
-Check any of these on [NickCheckr](https://nickcheckr.com?nick=honeymeadow).
+Check any of these on [NickCheckr](https://nickcheckr.stosiu.dev?nick=honeymeadow).
 
 ## Dark academia
 
@@ -88,7 +88,7 @@ Literary, moody, classical. Old libraries with creaking floors, marginalia in bo
 - penumbracroft
 - gildedmargin
 
-Check any of these on [NickCheckr](https://nickcheckr.com?nick=marginalia).
+Check any of these on [NickCheckr](https://nickcheckr.stosiu.dev?nick=marginalia).
 
 ## Minimalist
 
@@ -127,7 +127,7 @@ Simple, lowercase, muted. These work especially well on platforms where your use
 
 If you want [the same username everywhere](/blog/same-username-everywhere), minimalist names are the easiest to claim across platforms because they're short and rarely contain special characters.
 
-Check any of these on [NickCheckr](https://nickcheckr.com?nick=calmgrid).
+Check any of these on [NickCheckr](https://nickcheckr.stosiu.dev?nick=calmgrid).
 
 ## Poetcore
 
@@ -164,7 +164,7 @@ Literary but messier than dark academia. Emotional fragments, soft rebellion, th
 - palecandle
 - foldedode
 
-Check any of these on [NickCheckr](https://nickcheckr.com?nick=halfverses).
+Check any of these on [NickCheckr](https://nickcheckr.stosiu.dev?nick=halfverses).
 
 ## Tech noir
 
@@ -201,7 +201,7 @@ Digital, neon, glitch, synthetic. The intersection of technology and decay. Thes
 - datawhisper
 - overclocked
 
-Check any of these on [NickCheckr](https://nickcheckr.com?nick=glitchveil).
+Check any of these on [NickCheckr](https://nickcheckr.stosiu.dev?nick=glitchveil).
 
 ## Celestial
 
@@ -238,7 +238,7 @@ Cosmic, ethereal, quiet. Stars, moons, and the enormity of space distilled into 
 - mercuryhaze
 - venusquiet
 
-Check any of these on [NickCheckr](https://nickcheckr.com?nick=nebulaveil).
+Check any of these on [NickCheckr](https://nickcheckr.stosiu.dev?nick=nebulaveil).
 
 ## Coastal
 
@@ -275,7 +275,7 @@ Ocean, sand, salt, warmth. Not quite "beach bum" and not quite "nautical." More 
 - coralbloom
 - bluecove
 
-Check any of these on [NickCheckr](https://nickcheckr.com?nick=saltedbreeze).
+Check any of these on [NickCheckr](https://nickcheckr.stosiu.dev?nick=saltedbreeze).
 
 ## Indie sleaze / Y2K nostalgia
 
@@ -312,7 +312,7 @@ Messy, retro 2000s, film grain, party aftermath. The aesthetic of a blurry photo
 - retrosmear
 - staticparty
 
-Check any of these on [NickCheckr](https://nickcheckr.com?nick=trashglam).
+Check any of these on [NickCheckr](https://nickcheckr.stosiu.dev?nick=trashglam).
 
 ## Before you commit to a name
 
@@ -326,4 +326,4 @@ Third, if your first choice is taken, don't just add numbers to the end. That de
 
 ## Check your favorites
 
-Run any name from this list through [NickCheckr](https://nickcheckr.com) to see where it's available. It checks 200+ platforms in a few seconds, so you don't have to sign up on each one individually to find out.
+Run any name from this list through [NickCheckr](https://nickcheckr.stosiu.dev) to see where it's available. It checks 200+ platforms in a few seconds, so you don't have to sign up on each one individually to find out.

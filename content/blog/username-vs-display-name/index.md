@@ -89,7 +89,7 @@ Most platforms let you change your display name whenever you want. Your username
 
 On Google, your username appears in the URL of your profile, and URLs influence search rankings. If your username is your brand name, that helps. If it's `xX_darkn1ght_Xx`, it doesn't.
 
-For building a personal brand, having the same username on every platform is more valuable than having the same display name. People remember @handles. You can [check username availability across 200+ platforms](https://nickcheckr.com) to find a name that works everywhere.
+For building a personal brand, having the same username on every platform is more valuable than having the same display name. People remember @handles. You can [check username availability across 200+ platforms](https://nickcheckr.stosiu.dev) to find a name that works everywhere.
 
 ## Which one should you optimize for?
 
@@ -103,4 +103,4 @@ The one exception is Spotify, where the username is irrelevant and the display n
 
 ## Check your username now
 
-[NickCheckr](https://nickcheckr.com) checks availability across 200+ platforms in seconds. Find out where your name is open, where it's taken, and claim it on the ones that matter to you.
+[NickCheckr](https://nickcheckr.stosiu.dev) checks availability across 200+ platforms in seconds. Find out where your name is open, where it's taken, and claim it on the ones that matter to you.

@@ -2,7 +2,7 @@
 
 Check username availability across 200+ platforms instantly. One search, every platform.
 
-**Live at [nickcheckr.com](https://nickcheckr.com)**
+**Live at [nickcheckr.stosiu.dev](https://nickcheckr.stosiu.dev)**
 
 ## What it does
 

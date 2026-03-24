@@ -106,4 +106,4 @@ Can't find the handle setting? Make sure you're in YouTube Studio (studio.youtub
 
 Before you commit to a handle on YouTube, check if the name is available across all the platforms you care about. Claiming `@oakstudio` on YouTube but finding it taken on Instagram and Twitter means you're back to the inconsistency problem.
 
-[NickCheckr](https://nickcheckr.com) checks username availability across 200+ platforms at once, including YouTube. Type in the handle you're considering and see where it's available before you lock it in.
+[NickCheckr](https://nickcheckr.stosiu.dev) checks username availability across 200+ platforms at once, including YouTube. Type in the handle you're considering and see where it's available before you lock it in.

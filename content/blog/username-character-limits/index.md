@@ -227,6 +227,6 @@ The sweet spot: **a 4-15 character handle using only lowercase letters and numbe
 
 ## Check your username now
 
-Knowing the rules is half the work. The other half is checking whether the username you want is actually available. [NickCheckr](https://nickcheckr.com) checks 200+ services in one search, so you don't have to open 20 tabs and test each platform individually.
+Knowing the rules is half the work. The other half is checking whether the username you want is actually available. [NickCheckr](https://nickcheckr.stosiu.dev) checks 200+ services in one search, so you don't have to open 20 tabs and test each platform individually.
 
 Pick something that fits the safe zone, run it through the checker, and claim it everywhere.

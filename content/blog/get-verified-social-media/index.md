@@ -83,7 +83,7 @@ If you're an individual creator who just wants the badge to look credible, it's 
 
 X Premium is a slightly better value proposition because of the functional benefits: reply boost, longer posts, reduced ads. You're paying for features, not just a badge. Whether those features matter depends on how you use the platform.
 
-My honest take: spend the time and money on making your content better instead. A strong profile with consistent branding, a clean [username that matches across platforms](https://nickcheckr.com), and good content will do more for your credibility than a checkmark.
+My honest take: spend the time and money on making your content better instead. A strong profile with consistent branding, a clean [username that matches across platforms](https://nickcheckr.stosiu.dev), and good content will do more for your credibility than a checkmark.
 
 ## Tips for getting verified (the free way)
 
@@ -99,4 +99,4 @@ For platforms where free verification still exists (Instagram's notable figure p
 
 Before you chase verification on any platform, make sure your username situation is solid. A verified account with a messy, inconsistent handle across platforms undermines the whole point.
 
-[Check your username across 200+ platforms on NickCheckr](https://nickcheckr.com) to see where your handle is available, where it's taken, and where you might need to make changes before your verification push.
+[Check your username across 200+ platforms on NickCheckr](https://nickcheckr.stosiu.dev) to see where your handle is available, where it's taken, and where you might need to make changes before your verification push.

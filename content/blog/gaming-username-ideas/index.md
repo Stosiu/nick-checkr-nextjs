@@ -58,7 +58,7 @@ The naming meta has shifted. Short, single-word handles communicate more confide
 - Crux
 - Veil
 
-Single-word names get snatched fast. [Check which of these are still open](https://nickcheckr.com) before someone else does.
+Single-word names get snatched fast. [Check which of these are still open](https://nickcheckr.stosiu.dev) before someone else does.
 
 ## Cyberpunk and tech names
 
@@ -105,7 +105,7 @@ Digital, neon-lit, futuristic. The cyberpunk aesthetic has been bleeding into ga
 - VoxelBane
 - StaticWolf
 
-Compound names like these have better odds of being available, but platform [character limits](/blog/username-character-limits) vary. Check your picks against multiple platforms at once on the [homepage](https://nickcheckr.com).
+Compound names like these have better odds of being available, but platform [character limits](/blog/username-character-limits) vary. Check your picks against multiple platforms at once on the [homepage](https://nickcheckr.stosiu.dev).
 
 ## Fantasy and mythical names
 
@@ -199,7 +199,7 @@ Sleek, Japanese-influenced, stylized. These are all over Valorant lobbies, Gensh
 - GhostTengu
 - StormKenshi
 
-Anime names hit different on [Discord](/blog/discord-username-guide) where the culture already skews that direction. Run your favorites through a [quick availability check](https://nickcheckr.com) before someone in your server beats you to it.
+Anime names hit different on [Discord](/blog/discord-username-guide) where the culture already skews that direction. Run your favorites through a [quick availability check](https://nickcheckr.stosiu.dev) before someone in your server beats you to it.
 
 ## Intimidating and competitive names
 
@@ -293,7 +293,7 @@ Self-aware, absurdist, post-ironic. The xX_Xx format is only acceptable in 2026 
 - SurrenderVote
 - AFK_ButVibing
 
-Funny names have the highest availability rates because they're specific. That said, the good ones still go fast. [Check yours before the joke lands in someone else's lobby](https://nickcheckr.com).
+Funny names have the highest availability rates because they're specific. That said, the good ones still go fast. [Check yours before the joke lands in someone else's lobby](https://nickcheckr.stosiu.dev).
 
 ## How to actually pick one
 
@@ -313,6 +313,6 @@ Claim it everywhere, not just on one platform. You might only play on Steam righ
 
 The worst thing you can do is fall in love with a name, claim it on one platform, and then find out it's taken on three others. That fragmented identity makes it harder for people to find you and harder for you to build any kind of consistent presence online. And changing your username later means losing whatever recognition you've built.
 
-[NickCheckr](https://nickcheckr.com) searches across 200+ platforms at once. Type in a name from any of these lists, and you'll see exactly where it's available in seconds. No more checking Steam, then Xbox, then Discord, then Twitch one at a time. If your first pick is taken somewhere, you'll know immediately and can try the next one on the list instead of discovering the problem six months in.
+[NickCheckr](https://nickcheckr.stosiu.dev) searches across 200+ platforms at once. Type in a name from any of these lists, and you'll see exactly where it's available in seconds. No more checking Steam, then Xbox, then Discord, then Twitch one at a time. If your first pick is taken somewhere, you'll know immediately and can try the next one on the list instead of discovering the problem six months in.
 
 Your gamertag is the first thing people see. Pick one worth remembering.

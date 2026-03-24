@@ -63,4 +63,4 @@ Username scarcity isn't abstract. It's the reason you're "sarah_designs_" instea
 
 The practical lesson: claim your preferred handle on platforms early, even ones you don't plan to use yet. When a new platform launches, the namespace is wide open. By the time it has 100 million users, the [good names are gone](/blog/username-already-taken). The difference between a clean handle and one with numbers tacked on is almost always timing.
 
-[NickCheckr](https://nickcheckr.com) checks 400+ platforms at once. Some of them are still young enough that the name you want is sitting there unclaimed. Grab it before someone else does, or before the platform decides to start charging for it.
+[NickCheckr](https://nickcheckr.stosiu.dev) checks 400+ platforms at once. Some of them are still young enough that the name you want is sitting there unclaimed. Grab it before someone else does, or before the platform decides to start charging for it.

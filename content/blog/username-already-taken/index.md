@@ -99,7 +99,7 @@ If your name alone is taken, pairing it with a second word can create something 
 
 This works best when both words are short and the combination sounds like it could be a brand. The trick is avoiding anything too long or too random. `darkknightsarah2004official` is not a username; it's a cry for help.
 
-Two-word combinations also give you more room to secure the same handle across platforms. A unique combination like `neonjake` is far more likely to be available everywhere than `jake` alone. You can [check if your new username is available across 200+ platforms](https://nickcheckr.com) in one search to verify before you commit.
+Two-word combinations also give you more room to secure the same handle across platforms. A unique combination like `neonjake` is far more likely to be available everywhere than `jake` alone. You can [check if your new username is available across 200+ platforms](https://nickcheckr.stosiu.dev) in one search to verify before you commit.
 
 ## Check if the account is actually inactive
 
@@ -158,6 +158,6 @@ Start the brainstorming process over. Write down words you associate with yourse
 
 Once you land on a username that works, claim it on every platform that matters to you, even ones you don't plan to use right now. This prevents someone else from taking your new name on a platform you might join later.
 
-[NickCheckr](https://nickcheckr.com) lets you search a username across 200+ platforms at once, so you can see exactly where your chosen name is available and where it's not. Run your top two or three candidates through the checker before making a final decision. A name that's available on 150 platforms beats one that's only open on 30, even if the second one sounds slightly better.
+[NickCheckr](https://nickcheckr.stosiu.dev) lets you search a username across 200+ platforms at once, so you can see exactly where your chosen name is available and where it's not. Run your top two or three candidates through the checker before making a final decision. A name that's available on 150 platforms beats one that's only open on 30, even if the second one sounds slightly better.
 
 Your username follows you everywhere online. Ten more minutes of searching now saves years of explaining a bad handle later.

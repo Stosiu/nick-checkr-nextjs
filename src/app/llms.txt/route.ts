@@ -16,12 +16,12 @@ Enter a username and NickCheckr checks all 208 platforms in parallel. Each platf
 NickCheckr provides a JSON API for checking username availability:
 
 ### Check a single service
-GET https://nickcheckr.com/api/check?nick={username}&service={serviceName}
+GET https://nickcheckr.stosiu.dev/api/check?nick={username}&service={serviceName}
 
 Returns one of: "AVAILABLE", "TAKEN", "ERROR", "TIMEOUT"
 
 ### Get cached results (all services)
-GET https://nickcheckr.com/api/llm/check?nick={username}
+GET https://nickcheckr.stosiu.dev/api/llm/check?nick={username}
 
 Returns cached results from previous checks, including per-service availability and summary counts. If the username hasn't been checked before, returns { cached: false } with a link to check it.
 
@@ -41,14 +41,14 @@ Example response:
 
 ## Pages
 
-- Homepage: https://nickcheckr.com
-- All Platforms: https://nickcheckr.com/check
-- Blog: https://nickcheckr.com/blog
-- About: https://nickcheckr.com/about
-- Contact: https://nickcheckr.com/contact
-- Privacy Policy: https://nickcheckr.com/privacy
-- Disclaimer: https://nickcheckr.com/disclaimer
-- RSS Feed: https://nickcheckr.com/blog/feed.xml
+- Homepage: https://nickcheckr.stosiu.dev
+- All Platforms: https://nickcheckr.stosiu.dev/check
+- Blog: https://nickcheckr.stosiu.dev/blog
+- About: https://nickcheckr.stosiu.dev/about
+- Contact: https://nickcheckr.stosiu.dev/contact
+- Privacy Policy: https://nickcheckr.stosiu.dev/privacy
+- Disclaimer: https://nickcheckr.stosiu.dev/disclaimer
+- RSS Feed: https://nickcheckr.stosiu.dev/blog/feed.xml
 
 ## Platform Categories
 

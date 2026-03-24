@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
         cached: false,
         nick: nick.toLowerCase(),
         message: 'This username has not been checked yet.',
-        checkUrl: `https://nickcheckr.com/?nick=${encodeURIComponent(nick)}`,
+        checkUrl: `https://nickcheckr.stosiu.dev/?nick=${encodeURIComponent(nick)}`,
       });
     }
 

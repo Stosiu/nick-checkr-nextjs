@@ -39,7 +39,7 @@ Gaming platforms have a different scarcity pattern. [Steam](/check/steam), [Xbox
 
 Professional platforms work differently too. [LinkedIn](/check/linkedin) uses firstname-lastname URL slugs, so common name collisions are handled with numbers (/in/john-smith-4827/) rather than forcing users to get creative. [GitHub](/check/github) skews toward developer handles and pseudonyms, which creates its own scarcity patterns around tech-adjacent words.
 
-The point is that "my username is taken everywhere" is rarely literally true. It's taken on the three platforms you checked. A tool that checks [hundreds of platforms at once](https://nickcheckr.com) usually turns up openings you wouldn't have thought to look for.
+The point is that "my username is taken everywhere" is rarely literally true. It's taken on the three platforms you checked. A tool that checks [hundreds of platforms at once](https://nickcheckr.stosiu.dev) usually turns up openings you wouldn't have thought to look for.
 
 ## What the data actually tells you
 
@@ -55,4 +55,4 @@ If your name is on the common list, you already know the frustration. The standa
 
 But the bigger takeaway is simpler: check early, check everywhere. New platforms launch with empty namespaces, and the people who end up with clean handles aren't more creative. They just showed up sooner. When a platform jumps from 1 million to 100 million users, the window where common names are still available is a few months at best.
 
-[NickCheckr](https://nickcheckr.com) checks 400+ platforms at once. If your name is David, it won't be available on Instagram. But there are platforms you've never heard of where it's sitting unclaimed right now.
+[NickCheckr](https://nickcheckr.stosiu.dev) checks 400+ platforms at once. If your name is David, it won't be available on Instagram. But there are platforms you've never heard of where it's sitting unclaimed right now.

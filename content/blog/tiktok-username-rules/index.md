@@ -81,7 +81,7 @@ TikTok is a video platform. People will say your username out loud in duets, sti
 
 ### Match your other platforms
 
-If you already have established handles on Instagram, Twitter, or YouTube, use the same name on TikTok. Consistency across platforms makes you easier to find and builds recognition. If you're starting fresh and want to claim a name everywhere at once, [NickCheckr](https://nickcheckr.com) lets you check availability across 200+ platforms in one search.
+If you already have established handles on Instagram, Twitter, or YouTube, use the same name on TikTok. Consistency across platforms makes you easier to find and builds recognition. If you're starting fresh and want to claim a name everywhere at once, [NickCheckr](https://nickcheckr.stosiu.dev) lets you check availability across 200+ platforms in one search.
 
 We wrote a whole guide on [why using the same username everywhere matters](/blog/same-username-everywhere) if you want the full reasoning.
 
@@ -95,4 +95,4 @@ If you're 16 and your username references your age, you're going to regret it in
 
 ## Check your TikTok username
 
-Before you lock in a username for the next 30 days, verify it's actually available. Use the [TikTok username checker](/check/tiktok) to test your name, or run it through [NickCheckr](https://nickcheckr.com) to check TikTok and 200+ other platforms at the same time.
+Before you lock in a username for the next 30 days, verify it's actually available. Use the [TikTok username checker](/check/tiktok) to test your name, or run it through [NickCheckr](https://nickcheckr.stosiu.dev) to check TikTok and 200+ other platforms at the same time.

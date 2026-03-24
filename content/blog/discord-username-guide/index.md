@@ -73,7 +73,7 @@ If you didn't claim a username during the rollout, Discord may have auto-assigne
 
 The good short usernames went fast. If you're still looking for the right one, a few things to keep in mind.
 
-Check other platforms first. If you're going to be `coolname` on Discord, you probably want it on other platforms too. Run it through [NickCheckr](https://nickcheckr.com) to see where it's available before you lock it in on Discord. Our guide on [using the same username everywhere](/blog/same-username-everywhere) covers why this matters.
+Check other platforms first. If you're going to be `coolname` on Discord, you probably want it on other platforms too. Run it through [NickCheckr](https://nickcheckr.stosiu.dev) to see where it's available before you lock it in on Discord. Our guide on [using the same username everywhere](/blog/same-username-everywhere) covers why this matters.
 
 Keep it short. You have up to 32 characters, but shorter is better. People need to type it to add you as a friend. Something between 3 and 15 characters is the sweet spot.
 
@@ -97,4 +97,4 @@ Think long-term. Discord limits username changes. Whatever you pick, you're like
 
 ## Check your Discord username
 
-Not sure if the username you want is available on Discord? Use our [Discord username checker](/check/discord) to find out instantly. Or check it across 200+ platforms at once with [NickCheckr](https://nickcheckr.com) to lock down a consistent handle everywhere.
+Not sure if the username you want is available on Discord? Use our [Discord username checker](/check/discord) to find out instantly. Or check it across 200+ platforms at once with [NickCheckr](https://nickcheckr.stosiu.dev) to lock down a consistent handle everywhere.

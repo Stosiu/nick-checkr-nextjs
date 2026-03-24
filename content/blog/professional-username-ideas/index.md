@@ -105,7 +105,7 @@ When all four match, anyone who knows one of them can guess the others. A recrui
 
 This matters more than most people think. Recruiters in tech often cross-reference GitHub and LinkedIn profiles. If your [GitHub handle doesn't match your LinkedIn](/blog/same-username-everywhere), they might not connect the two, and you lose credit for your open source work. Hiring managers google candidates. If your name returns a clean, consistent set of professional profiles, that's a strong signal. Fragmented handles suggest someone who doesn't pay attention to details.
 
-Before you commit to a professional username, [check it across platforms](https://nickcheckr.com) to make sure it's actually available everywhere you need it. There's nothing worse than building your LinkedIn brand around a name that's taken on GitHub.
+Before you commit to a professional username, [check it across platforms](https://nickcheckr.stosiu.dev) to make sure it's actually available everywhere you need it. There's nothing worse than building your LinkedIn brand around a name that's taken on GitHub.
 
 ## What not to do
 
@@ -123,4 +123,4 @@ Inconsistency is the other big mistake. Being `msmith` on GitHub but `michael.sm
 
 ## Lock it down
 
-Once you've picked a professional username, [check its availability across 200+ platforms](https://nickcheckr.com) and register it on every platform that matters to your career. Even platforms you don't actively use. Your [username can be taken at any time](/blog/username-already-taken), and reclaiming it later is harder than claiming it now. Five minutes of defensive registration saves you from a fragmented professional identity.
+Once you've picked a professional username, [check its availability across 200+ platforms](https://nickcheckr.stosiu.dev) and register it on every platform that matters to your career. Even platforms you don't actively use. Your [username can be taken at any time](/blog/username-already-taken), and reclaiming it later is harder than claiming it now. Five minutes of defensive registration saves you from a fragmented professional identity.

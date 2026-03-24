@@ -107,7 +107,7 @@ Every article must include:
 1. At least one CTA linking to the homepage or a relevant `/check/[platform]` page
 2. Links to 2-4 other blog posts using descriptive anchor text
 3. First mention of a specific platform (Instagram, TikTok, etc.) links to `/check/[platform]`
-4. One end-of-post CTA block linking to `https://nickcheckr.com`
+4. One end-of-post CTA block linking to `https://nickcheckr.stosiu.dev`
 5. No more than one link per paragraph
 
 Link clusters (articles that should interlink):
