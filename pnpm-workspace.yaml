@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
+  msw: false
+  react-grab: false
