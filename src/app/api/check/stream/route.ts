@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
     return Response.json({ error: 'Rate limit exceeded' }, { status: 429 });
   }
 
-  const serviceNames = nicknameChecker.getServiceNames();
+  const serviceNames = nicknameChecker.getServiceNamesSpreadByHost();
   const encoder = new TextEncoder();
 
   const stream = new ReadableStream<Uint8Array>({

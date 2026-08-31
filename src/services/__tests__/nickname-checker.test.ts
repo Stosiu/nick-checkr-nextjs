@@ -208,3 +208,28 @@ describe('unverifiable services explain themselves', () => {
       });
     });
 });
+
+describe('host spreading', () => {
+  it('covers every service exactly once', () => {
+    const spread = nicknameChecker.getServiceNamesSpreadByHost();
+    expect(spread).toHaveLength(services.length);
+    expect(new Set(spread).size).toBe(services.length);
+  });
+
+  it('never places two services from the same host next to each other while others remain', () => {
+    const spread = nicknameChecker.getServiceNamesSpreadByHost();
+    const hostOf = new Map(
+      services.map((s) => {
+        const probe = 'apiUrl' in s && s.apiUrl ? s.apiUrl : s.url;
+        try {
+          return [s.name, new URL(probe.replace('{}', 'x')).hostname] as const;
+        } catch {
+          return [s.name, s.name] as const;
+        }
+      }),
+    );
+    const hosts = spread.map((n) => hostOf.get(n));
+    const adjacent = hosts.filter((h, i) => i > 0 && h === hosts[i - 1]).length;
+    expect(adjacent).toBeLessThan(hosts.length / 10);
+  });
+});

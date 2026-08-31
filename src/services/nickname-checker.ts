@@ -105,6 +105,34 @@ class NicknameChecker {
     return this.services.map((s) => s.name);
   }
 
+  getServiceNamesSpreadByHost(): string[] {
+    const byHost = new Map<string, string[]>();
+
+    for (const service of this.services) {
+      let host: string;
+      try {
+        host = new URL(service.probeUrl.replace('{}', 'x')).hostname;
+      } catch {
+        host = service.name;
+      }
+      const bucket = byHost.get(host) ?? [];
+      bucket.push(service.name);
+      byHost.set(host, bucket);
+    }
+
+    const buckets = [...byHost.values()];
+    const longest = Math.max(0, ...buckets.map((b) => b.length));
+    const spread: string[] = [];
+
+    for (let i = 0; i < longest; i++) {
+      for (const bucket of buckets) {
+        if (i < bucket.length) spread.push(bucket[i]);
+      }
+    }
+
+    return spread;
+  }
+
   getServiceEntries(): { name: string; url: string; category: string }[] {
     return this.services.map((s) => ({ name: s.name, url: s.url, category: s.category }));
   }

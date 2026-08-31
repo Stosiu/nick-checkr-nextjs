@@ -186,6 +186,10 @@ export class AbstractService {
     }
   }
 
+  get probeUrl(): string {
+    return this.apiUrl ?? this.url;
+  }
+
   async check(nick: string): Promise<CheckResult> {
     if (this.checkMethod === CheckMethod.Unverifiable) {
       return {
