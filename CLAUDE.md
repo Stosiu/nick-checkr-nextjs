@@ -18,13 +18,15 @@ Username and domain availability checker across 460+ platforms, organized by cat
 All source files live under `src/`:
 
 - `src/app/` - Next.js App Router pages and API routes
-- `src/app/api/check/` - Check API with rate limiting + in-memory cache
+- `src/app/api/check/` - Single check API with rate limiting + in-memory cache
+- `src/app/api/check/stream/` - Streaming NDJSON endpoint used by the homepage; also persists results to Vercel Blob
 - `src/components/` - React components (`ui/` for shadcn)
 - `src/services/` - Nickname checking services (AbstractService pattern)
-- `src/services/data/services.ts` - 463 services with categories (including 105 domain TLDs)
+- `src/services/data/services.ts` - 468 services with categories (including 105 domain TLDs)
 - `src/hooks/` - Custom React hooks
-- `src/lib/` - Utilities: `cache.ts` (server cache), `fetch-queue.ts` (client concurrency limiter), `blog.ts` (blog processing), `utils.ts` (shadcn `cn()`)
+- `src/lib/` - Utilities: `cache.ts` (server cache), `check-store.ts` (client result store), `fetch-queue.ts` (client concurrency limiter), `blog.ts` (blog processing), `utils.ts` (shadcn `cn()`)
 - `src/config/` - Site configuration
+- `src/content/` - Changelog entries rendered by `/changelog`
 - `src/utils/` - Rate limiter
 
 ## Commands
@@ -34,6 +36,7 @@ All source files live under `src/`:
 - `pnpm test` - Run all tests
 - `pnpm test src/services/__tests__/abstract-service.test.ts` - Run specific test
 - `pnpm typecheck` - TypeScript type checking
+- `pnpm probe` - Live health check of every service against real sites (network, slow, not part of `pnpm test`)
 
 ## Adding a New Service
 
@@ -46,8 +49,23 @@ Check methods:
 - `CheckMethod.BodyMatch` - Returns 200 but body contains a specific string when not found
 - `CheckMethod.NotFoundBodyMatch` - Returns non-200 and body contains a specific string when not found
 - `CheckMethod.DNS` - DNS-over-HTTPS via Cloudflare; NXDOMAIN (Status: 3) = available
+- `CheckMethod.NickInTitle` - Page always returns 200; the profile exists when `<title>` contains the nick
+- `CheckMethod.NickInOgTitle` - Same, using the `og:title` meta tag
+- `CheckMethod.Unverifiable` - Platform serves an identical page for every username. Returns `AvailabilityStatus.Unknown` without making a request, and the UI shows "Can't verify"
 
-Include `testAvailableNick` and `testTakenNick` for integration tests.
+Include `testAvailableNick` and `testTakenNick` for integration tests. `testTakenNick` must be a username that really exists on that platform — a wrong one makes the health probe report a permanent false failure. Omit it if no real account can be confirmed.
+
+Service names must be unique; a duplicate silently breaks blob persistence and renders a duplicate card.
+
+Before adding a service, confirm the URL discriminates: a random username must return 404 (or the body marker) while a real one returns 200. Many platforms use numeric IDs rather than usernames (Pixiv, Goodreads authors, Royal Road) and cannot be checked this way.
+
+## Checking Service Health
+
+`pnpm probe` runs every service against its own test fixtures over the live network and reports the pass rate. It is excluded from `pnpm test` (which is fully mocked and cannot detect upstream drift). Upstream sites change their 404 behaviour regularly, so run the probe before a release.
+
+- `PROBE_ONLY="Twitch,Kick"` limits it to named services
+- `PROBE_REPORT=/tmp/out.json` writes a per-fixture JSON report
+- `PROBE_CONCURRENCY=10` tunes parallelism
 
 ## Path Alias
 
@@ -55,7 +73,9 @@ Include `testAvailableNick` and `testTakenNick` for integration tests.
 
 ## Architecture Notes
 
-- **Request concurrency**: `src/lib/fetch-queue.ts` limits to 8 concurrent fetches to avoid flooding the browser during checks
+- **Streaming checks**: a search opens one request to `/api/check/stream`, which runs all upstream checks server-side (32 concurrent) and streams NDJSON results back as they land. One function invocation per search instead of one per platform. `src/lib/check-store.ts` holds results in an external store so each card re-renders only when its own result arrives; `src/hooks/use-check-stream.tsx` owns the stream and batches updates every 80ms
+- **Single checks**: `/api/check` and `src/hooks/use-check.ts` remain for the one-off check on `/check/[platform]` pages
+- **Request concurrency**: `src/lib/fetch-queue.ts` limits to 8 concurrent fetches, used by the single-check path
 - **Server cache**: `src/lib/cache.ts` — in-memory TTL cache (30 min for success, 5 min for errors) to avoid redundant upstream requests
 - **URL state**: nuqs manages `?nick=` param; requires Suspense boundary in `src/app/page.tsx`
 - **Hero background**: Framer Motion parallax with mouse tracking, typing animation cycling through usernames. No canvas — pure DOM + GPU-composited transforms
