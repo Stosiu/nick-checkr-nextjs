@@ -775,7 +775,7 @@ export const services: ServiceDefinition[] = [
   { name: 'Postcrossing', url: 'https://www.postcrossing.com/user/{}', category: 'Community', checkMethod: CheckMethod.RedirectMatch, redirectMatch: '/login', testTakenNick: 'Vladimir', testAvailableNick: 'zqvx8841mkw' },
   { name: 'Brickset', url: 'https://brickset.com/profile/{}', category: 'Community', checkMethod: CheckMethod.PresenceMatch, presenceMatch: 'Member since:</dt>', testTakenNick: 'lowlead', testAvailableNick: 'zqvx8841mkw' },
   { name: 'Shikimori', url: 'https://shikimori.io/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'STARHun', testAvailableNick: 'zqvx8841mkw' },
-  { name: 'ScoutWiki', url: 'https://en.scoutwiki.org/User:{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'Mlh_nl', testAvailableNick: 'zqvx8841mkw' },
+  { name: 'ScoutWiki', url: 'https://en.scoutwiki.org/User:{}', category: 'Community', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.RateLimited, testTakenNick: 'Mlh_nl', testAvailableNick: 'zqvx8841mkw' },
   { name: 'Discourse', url: 'https://meta.discourse.org/u/{}/summary.json', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'ndalliard', testAvailableNick: 'zqvx8841mkw' },
   { name: 'Tabletop Tournament', url: 'https://www.tabletoptournaments.net/eu/player/{}', category: 'Community', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.BotProtected, testTakenNick: 'Lars01', testAvailableNick: 'zqvx8841mkw' },
   { name: 'Buttondown', url: 'https://buttondown.com/{}', category: 'Newsletters', checkMethod: CheckMethod.Standard, testTakenNick: 'john', testAvailableNick: 'alex3232e2e2e' },
