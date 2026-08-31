@@ -53,6 +53,8 @@ Check methods:
 - `CheckMethod.NickInTitle` - Page always returns 200; the profile exists when `<title>` contains the nick
 - `CheckMethod.NickInOgTitle` - Same, using the `og:title` meta tag
 - `CheckMethod.Unverifiable` - Platform serves an identical page for every username. Returns `AvailabilityStatus.Unknown` without making a request, and the UI shows "Can't verify"
+
+Unverifiable reasons: `ClientRendered`, `BotProtected`, `NotUsernameBased`, `WildcardDns`, `NotInDns`, `RateLimited`. `BotProtected` covers platforms that refuse our datacenter IPs; `RateLimited` covers hosts that throttle or answer too slowly to check
 - `CheckMethod.PresenceMatch` - Page always returns 200; the profile exists when the body contains `presenceMatch`. `{}` in the marker is replaced with the nick
 - `CheckMethod.RedirectMatch` - A missing profile redirects elsewhere. `redirectMatch` starting with `http` must equal the final URL exactly; otherwise it is matched as a substring of it
 - `CheckMethod.JsonApi` - Probes `apiUrl` instead of `url` and reads the dot-path `jsonPath`; a present, non-empty value means taken
@@ -87,6 +89,9 @@ Probing at high concurrency makes upstream hosts rate-limit and answer 403/429, 
 
 - **Vercel Hobby limits**: serverless functions may not declare `maxDuration` above 60. A higher value builds fine locally and in GitHub Actions but fails the Vercel deploy at the `patchBuild` step with `invalid_max_duration`, so the site silently keeps serving the previous build. A full 701-service stream finishes in about 21 seconds, well inside the cap
 - **Corepack on Vercel**: the project sets `ENABLE_EXPERIMENTAL_COREPACK=1` so Vercel honours `packageManager: pnpm@11.3.0`. Without it Vercel picks pnpm 9 by project creation date, and pnpm 9 rejects `pnpm-workspace.yaml` with "packages field missing or empty" because the file carries only `allowBuilds` and `overrides`
+- **Datacenter IP blocking**: roughly 65 platforms answer 403 to Vercel's IP ranges while working fine from a home connection. They are marked `Unverifiable`/`BotProtected` rather than left to error, so a local `pnpm probe` will show them as passing where production could not check them. Verify any candidate fix against production, not localhost — `curl https://nickcheckr.stosiu.dev/api/check/stream?nick=<x>` and read the failures
+- **Host spreading**: `getServiceNamesSpreadByHost()` interleaves the queue so services sharing a hostname are not requested together. One registry serves 78 domain extensions; bursting it tripped a rate limit that failed all of them at once
+- **Retries**: `/api/check/stream` retries a failed check twice (400ms, 1500ms), or once for a timeout so a slow host cannot consume the 60-second budget
 - **Streaming checks**: a search opens one request to `/api/check/stream`, which runs all upstream checks server-side (32 concurrent) and streams NDJSON results back as they land. One function invocation per search instead of one per platform. `src/lib/check-store.ts` holds results in an external store so each card re-renders only when its own result arrives; `src/hooks/use-check-stream.tsx` owns the stream and batches updates every 80ms
 - **Single checks**: `/api/check` and `src/hooks/use-check.ts` remain for the one-off check on `/check/[platform]` pages
 - **Request concurrency**: `src/lib/fetch-queue.ts` limits to 8 concurrent fetches, used by the single-check path
