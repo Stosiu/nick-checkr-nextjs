@@ -37,8 +37,8 @@ export const services: ServiceDefinition[] = [
   { name: 'HackerRank', url: 'https://www.hackerrank.com/profile/{}', category: 'Developer', checkMethod: CheckMethod.BodyMatch, bodyMatch: 'Programming Problems and Competitions :: HackerRank', testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
 
   // Content & Blogging
-  { name: 'Medium', url: 'https://medium.com/@{}', category: 'Content & Blogging', checkMethod: CheckMethod.BodyMatch, bodyMatch: 'Out of nothing, something.', testAvailableNick: 'oaskfofkda2123', testTakenNick: 'stosiu' },
-  { name: 'Substack', url: 'https://{}.substack.com', category: 'Newsletters', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Medium', url: 'https://medium.com/@{}', apiUrl: 'https://medium.com/feed/@{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'stosiu', testAvailableNick: 'zqvx8841mkw' },
+  { name: 'Substack', url: 'https://{}.substack.com', apiUrl: 'https://{}.substack.com/feed', category: 'Newsletters', checkMethod: CheckMethod.Standard, testTakenNick: 'bariweiss', testAvailableNick: 'zqvx8841mkw' },
   { name: 'WordPress', url: 'https://{}.wordpress.com/', category: 'Content & Blogging', checkMethod: CheckMethod.NickInTitle, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Blogspot', url: 'https://{}.blogspot.com', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
   { name: 'HubPages', url: 'https://hubpages.com/@{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
@@ -56,7 +56,7 @@ export const services: ServiceDefinition[] = [
   { name: 'Coroflot', url: 'https://www.coroflot.com/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Designspiration', url: 'https://www.designspiration.net/{}/', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Crevado', url: 'https://{}.crevado.com', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
-  { name: 'ArtStation', url: 'https://www.artstation.com/{}', category: 'Creative & Design', checkMethod: CheckMethod.BodyMatch, bodyMatch: 'ArtStation - Explore', testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'ArtStation', url: 'https://www.artstation.com/{}', apiUrl: 'https://www.artstation.com/users/{}/quick.json', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'zqvx8841mkw' },
   { name: 'Figma', url: 'https://www.figma.com/@{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Canva', url: 'https://www.canva.com/p/{}/', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'canva', testAvailableNick: 'alex3232e2e2e' },
   { name: 'CreativeMarket', url: 'https://creativemarket.com/users/{}', category: 'Creative & Design', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
@@ -109,10 +109,10 @@ export const services: ServiceDefinition[] = [
   { name: 'Wikipedia', url: 'https://www.wikipedia.org/wiki/User:{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Instructables', url: 'https://www.instructables.com/member/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Issuu', url: 'https://issuu.com/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
-  { name: 'Letterboxd', url: 'https://letterboxd.com/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Letterboxd', url: 'https://letterboxd.com/{}', apiUrl: 'https://letterboxd.com/{}/rss/', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'davidehrlich', testAvailableNick: 'zqvx8841mkw' },
   { name: 'Imgur', url: 'https://imgur.com/user/{}', apiUrl: 'https://api.imgur.com/account/v1/accounts/{}?client_id=546c25a59c58ad7', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'imgur', testAvailableNick: 'zqvx8841mkw' },
   { name: '9GAG', url: 'https://9gag.com/u/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
-  { name: 'Fandom', url: 'https://community.fandom.com/wiki/User:{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Fandom', url: 'https://community.fandom.com/wiki/User:{}', apiUrl: 'https://community.fandom.com/api.php?action=query&list=users&ususers={}&format=json', category: 'Community', checkMethod: CheckMethod.PresenceMatch, presenceMatch: '"userid"', testTakenNick: 'Sannse', testAvailableNick: 'zqvx8841mkw' },
 
   // Finance & Crypto
   { name: 'TradingView', url: 'https://www.tradingview.com/u/{}/', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
@@ -229,10 +229,10 @@ export const services: ServiceDefinition[] = [
   // Developer (additional batch)
   { name: 'GitLab', url: 'https://gitlab.com/{}', category: 'Developer', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.BotProtected, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'npm', url: 'https://www.npmjs.com/~{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
-  { name: 'Codeforces', url: 'https://codeforces.com/profile/{}', category: 'Developer', checkMethod: CheckMethod.NickInTitle, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Codeforces', url: 'https://codeforces.com/profile/{}', apiUrl: 'https://codeforces.com/api/user.info?handles={}', category: 'Developer', checkMethod: CheckMethod.BodyMatch, bodyMatch: '"status":"FAILED"', testTakenNick: 'tourist', testAvailableNick: 'zqvx8841mkw' },
   { name: 'CodeChef', url: 'https://www.codechef.com/users/{}', category: 'Developer', checkMethod: CheckMethod.BodyMatch, bodyMatch: 'CodeChef - Learn and Practice Coding with Problems', testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'AtCoder', url: 'https://atcoder.jp/users/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'tourist', testAvailableNick: 'alex3232e2e2e' },
-  { name: 'TryHackMe', url: 'https://tryhackme.com/p/{}', category: 'Developer', checkMethod: CheckMethod.BodyMatch, bodyMatch: 'TryHackMe | Cyber Security Training', testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'TryHackMe', url: 'https://tryhackme.com/p/{}', apiUrl: 'https://tryhackme.com/api/v2/public-profile?username={}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'ben', testAvailableNick: 'zqvx8841mkw' },
   { name: 'HackTheBox', url: 'https://forum.hackthebox.com/u/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/user/{}', category: 'Developer', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.ClientRendered, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Crowdin', url: 'https://crowdin.com/profile/{}', category: 'Developer', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
@@ -465,7 +465,7 @@ export const services: ServiceDefinition[] = [
   { name: 'eToro', url: 'https://www.etoro.com/api/logininfo/v1.1/users/{}', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'jeepsontrading', testAvailableNick: 'zqvx8841mkw' },
   { name: 'Revolut', url: 'https://revolut.me/api/web-profile/{}', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'theaswdc', testAvailableNick: 'zqvx8841mkw' },
   { name: 'ADVFN', url: 'https://uk.advfn.com/forum/profile/{}', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'crypto', testAvailableNick: 'zqvx8841mkw' },
-  { name: 'BabyPips', url: 'https://forums.babypips.com/u/{}.json', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'baemax023', testAvailableNick: 'zqvx8841mkw' },
+  { name: 'BabyPips', url: 'https://forums.babypips.com/u/{}', apiUrl: 'https://forums.babypips.com/u/{}.json', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'baemax023', testAvailableNick: 'zqvx8841mkw' },
   { name: 'PayPal Business', url: 'https://www.paypal.com/biz/profile-data/{}', category: 'Finance & Crypto', checkMethod: CheckMethod.Standard, testTakenNick: 'chaminajjan', testAvailableNick: 'zqvx8841mkw' },
 
   // More Creative & Design

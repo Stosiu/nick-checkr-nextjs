@@ -11,7 +11,7 @@ export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
 
 const NICK_PATTERN = /^[a-zA-Z0-9]([a-zA-Z0-9._-]{0,38}[a-zA-Z0-9])?$/;
-const CONCURRENCY = 32;
+const CONCURRENCY = 16;
 const ERROR_TTL = 5 * 60 * 1000;
 
 const limiter = rateLimit({ interval: 60_000, uniqueTokenPerInterval: 500 });
