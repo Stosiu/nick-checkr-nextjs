@@ -22,7 +22,11 @@ export const changelog: ChangelogEntry[] = [
       },
       {
         kind: 'added',
-        text: 'Platforms that serve an identical page whether or not a username exists now report "Can\'t verify" instead of guessing "Taken". You get a link to check the profile yourself.',
+        text: 'Platforms that cannot be checked automatically now report "Can\'t verify" instead of guessing "Taken", and each one tells you why: the profile page is built in the browser, the site blocks automated requests, its URLs use numeric IDs rather than usernames, the domain extension answers every lookup, or the names live outside public DNS.',
+      },
+      {
+        kind: 'added',
+        text: 'The API returns those reasons too. /api/check answers with a status and reason, /api/llm/check lists every unverifiable platform with a machine-readable code, an explanation, and the URL to check by hand.',
       },
       {
         kind: 'fixed',

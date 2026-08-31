@@ -5,20 +5,22 @@ import { services } from './data/services';
 
 const TIMEOUT_MS = 10_000;
 const DNS_TIMEOUT_MS = 5_000;
+const RDAP_TIMEOUT_MS = 8_000;
 
 const impit = new Impit({ browser: 'chrome' });
 
-function createHttpClient(): HttpClient {
+function createHttpClient(headers?: Record<string, string>): HttpClient {
   return async (url: string) => {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
     try {
       const response = await impit.fetch(url, {
+        headers,
         signal: controller.signal,
       });
       const body = await response.text();
-      return { status: response.status, body };
+      return { status: response.status, body, finalUrl: response.url ?? url };
     } catch (e: unknown) {
       if (e instanceof Error && e.name === 'AbortError') {
         throw new TimeoutError(TIMEOUT_MS);
@@ -30,21 +32,21 @@ function createHttpClient(): HttpClient {
   };
 }
 
-function createDnsClient(): HttpClient {
+function createFetchClient(accept: string, timeoutMs: number): HttpClient {
   return async (url: string) => {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), DNS_TIMEOUT_MS);
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
 
     try {
       const response = await fetch(url, {
-        headers: { Accept: 'application/dns-json' },
+        headers: { Accept: accept },
         signal: controller.signal,
       });
       const body = await response.text();
-      return { status: response.status, body };
+      return { status: response.status, body, finalUrl: response.url ?? url };
     } catch (e: unknown) {
       if (e instanceof Error && e.name === 'AbortError') {
-        throw new TimeoutError(DNS_TIMEOUT_MS);
+        throw new TimeoutError(timeoutMs);
       }
       throw e;
     } finally {
@@ -53,16 +55,48 @@ function createDnsClient(): HttpClient {
   };
 }
 
+function clientFor(
+  method: CheckMethod,
+  clients: Record<'http' | 'dns' | 'rdap' | 'json', HttpClient>,
+): HttpClient {
+  switch (method) {
+    case CheckMethod.DNS:
+      return clients.dns;
+    case CheckMethod.Rdap:
+      return clients.rdap;
+    case CheckMethod.JsonApi:
+      return clients.json;
+    default:
+      return clients.http;
+  }
+}
+
 class NicknameChecker {
   private readonly services: AbstractService[];
 
   constructor() {
-    const httpClient = createHttpClient();
-    const dnsClient = createDnsClient();
+    const clients = {
+      http: createHttpClient(),
+      dns: createFetchClient('application/dns-json', DNS_TIMEOUT_MS),
+      rdap: createFetchClient('application/rdap+json', RDAP_TIMEOUT_MS),
+      json: createHttpClient({ Accept: 'application/json' }),
+    };
+
     this.services = services.map(
       (s) => new AbstractService(
-        s.checkMethod === CheckMethod.DNS ? dnsClient : httpClient,
-        s.name, s.url, s.category, s.checkMethod, s.bodyMatch,
+        clientFor(s.checkMethod, clients),
+        s.name,
+        s.url,
+        s.category,
+        s.checkMethod,
+        'bodyMatch' in s ? s.bodyMatch : undefined,
+        'unverifiableReason' in s ? s.unverifiableReason : undefined,
+        {
+          presenceMatch: 'presenceMatch' in s ? s.presenceMatch : undefined,
+          redirectMatch: 'redirectMatch' in s ? s.redirectMatch : undefined,
+          apiUrl: 'apiUrl' in s ? s.apiUrl : undefined,
+          jsonPath: 'jsonPath' in s ? s.jsonPath : undefined,
+        },
       ),
     );
   }

@@ -13,7 +13,8 @@ export function useCheck(nick: string, service: string) {
         const params = new URLSearchParams({ nick, service });
         const res = await fetch(`/api/check?${params}`);
         if (!res.ok) throw new Error('Check failed');
-        return res.json();
+        const payload = await res.json();
+        return typeof payload === 'string' ? payload : payload.status;
       }),
     retry: false,
     staleTime: 30 * 60 * 1000,

@@ -1,7 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { list } from '@vercel/blob';
 import { getServicesHash } from '@/lib/services-hash';
+import { CheckMethod, unverifiableReasonText } from '@/services';
+import { services } from '@/services/data/services';
 import { rateLimit } from '@/utils/rate-limit';
+
+const unverifiable = Object.fromEntries(
+  services
+    .filter((s) => s.checkMethod === CheckMethod.Unverifiable)
+    .map((s) => [
+      s.name,
+      {
+        reason: s.unverifiableReason,
+        explanation: unverifiableReasonText[s.unverifiableReason!],
+        checkManuallyAt: s.url.replace('{}', '{username}'),
+      },
+    ]),
+);
 
 const NICK_PATTERN = /^[a-zA-Z0-9]([a-zA-Z0-9._-]{0,38}[a-zA-Z0-9])?$/;
 
@@ -18,7 +33,7 @@ export async function GET(request: NextRequest) {
       {
         error: 'Missing nick parameter',
         usage: 'GET /api/llm/check?nick={username}',
-        description: 'Returns cached username availability results across 208+ platforms',
+        description: `Returns cached username availability results across ${services.length} platforms. Each result is available, taken, error, or unknown; unknown entries are explained in the unverifiable field.`,
       },
       { status: 400 },
     );
@@ -53,6 +68,10 @@ export async function GET(request: NextRequest) {
     const res = await fetch(blobs[0].url);
     const data = await res.json();
 
+    const unknownHere = Object.fromEntries(
+      Object.entries(unverifiable).filter(([name]) => data.results?.[name] === 'unknown'),
+    );
+
     return NextResponse.json({
       cached: true,
       nick: data.nick,
@@ -60,6 +79,13 @@ export async function GET(request: NextRequest) {
       lastCheckedAt: data.checkedAt,
       summary: data.summary,
       results: data.results,
+      statusMeanings: {
+        available: 'No account with this username was found on the platform.',
+        taken: 'An account with this username already exists.',
+        error: 'The platform could not be reached, or refused the request. Availability is unknown.',
+        unknown: 'This platform cannot be checked automatically. See unverifiable for the reason.',
+      },
+      unverifiable: unknownHere,
     }, {
       headers: {
         'Cache-Control': 's-maxage=3600',

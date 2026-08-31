@@ -18,6 +18,7 @@ import {
   getServicesInCategory,
   getServicesByCategory,
 } from '@/lib/platform-utils';
+import { unverifiableReasonText } from '@/services';
 import { services } from '@/services/data/services';
 
 interface Props {
@@ -185,7 +186,16 @@ export default async function PlatformPage({ params }: Props) {
         </header>
 
         {/* Quick single-service check */}
-        <PlatformCheck serviceName={service.name} totalPlatforms={services.length} />
+        <PlatformCheck
+          serviceName={service.name}
+          totalPlatforms={services.length}
+          unverifiableReason={
+            'unverifiableReason' in service
+              ? unverifiableReasonText[service.unverifiableReason]
+              : undefined
+          }
+          profileUrlTemplate={service.url}
+        />
 
         {/* Platform info cards */}
         <section className="space-y-6">

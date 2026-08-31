@@ -54,6 +54,19 @@ export async function GET(request: NextRequest) {
   try {
     const { status: result, errorDetail } = await nicknameChecker.check(nick, service);
 
+    if (result === AvailabilityStatus.Unknown) {
+      return NextResponse.json(
+        { status: result, reason: errorDetail },
+        {
+          headers: {
+            'Cache-Control': 's-maxage=86400',
+            'X-RateLimit-Remaining': String(remaining),
+            'X-Cache': 'MISS',
+          },
+        },
+      );
+    }
+
     if (result === AvailabilityStatus.Error || result === AvailabilityStatus.Timeout) {
       console.error(`[check] ${service} returned ${result} for nick "${nick}"${errorDetail ? ` — ${errorDetail}` : ''}`);
       setCache(cacheKey, result, 5 * 60 * 1000);

@@ -15,7 +15,13 @@ vi.mock('impit', () => ({
 globalThis.fetch = mockDnsFetch;
 
 const { nicknameChecker } = await import('../nickname-checker');
-const { AvailabilityStatus } = await import('../abstract-service');
+const { AvailabilityStatus, unverifiableReasonText } = await import('../abstract-service');
+
+
+function buildJsonPath(path: string, leaf: unknown): Record<string, unknown> {
+  const keys = path.split('.');
+  return keys.reduceRight<unknown>((acc, key) => ({ [key]: acc }), leaf) as Record<string, unknown>;
+}
 
 beforeEach(() => {
   mockFetch.mockReset();
@@ -71,6 +77,9 @@ describe('NicknameChecker with mocked responses', () => {
                 new Response(JSON.stringify({ Status: 3 }), { status: 200 }),
               );
               break;
+            case CheckMethod.Rdap:
+              mockDnsFetch.mockResolvedValueOnce(new Response('Not Found', { status: 404 }));
+              break;
             case CheckMethod.NickInTitle:
               mockFetch.mockResolvedValueOnce(
                 new Response('<title>Sign up today</title>', { status: 200 }),
@@ -80,6 +89,26 @@ describe('NicknameChecker with mocked responses', () => {
               mockFetch.mockResolvedValueOnce(
                 new Response('<meta property="og:title" content="Sign up today">', { status: 200 }),
               );
+              break;
+            case CheckMethod.Rdap:
+              mockDnsFetch.mockResolvedValueOnce(new Response('', { status: 404 }));
+              break;
+            case CheckMethod.PresenceMatch:
+              mockFetch.mockResolvedValueOnce(
+                new Response('this name is free', { status: 200 }),
+              );
+              break;
+            case CheckMethod.RedirectMatch:
+              mockFetch.mockResolvedValueOnce({
+                status: 200,
+                url: service.redirectMatch.startsWith('http')
+                  ? service.redirectMatch
+                  : `https://example.com${service.redirectMatch}`,
+                text: async () => '',
+              });
+              break;
+            case CheckMethod.JsonApi:
+              mockFetch.mockResolvedValueOnce(new Response('', { status: 404 }));
               break;
           }
 
@@ -107,6 +136,11 @@ describe('NicknameChecker with mocked responses', () => {
                 new Response(JSON.stringify({ Status: 0, Answer: [{ data: '1.2.3.4' }] }), { status: 200 }),
               );
               break;
+            case CheckMethod.Rdap:
+              mockDnsFetch.mockResolvedValueOnce(
+                new Response(JSON.stringify({ ldhName: `${service.testTakenNick}${service.name}` }), { status: 200 }),
+              );
+              break;
             case CheckMethod.NickInTitle:
               mockFetch.mockResolvedValueOnce(
                 new Response(`<title>${service.testTakenNick} on ${service.name}</title>`, { status: 200 }),
@@ -115,6 +149,31 @@ describe('NicknameChecker with mocked responses', () => {
             case CheckMethod.NickInOgTitle:
               mockFetch.mockResolvedValueOnce(
                 new Response(`<meta property="og:title" content="${service.testTakenNick} profile">`, { status: 200 }),
+              );
+              break;
+            case CheckMethod.Rdap:
+              mockDnsFetch.mockResolvedValueOnce(
+                new Response(JSON.stringify({ objectClassName: 'domain', ldhName: 'taken' }), { status: 200 }),
+              );
+              break;
+            case CheckMethod.PresenceMatch:
+              mockFetch.mockResolvedValueOnce(
+                new Response(
+                  `profile ${service.presenceMatch.replace('{}', service.testTakenNick!)} here`,
+                  { status: 200 },
+                ),
+              );
+              break;
+            case CheckMethod.RedirectMatch:
+              mockFetch.mockResolvedValueOnce({
+                status: 200,
+                url: service.url.replace('{}', service.testTakenNick!),
+                text: async () => 'profile page',
+              });
+              break;
+            case CheckMethod.JsonApi:
+              mockFetch.mockResolvedValueOnce(
+                new Response(JSON.stringify(buildJsonPath(service.jsonPath, 'present')), { status: 200 }),
               );
               break;
           }
@@ -136,4 +195,16 @@ describe('service catalogue integrity', () => {
   it('exposes one checker entry per catalogue entry', () => {
     expect(nicknameChecker.getServiceNames()).toHaveLength(services.length);
   });
+});
+
+describe('unverifiable services explain themselves', () => {
+  services
+    .filter((s) => s.checkMethod === CheckMethod.Unverifiable)
+    .forEach((service) => {
+      it(`${service.name}: returns the reason text`, async () => {
+        const result = await nicknameChecker.check('anynick', service.name);
+        expect(result.status).toBe(AvailabilityStatus.Unknown);
+        expect(result.errorDetail).toBe(unverifiableReasonText[service.unverifiableReason!]);
+      });
+    });
 });

@@ -14,15 +14,24 @@ import {
   Gitlab,
   Globe,
   GraduationCap,
+  HeartHandshake,
   Instagram,
+  Landmark,
+  Languages,
+  Link2,
   Linkedin,
+  Mail,
   MessageCircle,
+  MessageCircleQuestion,
   Music,
+  Network,
   Palette,
   Pencil,
+  ShieldCheck,
   ShoppingBag,
   Slack,
   Trello,
+  Trophy,
   Twitch,
   Twitter,
   Video,
@@ -113,6 +122,24 @@ const categoryDescriptions: Record<string, string> = {
     'Marketplace platforms tie your username to your seller reputation and buyer trust. A consistent handle across marketplaces strengthens your brand and makes you easier to find.',
   'Fitness & Sports':
     'Fitness and sports platforms track your activities and connect you with communities. Your username is how training partners and followers find your profile.',
+  'Q&A & Knowledge':
+    'Question and answer sites build reputation over years of contributions. Your username is attached to every answer you write, so the name you pick is the one people will associate with your expertise.',
+  'Crowdfunding & Support':
+    'Crowdfunding and tip-jar platforms put your username directly in the link you share with backers. A name that matches your other profiles reassures supporters they are paying the right person.',
+  Newsletters:
+    'Newsletter platforms turn your username into the subdomain or handle subscribers see in every email and archive link. Changing it later breaks existing links, so it is worth getting right at the start.',
+  'Link in Bio':
+    'Link-in-bio and digital business card services exist to be the one URL you hand out. The username is the whole product, which is why good names on these platforms go quickly.',
+  'Web3 & Decentralized':
+    'Decentralized platforms hand out names that are hard or impossible to reclaim once taken. Fediverse handles, blockchain names, and federated profiles all key off a username you register once.',
+  'East Asia':
+    'Japanese, Korean and Chinese platforms have large user bases and their own naming conventions. Checking them matters if your audience reaches beyond the English-speaking web.',
+  'Europe & Russia':
+    'Polish, Russian and other European platforms hold long-established communities. Names on these sites are often still free even when the same handle is taken everywhere else.',
+  'Consoles & Esports':
+    'Console networks and competitive gaming sites tie your gamertag to your match history and rank. Many of these platforms charge to change a name once it is set.',
+  'Security & Bug Bounty':
+    'Bug bounty and security research platforms publish your username alongside your disclosures and rankings. Researchers usually keep one handle across every program they work with.',
   'Domain Names':
     'Domain names are the foundation of your online presence. Checking if your preferred name is available as a domain helps you secure a matching website alongside your usernames.',
 };
@@ -1858,6 +1885,15 @@ const categoryIcons: Record<string, LucideIcon> = {
   Photography: Camera,
   Marketplace: ShoppingBag,
   'Fitness & Sports': Dumbbell,
+  'Q&A & Knowledge': MessageCircleQuestion,
+  'Crowdfunding & Support': HeartHandshake,
+  Newsletters: Mail,
+  'Link in Bio': Link2,
+  'Web3 & Decentralized': Network,
+  'East Asia': Languages,
+  'Europe & Russia': Landmark,
+  'Consoles & Esports': Trophy,
+  'Security & Bug Bounty': ShieldCheck,
   'Domain Names': Globe,
 };
 

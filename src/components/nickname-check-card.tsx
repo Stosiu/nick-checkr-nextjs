@@ -51,9 +51,10 @@ const statusConfig = {
 };
 
 function buildProfileLink(urlTemplate: string, nickname: string): string {
-  if (urlTemplate.includes('cloudflare-dns.com')) {
-    const match = urlTemplate.match(/name=\{\}\.(\S+?)&/);
-    const tld = match?.[1] ?? 'com';
+  const isDomainLookup =
+    urlTemplate.includes('cloudflare-dns.com') || urlTemplate.includes('/domain/{}.');
+  if (isDomainLookup) {
+    const tld = urlTemplate.match(/\{\}\.([a-z0-9.]+)/i)?.[1] ?? 'com';
     return `https://www.namecheap.com/domains/registration/results/?domain=${nickname}.${tld}`;
   }
   return urlTemplate.replace('{}', nickname);

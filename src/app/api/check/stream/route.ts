@@ -129,6 +129,7 @@ async function persist(nick: string, results: Record<string, string>) {
       available: values.filter((s) => s === 'available').length,
       taken: values.filter((s) => s === 'taken').length,
       errors: values.filter((s) => s === 'error').length,
+      unknown: values.filter((s) => s === 'unknown').length,
       total: values.length,
     },
   };
