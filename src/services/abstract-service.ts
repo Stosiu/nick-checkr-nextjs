@@ -17,6 +17,7 @@ export enum UnverifiableReason {
   NotUsernameBased = 'NOT_USERNAME_BASED',
   WildcardDns = 'WILDCARD_DNS',
   NotInDns = 'NOT_IN_DNS',
+  RateLimited = 'RATE_LIMITED',
 }
 
 export const unverifiableReasonText: Record<UnverifiableReason, string> = {
@@ -30,6 +31,8 @@ export const unverifiableReasonText: Record<UnverifiableReason, string> = {
     'This domain extension answers every lookup, registered or not, so a DNS check cannot tell whether a name is free. Check with a registrar instead.',
   [UnverifiableReason.NotInDns]:
     'These names live on a blockchain naming service rather than in public DNS, so a DNS lookup cannot see them. Check the naming service directly.',
+  [UnverifiableReason.RateLimited]:
+    'This registry refuses the volume of automated lookups our servers send, so a check here would report an error rather than an answer. Follow the link to look the name up directly.',
 };
 
 export enum CheckMethod {
