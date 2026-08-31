@@ -7,6 +7,30 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: '2.0.2',
+    date: '2026-08-31',
+    summary:
+      'Thirteen entries removed after an audit found platforms that had shut down, been absorbed into others, or were listed twice. One had a domain that now redirects to a gambling site.',
+    changes: [
+      {
+        kind: 'fixed',
+        text: 'Removed Ello, whose domain now redirects to a UK gambling affiliate site rather than the platform it used to be.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Removed platforms that no longer exist or have been absorbed: Plays.tv (now Medal), Superpeer (now Skillshare), Mirror (now Paragraph), Bento (now Linktree), Teespring (now Creator Spring), EyeEm, Drawcrowd, and Bower. The platforms that absorbed them were already listed.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Removed four entries that duplicated another: Repl.it alongside Replit, GOG alongside GOG.com, Homebrew alongside Homebrew Formula, and a second Mastodon entry that queried the same instance through a weaker search endpoint.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Updated Threads, Designspiration, Artfol and Savee, which have all moved to new domains, so the link on each card points somewhere real.',
+      },
+    ],
+  },
+  {
     version: '2.0.1',
     date: '2026-08-31',
     summary:
