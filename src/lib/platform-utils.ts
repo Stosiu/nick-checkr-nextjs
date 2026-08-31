@@ -70,8 +70,8 @@ export function getAllCategories(): string[] {
 export function getCategorySlug(category: string): string {
   return category
     .toLowerCase()
-    .replace(/\s+&\s+/g, '-')
-    .replace(/\s+/g, '-');
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 export function getCategoryBySlug(slug: string): string | undefined {

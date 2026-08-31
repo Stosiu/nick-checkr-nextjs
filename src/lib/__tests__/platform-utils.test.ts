@@ -57,6 +57,16 @@ describe('getCategorySlug', () => {
   it('collapses " & " into a single hyphen', () => {
     expect(getCategorySlug('Finance & Crypto')).toBe('finance-crypto');
   });
+
+  it('strips an ampersand that is not surrounded by spaces', () => {
+    expect(getCategorySlug('Q&A & Knowledge')).toBe('q-a-knowledge');
+  });
+
+  it('emits only URL-safe characters for every category', () => {
+    for (const category of getAllCategories()) {
+      expect(getCategorySlug(category)).toMatch(/^[a-z0-9-]+$/);
+    }
+  });
 });
 
 describe('getCategoryBySlug', () => {
