@@ -80,14 +80,15 @@ Example response:
 
 ## Pages
 
-- Homepage: https://nickcheckr.stosiu.dev
-- All Platforms: https://nickcheckr.stosiu.dev/check
-- Blog: https://nickcheckr.stosiu.dev/blog
-- Changelog: https://nickcheckr.stosiu.dev/changelog
-- About: https://nickcheckr.stosiu.dev/about
-- Contact: https://nickcheckr.stosiu.dev/contact
-- Privacy Policy: https://nickcheckr.stosiu.dev/privacy
-- Disclaimer: https://nickcheckr.stosiu.dev/disclaimer
+- [Homepage](https://nickcheckr.stosiu.dev): check a username across every platform in one search.
+- [All Platforms](https://nickcheckr.stosiu.dev/check): every platform and domain extension, grouped by category.
+- [Blog](https://nickcheckr.stosiu.dev/blog): guides on username rules, availability and platform limits.
+- [Changelog](https://nickcheckr.stosiu.dev/changelog): what changed in each release.
+- [About](https://nickcheckr.stosiu.dev/about): what NickCheckr is and how it is built.
+- [Contact](https://nickcheckr.stosiu.dev/contact): how to reach the maintainer.
+- [Privacy Policy](https://nickcheckr.stosiu.dev/privacy): what is stored and for how long.
+- [Disclaimer](https://nickcheckr.stosiu.dev/disclaimer): limits of the availability results.
+- [Sitemap](https://nickcheckr.stosiu.dev/sitemap.xml): every indexable URL.
 - RSS Feed: https://nickcheckr.stosiu.dev/blog/feed.xml
 
 ## Platform Categories

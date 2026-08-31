@@ -62,9 +62,9 @@ export async function Footer() {
         <div className="mx-auto max-w-6xl space-y-8">
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
             <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
                 Popular Checkers
-              </h4>
+              </h3>
               <ul className="space-y-1.5">
                 {POPULAR_PLATFORMS.map((p) => (
                   <li key={p.slug}>
@@ -79,9 +79,9 @@ export async function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
                 Categories
-              </h4>
+              </h3>
               <ul className="space-y-1.5">
                 {CATEGORIES.map((c) => (
                   <li key={c.slug}>
@@ -96,9 +96,9 @@ export async function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
                 Resources
-              </h4>
+              </h3>
               <ul className="space-y-1.5">
                 <li>
                   <Link
@@ -145,9 +145,9 @@ export async function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
                 Company
-              </h4>
+              </h3>
               <ul className="space-y-1.5">
                 <li>
                   <Link
@@ -176,9 +176,9 @@ export async function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
                 Legal
-              </h4>
+              </h3>
               <ul className="space-y-1.5">
                 <li>
                   <Link

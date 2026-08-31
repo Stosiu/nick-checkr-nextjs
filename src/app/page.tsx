@@ -38,7 +38,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Suspense>
+      <Suspense fallback={<div className="min-h-screen" />}>
         <HomeContent services={serviceEntries} />
       </Suspense>
     </>

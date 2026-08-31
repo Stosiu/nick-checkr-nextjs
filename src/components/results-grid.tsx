@@ -135,9 +135,9 @@ function CategorySections({
         return (
           <div key={category} className="space-y-3">
             {showHeadings && (
-              <h3 className="border-b border-white/[0.06] pb-2 text-sm font-medium text-white/60">
+              <h2 className="border-b border-white/[0.06] pb-2 text-sm font-medium text-white/60">
                 {category}
-              </h3>
+              </h2>
             )}
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {visibleServices.map((service) =>

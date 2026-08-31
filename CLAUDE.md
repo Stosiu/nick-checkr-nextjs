@@ -93,6 +93,7 @@ Probing at high concurrency makes upstream hosts rate-limit and answer 403/429, 
 - **Host spreading**: `getServiceNamesSpreadByHost()` interleaves the queue so services sharing a hostname are not requested together. One registry serves 78 domain extensions; bursting it tripped a rate limit that failed all of them at once
 - **Retries**: `/api/check/stream` retries a failed check twice (400ms, 1500ms), or once for a timeout so a slow host cannot consume the 60-second budget
 - **Streaming checks**: a search opens one request to `/api/check/stream`, which runs all upstream checks server-side (32 concurrent) and streams NDJSON results back as they land. One function invocation per search instead of one per platform. `src/lib/check-store.ts` holds results in an external store so each card re-renders only when its own result arrives; `src/hooks/use-check-stream.tsx` owns the stream and batches updates every 80ms
+- **Streaming layout shift**: the homepage renders inside `<Suspense>` (nuqs needs it). Without a space-reserving fallback the shell paints with the footer near the top and everything drops a full viewport when the content streams in — measured CLS 0.93. The fallback holds `min-h-screen`
 - **Single checks**: `/api/check` and `src/hooks/use-check.ts` remain for the one-off check on `/check/[platform]` pages
 - **Request concurrency**: `src/lib/fetch-queue.ts` limits to 8 concurrent fetches, used by the single-check path
 - **Server cache**: `src/lib/cache.ts` — in-memory TTL cache (30 min for success, 5 min for errors) to avoid redundant upstream requests
@@ -202,3 +203,13 @@ When adding new articles, pick dates that continue from the last published date 
 ## Design System
 
 Dark theme matching stosiu.dev: Inter + JetBrains Mono fonts, emerald green accent (brand-400 = #34d399), dot-grid background, noise texture overlay, oklch color space. Always dark mode (no light mode toggle).
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

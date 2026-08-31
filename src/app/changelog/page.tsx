@@ -4,7 +4,7 @@ import { changelog } from '@/content/changelog';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: `Changelog — ${siteConfig.name}`,
+  title: 'Changelog',
   description: `What has changed in ${siteConfig.name}: new platforms, check accuracy improvements, and performance work.`,
   openGraph: {
     title: `Changelog — ${siteConfig.name}`,

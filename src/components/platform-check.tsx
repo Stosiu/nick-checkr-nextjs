@@ -116,9 +116,9 @@ export function PlatformCheck({
       <div className="space-y-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
         <div className="flex items-center gap-2">
           <CircleDashed className="h-4 w-4 shrink-0 text-white/40" />
-          <h3 className="text-sm font-semibold text-white">
+          <h2 className="text-sm font-semibold text-white">
             {serviceName} can&apos;t be checked automatically
-          </h3>
+          </h2>
         </div>
         <p className="text-sm leading-relaxed text-white/50">{unverifiableReason}</p>
         <div className="flex flex-wrap gap-2 pt-1">
@@ -147,9 +147,9 @@ export function PlatformCheck({
 
   return (
     <div className="space-y-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
-      <h3 className="text-sm font-semibold text-white">
+      <h2 className="text-sm font-semibold text-white">
         Quick check on {serviceName}
-      </h3>
+      </h2>
       <form onSubmit={handleSubmit} className="flex gap-2">
         <Input
           placeholder="Enter a username..."
