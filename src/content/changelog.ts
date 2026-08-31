@@ -7,6 +7,34 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: '2.0.1',
+    date: '2026-08-31',
+    summary:
+      'Platforms that refuse requests from our servers now say so instead of showing an error, results can be filtered by status, and a burst of lookups no longer overwhelms a single domain registry.',
+    changes: [
+      {
+        kind: 'added',
+        text: 'Results can be filtered by status as well as by category: available, taken, can\'t verify, or issues. The counts update live as a search runs.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Around 65 platforms refuse automated requests from datacenter networks, which includes the servers this site runs on. They previously showed an error on every search; they now report "Can\'t verify" with a link to check by hand. The same platforms answer normally from a home connection, so this reflects where the check runs rather than the platform being broken.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Medium, Letterboxd, Codeforces and Fandom are checked again through their public feeds and APIs, which are not behind the same block as their web pages.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Checks that share a host are now spread across the queue instead of running together. One registry serves 78 of the domain extensions, and querying them all at once was tripping its rate limit and failing every one of them.',
+      },
+      {
+        kind: 'fixed',
+        text: 'A failed check is retried with a short backoff before being reported, which clears most one-off rate limits.',
+      },
+    ],
+  },
+  {
     version: '2.0.0',
     date: '2026-08-31',
     summary:
