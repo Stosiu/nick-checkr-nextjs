@@ -355,9 +355,9 @@ export const services: ServiceDefinition[] = [
   { name: 'Drawcrowd', url: 'https://drawcrowd.com/{}', category: 'Creative & Design', checkMethod: CheckMethod.Unverifiable, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
 
   // Additional Content & Blogging
-  { name: 'Write.as', url: 'https://write.as/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
-  { name: 'Bear Blog', url: 'https://{}.bearblog.dev', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
-  { name: 'Micro.blog', url: 'https://micro.blog/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Write.as', url: 'https://write.as/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'matt', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Bear Blog', url: 'https://{}.bearblog.dev', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'herman', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Micro.blog', url: 'https://micro.blog/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'manton', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Neocities', url: 'https://neocities.org/site/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Tumblelog', url: 'https://www.tumblelog.com/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
 
@@ -639,4 +639,9 @@ export const services: ServiceDefinition[] = [
   { name: '.ch', url: 'https://cloudflare-dns.com/dns-query?name={}.ch&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
   { name: '.au', url: 'https://cloudflare-dns.com/dns-query?name={}.au&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'google', testAvailableNick: 'alex3232e2e2e' },
   { name: '.nz', url: 'https://cloudflare-dns.com/dns-query?name={}.nz&type=A', category: 'Domain Names', checkMethod: CheckMethod.DNS, testTakenNick: 'shop', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Kick', url: 'https://kick.com/{}', category: 'Video & Streaming', checkMethod: CheckMethod.BodyMatch, bodyMatch: 'Channel Not Found', testTakenNick: 'xqc', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Pillowfort', url: 'https://www.pillowfort.social/{}', category: 'Community', checkMethod: CheckMethod.Standard, testTakenNick: 'Staff', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Buttondown', url: 'https://buttondown.com/{}', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'john', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Beehiiv', url: 'https://{}.beehiiv.com', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'daily', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Dreamwidth', url: 'https://{}.dreamwidth.org', category: 'Content & Blogging', checkMethod: CheckMethod.Standard, testTakenNick: 'news', testAvailableNick: 'alex3232e2e2e' },
 ];

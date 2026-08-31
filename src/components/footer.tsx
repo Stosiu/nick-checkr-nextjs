@@ -162,6 +162,14 @@ export function Footer() {
                     Contact
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/changelog"
+                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                  >
+                    Changelog
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>

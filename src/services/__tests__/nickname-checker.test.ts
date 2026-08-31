@@ -126,3 +126,15 @@ describe('NicknameChecker with mocked responses', () => {
       }
     });
 });
+
+describe('service catalogue integrity', () => {
+  it('has no duplicate service names', () => {
+    const seen = new Map<string, number>();
+    for (const s of services) seen.set(s.name, (seen.get(s.name) ?? 0) + 1);
+    expect([...seen].filter(([, count]) => count > 1).map(([name]) => name)).toEqual([]);
+  });
+
+  it('exposes one checker entry per catalogue entry', () => {
+    expect(nicknameChecker.getServiceNames()).toHaveLength(services.length);
+  });
+});
