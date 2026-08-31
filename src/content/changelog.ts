@@ -7,10 +7,10 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
-    version: '1.7.0',
+    version: '2.0.0',
     date: '2026-08-31',
     summary:
-      'The catalogue grows from 468 to 701 entries across ten new categories, domain coverage nearly doubles to 175 extensions, domain checks now ask the registry whether a name is registered instead of whether it resolves, and four new detection methods rescued platforms that previously could not be checked at all.',
+      'A major release. The catalogue grows from 468 to 701 entries across ten new categories, domain coverage nearly doubles to 175 extensions, domain checks now ask the registry whether a name is registered instead of whether it resolves, and four new detection methods rescued platforms that previously could not be checked at all.',
     changes: [
       {
         kind: 'added',
@@ -55,6 +55,10 @@ export const changelog: ChangelogEntry[] = [
       {
         kind: 'changed',
         text: 'Live verified coverage across the whole catalogue is 98.4%, measured against real sites rather than mocks.',
+      },
+      {
+        kind: 'added',
+        text: 'The footer links to the source on GitHub and shows the repository star count.',
       },
     ],
   },

@@ -1,6 +1,8 @@
+import { Github, Star } from 'lucide-react';
 import Link from 'next/link';
 
 import { siteConfig } from '@/config/site';
+import { getGitHubStars } from '@/lib/github-stars';
 const VERSION = process.env.NEXT_PUBLIC_APP_VERSION ?? '0.0.0';
 const COMMIT_HASH =
   process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? 'dev';
@@ -48,9 +50,10 @@ const CATEGORIES = [
   { name: 'Community', slug: 'community' },
 ];
 
-export function Footer() {
+export async function Footer() {
   const year = new Date().getFullYear();
   const quote = getQuote();
+  const stars = await getGitHubStars();
 
   return (
     <footer className="mt-auto">
@@ -205,6 +208,22 @@ export function Footer() {
               <span className="mx-2 text-white/20">&middot;</span>
               Claim your identity everywhere.
             </p>
+
+            <a
+              href={siteConfig.social.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 text-xs text-white/50 transition-colors hover:border-brand-400/30 hover:bg-white/[0.04] hover:text-white/80"
+            >
+              <Github className="h-3.5 w-3.5" aria-hidden />
+              <span>Star on GitHub</span>
+              {stars !== null && (
+                <span className="flex items-center gap-1 border-l border-white/[0.08] pl-2 font-mono text-white/40 transition-colors group-hover:text-brand-400">
+                  <Star className="h-3 w-3" aria-hidden />
+                  {stars.toLocaleString()}
+                </span>
+              )}
+            </a>
 
             <p className="text-xs text-white/30">
               &copy; {year}{' '}
