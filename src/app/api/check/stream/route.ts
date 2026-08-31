@@ -13,6 +13,11 @@ export const dynamic = 'force-dynamic';
 const NICK_PATTERN = /^[a-zA-Z0-9]([a-zA-Z0-9._-]{0,38}[a-zA-Z0-9])?$/;
 const CONCURRENCY = 16;
 const ERROR_TTL = 5 * 60 * 1000;
+const RETRY_DELAY_MS = 400;
+
+function isTransientFailure(status: AvailabilityStatus): boolean {
+  return status === AvailabilityStatus.Error || status === AvailabilityStatus.Timeout;
+}
 
 const limiter = rateLimit({ interval: 60_000, uniqueTokenPerInterval: 500 });
 
@@ -73,7 +78,11 @@ export async function GET(request: NextRequest) {
 
           if (!status) {
             try {
-              const result = await nicknameChecker.check(nick, service);
+              let result = await nicknameChecker.check(nick, service);
+              if (isTransientFailure(result.status)) {
+                await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
+                result = await nicknameChecker.check(nick, service);
+              }
               status = result.status;
               detail = result.errorDetail;
               const isFailure =
