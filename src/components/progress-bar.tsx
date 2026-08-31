@@ -7,6 +7,7 @@ interface Props {
   available: number;
   taken: number;
   errors: number;
+  unknown: number;
 }
 
 interface TooltipState {
@@ -14,18 +15,20 @@ interface TooltipState {
   x: number;
 }
 
-export function ProgressBar({ total, available, taken, errors }: Props) {
-  const checked = available + taken + errors;
+export function ProgressBar({ total, available, taken, errors, unknown }: Props) {
+  const checked = available + taken + errors + unknown;
   const pending = total - checked;
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
 
   const pctAvailable = (available / total) * 100;
   const pctTaken = (taken / total) * 100;
   const pctErrors = (errors / total) * 100;
+  const pctUnknown = (unknown / total) * 100;
 
   const segments = [
     { key: 'available', pct: pctAvailable, count: available, color: 'bg-green-500', label: 'Available' },
     { key: 'taken', pct: pctTaken, count: taken, color: 'bg-red-400', label: 'Taken' },
+    { key: 'unknown', pct: pctUnknown, count: unknown, color: 'bg-white/25', label: "Can't verify" },
     { key: 'errors', pct: pctErrors, count: errors, color: 'bg-yellow-400', label: 'Errors' },
   ];
 
@@ -81,6 +84,12 @@ export function ProgressBar({ total, available, taken, errors }: Props) {
           <span className="flex items-center gap-1">
             <span className="inline-block h-2.5 w-2.5 rounded-full bg-red-400" />
             {taken} taken
+          </span>
+        )}
+        {unknown > 0 && (
+          <span className="flex items-center gap-1">
+            <span className="inline-block h-2.5 w-2.5 rounded-full bg-white/25" />
+            {unknown} can&apos;t verify
           </span>
         )}
         {errors > 0 && (

@@ -21,6 +21,7 @@ const cardState: Record<AvailabilityStatus, string> = {
   [AvailabilityStatus.Taken]: 'taken',
   [AvailabilityStatus.Error]: 'error',
   [AvailabilityStatus.Timeout]: 'error',
+  [AvailabilityStatus.Unknown]: 'unknown',
 };
 
 export async function GET(request: NextRequest) {

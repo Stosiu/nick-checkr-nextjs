@@ -37,6 +37,18 @@ describe('NicknameChecker', () => {
 
 describe('NicknameChecker with mocked responses', () => {
   services
+    .filter((s) => s.checkMethod === CheckMethod.Unverifiable)
+    .forEach((service) => {
+      it(`${service.name}: reports unknown without a request`, async () => {
+        const result = await nicknameChecker.check('anynick', service.name);
+        expect(result.status).toBe(AvailabilityStatus.Unknown);
+        expect(mockFetch).not.toHaveBeenCalled();
+        expect(mockDnsFetch).not.toHaveBeenCalled();
+      });
+    });
+
+  services
+    .filter((s) => s.checkMethod !== CheckMethod.Unverifiable)
     .filter((s) => s.testAvailableNick || s.testTakenNick)
     .forEach((service) => {
       if (service.testAvailableNick) {
@@ -58,6 +70,16 @@ describe('NicknameChecker with mocked responses', () => {
             case CheckMethod.DNS:
               mockDnsFetch.mockResolvedValueOnce(
                 new Response(JSON.stringify({ Status: 3 }), { status: 200 }),
+              );
+              break;
+            case CheckMethod.NickInTitle:
+              mockFetch.mockResolvedValueOnce(
+                new Response('<title>Sign up today</title>', { status: 200 }),
+              );
+              break;
+            case CheckMethod.NickInOgTitle:
+              mockFetch.mockResolvedValueOnce(
+                new Response('<meta property="og:title" content="Sign up today">', { status: 200 }),
               );
               break;
           }
@@ -84,6 +106,16 @@ describe('NicknameChecker with mocked responses', () => {
             case CheckMethod.DNS:
               mockDnsFetch.mockResolvedValueOnce(
                 new Response(JSON.stringify({ Status: 0, Answer: [{ data: '1.2.3.4' }] }), { status: 200 }),
+              );
+              break;
+            case CheckMethod.NickInTitle:
+              mockFetch.mockResolvedValueOnce(
+                new Response(`<title>${service.testTakenNick} on ${service.name}</title>`, { status: 200 }),
+              );
+              break;
+            case CheckMethod.NickInOgTitle:
+              mockFetch.mockResolvedValueOnce(
+                new Response(`<meta property="og:title" content="${service.testTakenNick} profile">`, { status: 200 }),
               );
               break;
           }

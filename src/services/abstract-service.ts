@@ -3,6 +3,7 @@ export enum AvailabilityStatus {
   Error = 'ERROR',
   Taken = 'TAKEN',
   Timeout = 'TIMEOUT',
+  Unknown = 'UNKNOWN',
 }
 
 export interface CheckResult {
@@ -15,6 +16,9 @@ export enum CheckMethod {
   BodyMatch = 'BODY_MATCH',
   NotFoundBodyMatch = 'NOT_FOUND_BODY_MATCH',
   DNS = 'DNS',
+  NickInTitle = 'NICK_IN_TITLE',
+  NickInOgTitle = 'NICK_IN_OG_TITLE',
+  Unverifiable = 'UNVERIFIABLE',
 }
 
 export interface ServiceDefinition {
@@ -43,7 +47,9 @@ export class AbstractService implements ServiceDefinition {
     readonly checkMethod: CheckMethod,
     readonly bodyMatch?: string | null,
   ) {
-    if (checkMethod !== CheckMethod.Standard && checkMethod !== CheckMethod.DNS && typeof bodyMatch !== 'string') {
+    const needsBodyMatch =
+      checkMethod === CheckMethod.BodyMatch || checkMethod === CheckMethod.NotFoundBodyMatch;
+    if (needsBodyMatch && typeof bodyMatch !== 'string') {
       throw new Error(
         `bodyMatch is required for checkMethod "${checkMethod}" on service "${name}"`,
       );
@@ -51,11 +57,18 @@ export class AbstractService implements ServiceDefinition {
   }
 
   async check(nick: string): Promise<CheckResult> {
+    if (this.checkMethod === CheckMethod.Unverifiable) {
+      return {
+        status: AvailabilityStatus.Unknown,
+        errorDetail: `${this.name} serves the same page whether or not a username exists, so availability cannot be determined automatically. Open the profile to check.`,
+      };
+    }
+
     const url = this.url.replace('{}', nick);
 
     try {
       const response = await this.httpClient(url);
-      return this.parseResponse(response.status, response.body);
+      return this.parseResponse(response.status, response.body, nick);
     } catch (e: unknown) {
       if (e instanceof TimeoutError) {
         return { status: AvailabilityStatus.Timeout, errorDetail: e.message };
@@ -65,7 +78,7 @@ export class AbstractService implements ServiceDefinition {
     }
   }
 
-  parseResponse(status: number, body?: string): CheckResult {
+  parseResponse(status: number, body?: string, nick?: string): CheckResult {
     const bodyContainsMatch =
       typeof body === 'string' &&
       typeof this.bodyMatch === 'string' &&
@@ -83,6 +96,27 @@ export class AbstractService implements ServiceDefinition {
         } catch {
           return { status: AvailabilityStatus.Error, errorDetail: 'DNS parse error' };
         }
+      }
+
+      case CheckMethod.Unverifiable:
+        return { status: AvailabilityStatus.Unknown };
+
+      case CheckMethod.NickInTitle:
+      case CheckMethod.NickInOgTitle: {
+        if (status !== 200 && status !== 404) {
+          return { status: AvailabilityStatus.Error, errorDetail: `HTTP ${status}` };
+        }
+        if (status === 404) return { status: AvailabilityStatus.Available };
+        const haystack =
+          this.checkMethod === CheckMethod.NickInTitle ? readTitle(body) : readOgTitle(body);
+        if (haystack === null) {
+          return { status: AvailabilityStatus.Error, errorDetail: 'No title in response' };
+        }
+        return {
+          status: nick && haystack.toLowerCase().includes(nick.toLowerCase())
+            ? AvailabilityStatus.Taken
+            : AvailabilityStatus.Available,
+        };
       }
 
       case CheckMethod.NotFoundBodyMatch:
@@ -110,6 +144,19 @@ export class AbstractService implements ServiceDefinition {
         };
     }
   }
+}
+
+function readTitle(body?: string): string | null {
+  if (typeof body !== 'string') return null;
+  return body.match(/<title[^>]*>([^<]{0,300})<\/title>/i)?.[1]?.trim() ?? null;
+}
+
+function readOgTitle(body?: string): string | null {
+  if (typeof body !== 'string') return null;
+  return (
+    body.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']{0,300})["']/i)?.[1] ??
+    null
+  );
 }
 
 export class TimeoutError extends Error {

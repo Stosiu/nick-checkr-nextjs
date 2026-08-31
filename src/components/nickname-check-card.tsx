@@ -1,6 +1,6 @@
 'use client';
 
-import { AlertCircle, CheckCircle2, ExternalLink, Loader2, XCircle } from 'lucide-react';
+import { AlertCircle, CheckCircle2, CircleDashed, ExternalLink, Loader2, XCircle } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
@@ -40,6 +40,13 @@ const statusConfig = {
     className: 'border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04]',
     badgeClass: 'bg-white/[0.06] text-white/40 border-white/[0.08]',
     errorHint: 'Could not reach this service — it may be blocking automated checks',
+  },
+  [AvailabilityStatus.Unknown]: {
+    icon: CircleDashed,
+    label: "Can't verify",
+    className: 'border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04]',
+    badgeClass: 'bg-white/[0.06] text-white/40 border-white/[0.08]',
+    errorHint: 'This platform serves the same page for every username — open the profile to check',
   },
 };
 

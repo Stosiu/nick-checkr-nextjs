@@ -12,6 +12,7 @@ export default defineConfig({
   test: {
     environment: 'node',
     globals: true,
+    exclude: ['**/node_modules/**', '**/*.live.test.ts'],
     testTimeout: 15000,
   },
 });

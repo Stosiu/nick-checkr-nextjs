@@ -26,6 +26,7 @@ function Results({ nickname, services }: { nickname: string | null; services: Se
           available={progress.available}
           taken={progress.taken}
           errors={progress.errors}
+          unknown={progress.unknown}
         />
       )}
       {nickname && <CheckSummary checkCount={checkCount} isComplete={progress.isComplete} />}

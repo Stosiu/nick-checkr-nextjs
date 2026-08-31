@@ -10,6 +10,7 @@ export interface CheckProgress {
   available: number;
   taken: number;
   errors: number;
+  unknown: number;
   checked: number;
   isStreaming: boolean;
   isComplete: boolean;
@@ -20,6 +21,7 @@ const EMPTY_PROGRESS: CheckProgress = {
   available: 0,
   taken: 0,
   errors: 0,
+  unknown: 0,
   checked: 0,
   isStreaming: false,
   isComplete: false,
@@ -97,17 +99,20 @@ export class CheckStore {
     let available = 0;
     let taken = 0;
     let errors = 0;
+    let unknown = 0;
     for (const { status } of this.results.values()) {
       if (status === AvailabilityStatus.Available) available += 1;
       else if (status === AvailabilityStatus.Taken) taken += 1;
+      else if (status === AvailabilityStatus.Unknown) unknown += 1;
       else errors += 1;
     }
-    const checked = available + taken + errors;
+    const checked = available + taken + errors + unknown;
     this.progress = {
       total: this.serviceNames.length,
       available,
       taken,
       errors,
+      unknown,
       checked,
       isStreaming,
       isComplete: this.serviceNames.length > 0 && checked === this.serviceNames.length,
