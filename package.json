@@ -1,6 +1,6 @@
 {
   "name": "nick-checkr-nextjs",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Check username and domain availability across 460+ platforms instantly",
   "license": "MIT",
   "packageManager": "pnpm@11.3.0",

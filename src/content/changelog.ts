@@ -7,6 +7,46 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: '2.1.0',
+    date: '2026-08-31',
+    summary:
+      'The homepage leads with a new headline and a search field that suggests nicknames as you watch, the navigation bar reacts to where you are on the page, and the layout no longer jumps while the page loads.',
+    changes: [
+      {
+        kind: 'added',
+        text: 'The search field types sample nicknames in and out on its own. It stops as soon as you focus the field or start typing.',
+      },
+      {
+        kind: 'added',
+        text: 'The highlight in the navigation bar slides between links as you move across them, and the bar stays transparent until you scroll.',
+      },
+      {
+        kind: 'changed',
+        text: 'The homepage headline now reads "Check your username everywhere at once", above a line stating exactly how many platforms, domain extensions and package registries a search covers.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Nicknames drifting through the hero background used to blank out and stay empty until the next cycle. They now delete themselves a character at a time and type the next name in.',
+      },
+      {
+        kind: 'fixed',
+        text: 'The page no longer shifts as it loads. The footer used to paint near the top and drop a full screen once the results grid arrived.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Headings on the homepage and on every platform page now run in order, which is what screen readers and search engines expect.',
+      },
+      {
+        kind: 'fixed',
+        text: 'llms.txt lists its pages as real links, so the tools that read it can follow them.',
+      },
+      {
+        kind: 'fixed',
+        text: 'The changelog page title no longer repeats the site name twice.',
+      },
+    ],
+  },
+  {
     version: '2.0.2',
     date: '2026-08-31',
     summary:
