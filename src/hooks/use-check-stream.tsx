@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useRef, useSyncExternalStore } from 'react';
 
 import { CheckStore, type CheckProgress, type ServiceResult } from '@/lib/check-store';
+import { AvailabilityStatus } from '@/services';
 
 const FLUSH_INTERVAL_MS = 80;
 
@@ -101,6 +102,12 @@ export function useServiceResult(service: string): ServiceResult | undefined {
     () => store.getService(service),
     () => undefined,
   );
+}
+
+export function useServiceStatusLookup(): (service: string) => AvailabilityStatus | undefined {
+  const store = useStore();
+  useSyncExternalStore(store.subscribeProgress, store.getProgress, store.getProgress);
+  return (service: string) => store.getService(service)?.status;
 }
 
 export function useCheckProgress(): CheckProgress {
