@@ -7,7 +7,7 @@ import { AvailabilityStatus } from '@/services';
 import { nicknameChecker } from '@/services/nickname-checker';
 import { rateLimit } from '@/utils/rate-limit';
 
-export const maxDuration = 300;
+export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
 
 const NICK_PATTERN = /^[a-zA-Z0-9]([a-zA-Z0-9._-]{0,38}[a-zA-Z0-9])?$/;

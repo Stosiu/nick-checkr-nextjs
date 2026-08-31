@@ -85,6 +85,8 @@ Probing at high concurrency makes upstream hosts rate-limit and answer 403/429, 
 
 ## Architecture Notes
 
+- **Vercel Hobby limits**: serverless functions may not declare `maxDuration` above 60. A higher value builds fine locally and in GitHub Actions but fails the Vercel deploy at the `patchBuild` step with `invalid_max_duration`, so the site silently keeps serving the previous build. A full 701-service stream finishes in about 21 seconds, well inside the cap
+- **Corepack on Vercel**: the project sets `ENABLE_EXPERIMENTAL_COREPACK=1` so Vercel honours `packageManager: pnpm@11.3.0`. Without it Vercel picks pnpm 9 by project creation date, and pnpm 9 rejects `pnpm-workspace.yaml` with "packages field missing or empty" because the file carries only `allowBuilds` and `overrides`
 - **Streaming checks**: a search opens one request to `/api/check/stream`, which runs all upstream checks server-side (32 concurrent) and streams NDJSON results back as they land. One function invocation per search instead of one per platform. `src/lib/check-store.ts` holds results in an external store so each card re-renders only when its own result arrives; `src/hooks/use-check-stream.tsx` owns the stream and batches updates every 80ms
 - **Single checks**: `/api/check` and `src/hooks/use-check.ts` remain for the one-off check on `/check/[platform]` pages
 - **Request concurrency**: `src/lib/fetch-queue.ts` limits to 8 concurrent fetches, used by the single-check path
