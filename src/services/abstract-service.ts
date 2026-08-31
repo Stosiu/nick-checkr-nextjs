@@ -67,8 +67,13 @@ export type ServiceDefinition =
   | (ServiceBase & {
       checkMethod: CheckMethod.BodyMatch | CheckMethod.NotFoundBodyMatch;
       bodyMatch: string;
+      apiUrl?: string;
     })
-  | (ServiceBase & { checkMethod: CheckMethod.PresenceMatch; presenceMatch: string })
+  | (ServiceBase & {
+      checkMethod: CheckMethod.PresenceMatch;
+      presenceMatch: string;
+      apiUrl?: string;
+    })
   | (ServiceBase & { checkMethod: CheckMethod.RedirectMatch; redirectMatch: string })
   | (ServiceBase & { checkMethod: CheckMethod.JsonApi; apiUrl: string; jsonPath: string })
   | (ServiceBase & {

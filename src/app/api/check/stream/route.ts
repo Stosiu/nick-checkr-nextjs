@@ -48,6 +48,7 @@ export async function GET(request: NextRequest) {
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       const results: Record<string, string> = {};
+      const failures: { service: string; status: string; detail?: string }[] = [];
       let closed = false;
 
       const send = (payload: unknown) => {
@@ -85,11 +86,24 @@ export async function GET(request: NextRequest) {
           }
 
           results[service] = cardState[status];
+          if (status === AvailabilityStatus.Error || status === AvailabilityStatus.Timeout) {
+            failures.push({ service, status, detail });
+          }
           send({ type: 'result', service, status, detail });
         }
       };
 
       await Promise.all(Array.from({ length: CONCURRENCY }, worker));
+
+      if (failures.length > 0) {
+        console.warn(
+          `[check/stream] health ${JSON.stringify({
+            checked: Object.keys(results).length,
+            failed: failures.length,
+            services: failures,
+          })}`,
+        );
+      }
 
       if (!request.signal.aborted && Object.keys(results).length === serviceNames.length) {
         try {

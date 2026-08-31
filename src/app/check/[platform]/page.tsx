@@ -11,6 +11,7 @@ import {
   getCategoryDescription,
   getCategoryIcon,
   getCategorySlug,
+  hasCustomPlatformInfo,
   getPlatformIcon,
   getPlatformInfo,
   getServiceBySlug,
@@ -18,7 +19,7 @@ import {
   getServicesInCategory,
   getServicesByCategory,
 } from '@/lib/platform-utils';
-import { unverifiableReasonText } from '@/services';
+import { CheckMethod, unverifiableReasonText } from '@/services';
 import { services } from '@/services/data/services';
 
 interface Props {
@@ -37,9 +38,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${service.name} Username Checker — Is Your Name Available?`;
   const description = `Check if your desired username is available on ${service.name}. Instant results, no signup required. Also check ${services.length - 1} other platforms.`;
 
+  const thin =
+    service.checkMethod === CheckMethod.Unverifiable && !hasCustomPlatformInfo(service.name);
+
   return {
     title,
     description,
+    ...(thin ? { robots: { index: false, follow: true } } : {}),
     alternates: { canonical: `/check/${platform}` },
     openGraph: {
       title,

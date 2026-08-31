@@ -16,7 +16,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "probe": "vitest run --config vitest.live.config.ts"
+    "probe": "vitest run --config vitest.live.config.ts",
+    "prune-blobs": "tsx scripts/prune-blobs.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -63,6 +64,7 @@
     "react-grab": "^0.1.47",
     "shadcn": "^4.19.0",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.13",
     "typescript": "^6.0.3",
     "vitest": "^4.1.11"
   }

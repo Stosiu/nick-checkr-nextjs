@@ -8,6 +8,7 @@ import { nicknameChecker } from '../../nickname-checker';
 const CONCURRENCY = Number(process.env.PROBE_CONCURRENCY ?? '16');
 const REPORT = process.env.PROBE_REPORT;
 const ONLY = process.env.PROBE_ONLY?.split(',').filter(Boolean);
+const MIN_PASS_RATE = Number(process.env.PROBE_MIN_PASS_RATE ?? '95');
 
 interface Row {
   name: string;
@@ -75,7 +76,12 @@ describe('live service health', () => {
       const rate = ((rows.length - failed.length) / rows.length) * 100;
       console.log(`live health: ${rows.length - failed.length}/${rows.length} (${rate.toFixed(1)}%)`);
 
+      for (const r of failed) {
+        console.log(`  FAIL ${r.name} [${r.method}] ${r.nick}: expected ${r.expected}, got ${r.actual}${r.detail ? ` (${r.detail})` : ''}`);
+      }
+
       expect(rows.length).toBeGreaterThan(0);
+      expect(rate).toBeGreaterThanOrEqual(MIN_PASS_RATE);
     },
     60 * 60 * 1000,
   );

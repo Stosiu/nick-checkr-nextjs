@@ -7,6 +7,58 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: '1.7.0',
+    date: '2026-08-31',
+    summary:
+      'The catalogue grows from 468 to 701 entries across ten new categories, domain coverage nearly doubles to 175 extensions, domain checks now ask the registry whether a name is registered instead of whether it resolves, and four new detection methods rescued platforms that previously could not be checked at all.',
+    changes: [
+      {
+        kind: 'added',
+        text: '155 new platforms, every one verified against the live site before being added. Ten new categories: Q&A & Knowledge, Crowdfunding & Support, Newsletters, Link in Bio, Web3 & Decentralized, East Asia, Europe & Russia, Consoles & Esports, Security & Bug Bounty, and Package Names.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Domain checks now query the registry directly over RDAP for 154 of the 175 extensions. The old DNS lookup only told you whether a name resolved, so a registered domain parked without DNS records was reported as available. Extensions with no working RDAP service stay on DNS.',
+      },
+      {
+        kind: 'fixed',
+        text: '.crypto, .nft and .web3 are not part of public DNS, so the old lookup reported every name on them as available. They now say so instead.',
+      },
+      {
+        kind: 'added',
+        text: 'Four new ways of checking a platform: reading a JSON API rather than the profile page, matching a marker that only appears when a profile exists, following redirects to see whether a missing profile lands on a sign-in page, and querying domain registries over RDAP.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Nine platforms that reported "Can\'t verify" are checked properly again by asking their public API instead of scraping the profile page: PyPI, Trello, Imgur, Matrix, Crates.io, Minecraft, Dailymotion, CPAN and TETR.IO.',
+      },
+      {
+        kind: 'fixed',
+        text: 'A bot-protection challenge is now reported as an error rather than being read as an answer. Previously a Cloudflare block on a body-matching platform was silently recorded as "Taken".',
+      },
+      {
+        kind: 'added',
+        text: '69 more domain extensions, including the creative group (.art, .photography, .video, .press, .gallery), professional services (.law, .legal, .consulting, .clinic, .health), commerce (.market, .boutique, .fashion, .cafe) and vanity names (.vip, .top, .buzz, .cool, .rocks). Second-level domains work for the first time: .co.uk, .com.au, .com.br and .co.in.',
+      },
+      {
+        kind: 'added',
+        text: 'Package names are checkable across ten registries — npm, PyPI, crates.io, RubyGems, NuGet, Hex, Homebrew, CocoaPods, Pub.dev and Chocolatey. Whether a package name is free is a different question from whether a user account exists, and the catalogue only answered the second before now.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Platform pages without hand-written copy no longer share three near-identical sentences. They now describe how the platform builds profile URLs, what that implies for the characters a name may use, and what the check can and cannot determine. Pages that have neither hand-written copy nor a working check are no longer submitted for indexing.',
+      },
+      {
+        kind: 'added',
+        text: 'Telegram, Freelancer and Mastodon are checked properly again, and the weekly live health run in CI now fails if verified coverage drops below 95%.',
+      },
+      {
+        kind: 'changed',
+        text: 'Live verified coverage across the whole catalogue is 98.4%, measured against real sites rather than mocks.',
+      },
+    ],
+  },
+  {
     version: '1.6.0',
     date: '2026-08-31',
     summary:

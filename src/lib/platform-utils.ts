@@ -25,6 +25,7 @@ import {
   MessageCircleQuestion,
   Music,
   Network,
+  Package,
   Palette,
   Pencil,
   ShieldCheck,
@@ -38,7 +39,7 @@ import {
   Youtube,
 } from 'lucide-react';
 
-import type { ServiceDefinition } from '@/services/abstract-service';
+import { CheckMethod, type ServiceDefinition } from '@/services/abstract-service';
 import { services } from '@/services/data/services';
 
 export function getServiceSlug(name: string): string {
@@ -140,6 +141,8 @@ const categoryDescriptions: Record<string, string> = {
     'Console networks and competitive gaming sites tie your gamertag to your match history and rank. Many of these platforms charge to change a name once it is set.',
   'Security & Bug Bounty':
     'Bug bounty and security research platforms publish your username alongside your disclosures and rankings. Researchers usually keep one handle across every program they work with.',
+  'Package Names':
+    'Package registries hand out names first come, first served, and most of them never release one once it is published. The name is what other developers type into an install command, so it is worth checking across ecosystems before you commit to it in a README.',
   'Domain Names':
     'Domain names are the foundation of your online presence. Checking if your preferred name is available as a domain helps you secure a matching website alongside your usernames.',
 };
@@ -1894,6 +1897,7 @@ const categoryIcons: Record<string, LucideIcon> = {
   'Europe & Russia': Landmark,
   'Consoles & Esports': Trophy,
   'Security & Bug Bounty': ShieldCheck,
+  'Package Names': Package,
   'Domain Names': Globe,
 };
 
@@ -1912,6 +1916,41 @@ export function getCategoryDescription(category: string): string {
   );
 }
 
+export function hasCustomPlatformInfo(name: string): boolean {
+  return platformInfo[name] !== undefined;
+}
+
+type UrlShape = 'subdomain' | 'at-prefix' | 'query' | 'path';
+
+function readUrlShape(url: string): UrlShape {
+  if (/^https?:\/\/\{\}\./.test(url)) return 'subdomain';
+  if (url.includes('?')) return 'query';
+  if (/[@:]\{\}/.test(url)) return 'at-prefix';
+  return 'path';
+}
+
+const shapeDescription: Record<UrlShape, (name: string) => string> = {
+  subdomain: (name) =>
+    `${name} gives every account its own subdomain, so the name you pick becomes part of the web address rather than a path on a shared one. That makes the name harder to change later, because links pointing at the old address stop resolving entirely.`,
+  'at-prefix': (name) =>
+    `${name} addresses profiles with an @ in front of the handle, the convention that grew out of mentions. The handle is separate from the display name, so the name people see and the name in the link do not have to match.`,
+  query: (name) =>
+    `${name} looks profiles up through a search parameter rather than giving each account its own path. Availability still hinges on the handle being unique across the whole platform.`,
+  path: (name) =>
+    `${name} puts the username straight into the profile path, which is the most common arrangement and the reason short names on it go early.`,
+};
+
+const shapeRules: Record<UrlShape, string> = {
+  subdomain:
+    'Because the name has to work as a hostname, it is normally limited to letters, digits and hyphens, cannot start or end with a hyphen, and is case-insensitive.',
+  'at-prefix':
+    'Handles of this kind usually allow letters, digits and underscores, and reject spaces and most punctuation so the link stays unambiguous.',
+  query:
+    'Names here usually allow letters, digits and a limited set of punctuation, though characters that need URL-encoding are often rejected.',
+  path:
+    'Path-based usernames generally allow letters, digits, underscores and sometimes hyphens or dots, with a minimum length of two or three characters.',
+};
+
 export function getPlatformInfo(name: string): {
   description: string;
   rules: string;
@@ -1923,10 +1962,17 @@ export function getPlatformInfo(name: string): {
 
   const service = services.find((s) => s.name === name);
   const category = service?.category ?? 'online';
+  const siblings = services.filter((s) => s.category === category && s.name !== name).length;
+  const shape = readUrlShape(service?.url ?? '');
+
+  const unverifiable = service?.checkMethod === CheckMethod.Unverifiable;
+  const checkNote = unverifiable
+    ? `${name} returns the same response whatever name is requested, so this page links you to the profile to check by hand rather than guessing an answer.`
+    : `This page checks ${name} against the live site, so the answer reflects what the platform reports right now rather than a cached list.`;
 
   return {
-    description: `${name} is a popular ${category.toLowerCase()} platform where millions of users connect and share content.`,
-    rules: `${name} usernames typically allow letters, numbers, and common special characters like underscores. Check the platform for exact length limits.`,
-    tips: `Secure your preferred username on ${name} early. Consistent usernames across platforms make you easier to find.`,
+    description: `${shapeDescription[shape](name)} It sits in our ${category} group alongside ${siblings} other ${siblings === 1 ? 'platform' : 'platforms'}. ${checkNote}`,
+    rules: `${shapeRules[shape]} ${name} publishes the exact limits at signup, and they change more often than most platforms document, so treat a rejected name at registration as the final word.`,
+    tips: `If the name is taken on ${name}, check the rest of the ${category} group before settling on a variant — a name free here but taken on the platforms next to it is usually worth less than a slightly longer name you can hold everywhere.`,
   };
 }

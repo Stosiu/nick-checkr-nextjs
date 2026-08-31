@@ -1,0 +1,47 @@
+name: Live service health
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      minPassRate:
+        description: Minimum percentage of fixtures that must pass
+        default: '95'
+
+concurrency:
+  group: probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    name: Probe every service against its live site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Probe
+        run: pnpm probe
+        env:
+          PROBE_CONCURRENCY: '6'
+          PROBE_MIN_PASS_RATE: ${{ inputs.minPassRate || '95' }}
+          PROBE_REPORT: probe-report.json
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: probe-report
+          path: probe-report.json

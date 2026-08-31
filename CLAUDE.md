@@ -22,7 +22,7 @@ All source files live under `src/`:
 - `src/app/api/check/stream/` - Streaming NDJSON endpoint used by the homepage; also persists results to Vercel Blob
 - `src/components/` - React components (`ui/` for shadcn)
 - `src/services/` - Nickname checking services (AbstractService pattern)
-- `src/services/data/services.ts` - 468 services with categories (including 105 domain TLDs)
+- `src/services/data/services.ts` - 701 services with categories (including 175 domain TLDs and 10 package registries)
 - `src/hooks/` - Custom React hooks
 - `src/lib/` - Utilities: `cache.ts` (server cache), `check-store.ts` (client result store), `fetch-queue.ts` (client concurrency limiter), `blog.ts` (blog processing), `utils.ts` (shadcn `cn()`)
 - `src/config/` - Site configuration
@@ -37,12 +37,13 @@ All source files live under `src/`:
 - `pnpm test src/services/__tests__/abstract-service.test.ts` - Run specific test
 - `pnpm typecheck` - TypeScript type checking
 - `pnpm probe` - Live health check of every service against real sites (network, slow, not part of `pnpm test`)
+- `pnpm prune-blobs` - List blob results left behind by earlier service-list generations; add `--delete` to remove them
 
 ## Adding a New Service
 
 Add an entry to `src/services/data/services.ts` following the `ServiceDefinition` interface. Each service requires a `category` field.
 
-Categories: Social Media, Developer, Content & Blogging, Creative & Design, Music & Audio, Video & Streaming, Gaming, Professional, Community, Finance & Crypto, Messaging, Education & Learning, Photography, Marketplace, Fitness & Sports, Domain Names.
+Categories: Social Media, Developer, Content & Blogging, Creative & Design, Music & Audio, Video & Streaming, Gaming, Professional, Community, Finance & Crypto, Messaging, Education & Learning, Photography, Marketplace, Fitness & Sports, Domain Names, Package Names, Q&A & Knowledge, Crowdfunding & Support, Newsletters, Link in Bio, Web3 & Decentralized, East Asia, Europe & Russia, Consoles & Esports, Security & Bug Bounty.
 
 Check methods:
 - `CheckMethod.Standard` - Returns 404 when username is not found
@@ -52,6 +53,14 @@ Check methods:
 - `CheckMethod.NickInTitle` - Page always returns 200; the profile exists when `<title>` contains the nick
 - `CheckMethod.NickInOgTitle` - Same, using the `og:title` meta tag
 - `CheckMethod.Unverifiable` - Platform serves an identical page for every username. Returns `AvailabilityStatus.Unknown` without making a request, and the UI shows "Can't verify"
+- `CheckMethod.PresenceMatch` - Page always returns 200; the profile exists when the body contains `presenceMatch`. `{}` in the marker is replaced with the nick
+- `CheckMethod.RedirectMatch` - A missing profile redirects elsewhere. `redirectMatch` starting with `http` must equal the final URL exactly; otherwise it is matched as a substring of it
+- `CheckMethod.JsonApi` - Probes `apiUrl` instead of `url` and reads the dot-path `jsonPath`; a present, non-empty value means taken
+- `CheckMethod.Rdap` - Domain registration lookup against the TLD's RDAP service; 404 = available. More accurate than DNS, which only reports whether a name resolves
+
+`ServiceDefinition` is a discriminated union on `checkMethod`, so a missing `bodyMatch`, `presenceMatch`, `redirectMatch`, `apiUrl`/`jsonPath` or `unverifiableReason` is a type error rather than a runtime throw. `Standard` may also carry an optional `apiUrl` when the check is status-only but the card should link somewhere else.
+
+A 403/503 carrying a Cloudflare or Incapsula challenge, or any 429, is reported as an error rather than being read as an answer.
 
 Include `testAvailableNick` and `testTakenNick` for integration tests. `testTakenNick` must be a username that really exists on that platform — a wrong one makes the health probe report a permanent false failure. Omit it if no real account can be confirmed.
 
@@ -66,6 +75,9 @@ Before adding a service, confirm the URL discriminates: a random username must r
 - `PROBE_ONLY="Twitch,Kick"` limits it to named services
 - `PROBE_REPORT=/tmp/out.json` writes a per-fixture JSON report
 - `PROBE_CONCURRENCY=10` tunes parallelism
+- `PROBE_MIN_PASS_RATE=95` is the pass threshold the run asserts; set it to `0` when probing a subset
+
+Probing at high concurrency makes upstream hosts rate-limit and answer 403/429, which reads as a permanent block. Before marking a service `Unverifiable` or deleting it, re-run just that service at `PROBE_CONCURRENCY=2`. `.github/workflows/probe.yml` runs the full probe weekly at concurrency 6.
 
 ## Path Alias
 
