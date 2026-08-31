@@ -3,7 +3,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { ChevronDown, Mail } from 'lucide-react';
 
-import { type CheckState, NicknameCheckCard } from './nickname-check-card';
+import { NicknameCheckCard } from './nickname-check-card';
 
 const PREVIEW_LIMIT = 8;
 
@@ -16,7 +16,6 @@ export interface ServiceEntry {
 interface Props {
   nickname: string | null;
   services: ServiceEntry[];
-  onStatusChange?: (service: string, state: CheckState) => void;
 }
 
 function ServicePreviewCard({ name }: { name: string }) {
@@ -30,7 +29,7 @@ function ServicePreviewCard({ name }: { name: string }) {
   );
 }
 
-export function ResultsGrid({ nickname, services, onStatusChange }: Props) {
+export function ResultsGrid({ nickname, services }: Props) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
 
@@ -120,7 +119,6 @@ export function ResultsGrid({ nickname, services, onStatusChange }: Props) {
                     nickname={nickname}
                     service={service.name}
                     profileUrl={service.url}
-                    onStatusChange={onStatusChange}
                   />
                 ) : (
                   <ServicePreviewCard key={service.name} name={service.name} />

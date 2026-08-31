@@ -1,63 +1,42 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { parseAsString, useQueryState } from 'nuqs';
 
 import { CheckSummary } from '@/components/check-summary';
-import type { CheckState } from '@/components/nickname-check-card';
 import { ProgressBar } from '@/components/progress-bar';
 import { ResultsGrid, type ServiceEntry } from '@/components/results-grid';
 import { SearchForm } from '@/components/search-form';
+import { CheckStreamProvider, useCheckProgress } from '@/hooks/use-check-stream';
 import { useBlobCache } from '@/hooks/use-blob-cache';
 
 interface Props {
   services: ServiceEntry[];
 }
 
+function Results({ nickname, services }: { nickname: string | null; services: ServiceEntry[] }) {
+  const progress = useCheckProgress();
+  const { checkCount } = useBlobCache(nickname, progress.isComplete);
+
+  return (
+    <section className="space-y-6">
+      {nickname && (
+        <ProgressBar
+          total={progress.total}
+          available={progress.available}
+          taken={progress.taken}
+          errors={progress.errors}
+        />
+      )}
+      {nickname && <CheckSummary checkCount={checkCount} isComplete={progress.isComplete} />}
+      <ResultsGrid nickname={nickname} services={services} />
+    </section>
+  );
+}
+
 export function HomeContent({ services }: Props) {
   const [searchNick, setSearchNick] = useQueryState('nick', parseAsString);
-  const [statuses, setStatuses] = useState<Record<string, CheckState>>({});
-
-  const handleSearch = (nick: string) => {
-    setStatuses({});
-    setSearchNick(nick);
-  };
-
-  const handleClear = () => {
-    setStatuses({});
-    setSearchNick(null);
-  };
-
-  const handleStatusChange = useCallback((service: string, state: CheckState) => {
-    setStatuses((prev) => {
-      if (prev[service] === state) return prev;
-      return { ...prev, [service]: state };
-    });
-  }, []);
-
-  const counts = {
-    total: services.length,
-    available: Object.values(statuses).filter((s) => s === 'available').length,
-    taken: Object.values(statuses).filter((s) => s === 'taken').length,
-    errors: Object.values(statuses).filter((s) => s === 'error').length,
-  };
-
-  const { checkCount, saveResults } = useBlobCache(searchNick);
-  const checked = counts.available + counts.taken + counts.errors;
-  const isComplete = !!searchNick && checked === counts.total && counts.total > 0;
-
-  const [hasSaved, setHasSaved] = useState(false);
-
-  useEffect(() => {
-    if (isComplete && !hasSaved) {
-      setHasSaved(true);
-      saveResults(statuses);
-    }
-  }, [isComplete, hasSaved, saveResults, statuses]);
-
-  useEffect(() => {
-    setHasSaved(false);
-  }, [searchNick]);
+  const serviceNames = useMemo(() => services.map((s) => s.name), [services]);
 
   return (
     <div className="noise dot-grid container mx-auto space-y-8 px-4 py-4 md:py-8">
@@ -71,23 +50,17 @@ export function HomeContent({ services }: Props) {
           </p>
           <div className="flex justify-center pt-2 sm:pt-4">
             <SearchForm
-              onSearch={handleSearch}
-              onClear={handleClear}
+              onSearch={setSearchNick}
+              onClear={() => setSearchNick(null)}
               currentSearch={searchNick}
             />
           </div>
         </div>
       </section>
 
-      <section className="space-y-6">
-        {searchNick && <ProgressBar {...counts} />}
-        {searchNick && <CheckSummary checkCount={checkCount} isComplete={isComplete} />}
-        <ResultsGrid
-          nickname={searchNick}
-          services={services}
-          onStatusChange={handleStatusChange}
-        />
-      </section>
+      <CheckStreamProvider nick={searchNick} serviceNames={serviceNames}>
+        <Results nickname={searchNick} services={services} />
+      </CheckStreamProvider>
     </div>
   );
 }

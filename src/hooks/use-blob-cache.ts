@@ -1,58 +1,33 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-interface BlobCacheState {
-  checkCount: number | null;
-  isLoading: boolean;
+interface Entry {
+  nick: string;
+  count: number | null;
 }
 
-export function useBlobCache(nick: string | null) {
-  const [state, setState] = useState<BlobCacheState>({
-    checkCount: null,
-    isLoading: false,
-  });
+export function useBlobCache(nick: string | null, isComplete: boolean) {
+  const [entry, setEntry] = useState<Entry | null>(null);
 
   useEffect(() => {
-    if (!nick) {
-      setState({ checkCount: null, isLoading: false });
-      return;
-    }
+    if (!nick) return;
 
-    setState({ checkCount: null, isLoading: true });
+    let cancelled = false;
 
     fetch(`/api/cache/${encodeURIComponent(nick)}`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        setState({
-          checkCount: data?.checkCount ?? null,
-          isLoading: false,
-        });
+        if (!cancelled) setEntry({ nick, count: data?.checkCount ?? null });
       })
       .catch(() => {
-        setState({ checkCount: null, isLoading: false });
+        if (!cancelled) setEntry({ nick, count: null });
       });
-  }, [nick]);
 
-  const saveResults = useCallback(
-    async (results: Record<string, string>) => {
-      if (!nick) return;
-      try {
-        const res = await fetch(`/api/cache/${encodeURIComponent(nick)}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ results }),
-        });
-        if (res.ok) {
-          const data = await res.json();
-          setState((prev) => ({ ...prev, checkCount: data.checkCount }));
-        }
-      } catch {
-        // Silently fail — caching is best-effort
-      }
-    },
-    [nick],
-  );
+    return () => {
+      cancelled = true;
+    };
+  }, [nick, isComplete]);
 
-  return { ...state, saveResults };
+  return { checkCount: entry && entry.nick === nick ? entry.count : null };
 }
