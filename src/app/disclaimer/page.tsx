@@ -45,9 +45,9 @@ export default function DisclaimerPage() {
             public profile URL patterns to determine whether a username appears
             to be taken or available, but this approach has limits. Platforms may
             block automated requests, return misleading responses, or change
-            their URL structures without notice. A result showing "available"
+            their URL structures without notice. A result showing &quot;available&quot;
             does not guarantee you can register that username, and a result
-            showing "taken" might occasionally be wrong. Always verify
+            showing &quot;taken&quot; might occasionally be wrong. Always verify
             availability directly on the platform before attempting to register.
           </p>
         </section>
@@ -93,7 +93,7 @@ export default function DisclaimerPage() {
             Limitation of liability
           </h2>
           <p className="mt-3">
-            NickCheckr is provided "as is" without warranties of any kind,
+            NickCheckr is provided &quot;as is&quot; without warranties of any kind,
             whether express or implied. We are not liable for any damages arising
             from use of this service, including but not limited to lost
             usernames, incorrect availability results, missed registration

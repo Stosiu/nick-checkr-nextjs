@@ -3,7 +3,6 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { getCategoryBySlug, getServicesInCategory } from '@/lib/platform-utils';
-import { services } from '@/services/data/services';
 
 export const alt = 'NickCheckr — Category Username Checker';
 export const size = { width: 1200, height: 630 };

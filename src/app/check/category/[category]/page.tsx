@@ -1,3 +1,4 @@
+import { createElement } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -93,7 +94,7 @@ export default async function CategoryPage({ params }: Props) {
   if (!category) notFound();
 
   const categoryServices = getServicesInCategory(category);
-  const CatIcon = getCategoryIcon(category);
+  const categoryIcon = getCategoryIcon(category);
   const description = getCategoryDescription(category);
 
   const otherCategories = getAllCategories().filter((c) => c !== category);
@@ -119,7 +120,7 @@ export default async function CategoryPage({ params }: Props) {
 
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-400/10 border border-brand-400/20">
-              <CatIcon className="h-6 w-6 text-brand-400" />
+              {createElement(categoryIcon, { className: 'h-6 w-6 text-brand-400' })}
             </div>
             <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
               {category} <span className="text-brand-400">Username Checker</span>

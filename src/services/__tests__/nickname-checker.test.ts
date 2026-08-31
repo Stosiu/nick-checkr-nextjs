@@ -12,7 +12,6 @@ vi.mock('impit', () => ({
   },
 }));
 
-const originalFetch = globalThis.fetch;
 globalThis.fetch = mockDnsFetch;
 
 const { nicknameChecker } = await import('../nickname-checker');

@@ -1,3 +1,4 @@
+import { createElement } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -62,7 +63,7 @@ export default async function PlatformPage({ params }: Props) {
   const allCategories = getServicesByCategory();
   const profileUrl = service.url.replace('{}', 'username');
 
-  const PlatformIcon = getPlatformIcon(service.name, service.category);
+  const platformIcon = getPlatformIcon(service.name, service.category);
 
   const faqItems = [
     {
@@ -150,7 +151,7 @@ export default async function PlatformPage({ params }: Props) {
 
           <div className="flex items-center gap-4">
             <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04]">
-              <PlatformIcon className="h-7 w-7 text-brand-400" />
+              {createElement(platformIcon, { className: 'h-7 w-7 text-brand-400' })}
             </div>
             <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
               {service.name}{' '}
