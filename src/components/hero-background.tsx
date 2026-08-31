@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
 // Large pool so 32 visible slots rarely repeat
 const USERNAME_POOL = [
@@ -73,9 +73,11 @@ function pickUnique(exclude?: string): { name: string; color: Color } {
 const initialNames: string[] = [];
 for (let i = 0; i < SLOT_COUNT; i++) {
   let name: string;
+  let attempt = 0;
   do {
-    name = USERNAME_POOL[Math.floor(seededRandom(i * 47 + 13) * USERNAME_POOL.length)];
-  } while (initialNames.includes(name));
+    name = USERNAME_POOL[Math.floor(seededRandom(i * 47 + 13 + attempt * 101) * USERNAME_POOL.length)];
+    attempt++;
+  } while (initialNames.includes(name) && attempt < 50);
   initialNames.push(name);
   activeNames.add(name);
 }
@@ -107,8 +109,15 @@ const colorMap: Record<Color, string> = {
   red: 'rgb(248, 113, 113)',
 };
 
+const subscribeNoop = () => () => {};
+
 export function HeroBackground({ loading }: { loading?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const mounted = useSyncExternalStore(
+    subscribeNoop,
+    () => true,
+    () => false,
+  );
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -139,12 +148,14 @@ export function HeroBackground({ loading }: { loading?: boolean }) {
       container.removeEventListener('mousemove', handleMove);
       container.removeEventListener('mouseleave', handleLeave);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, mounted]);
+
+  if (!mounted) return null;
 
   return (
     <div
       ref={containerRef}
-      className="pointer-events-auto absolute inset-0 overflow-hidden"
+      className="pointer-events-auto absolute inset-0 hidden overflow-hidden md:block [mask-image:radial-gradient(ellipse_62%_54%_at_50%_50%,transparent_30%,black_80%)]"
       aria-hidden="true"
     >
       {gridItems.map((item) => (
@@ -180,35 +191,50 @@ function FloatingUsername({
   springX: ReturnType<typeof useSpring>;
   springY: ReturnType<typeof useSpring>;
 }) {
-  const [current, setCurrent] = useState({ name: item.initialName, color: 'white' as Color });
+  const [color, setColor] = useState<Color>('white');
   const [typed, setTyped] = useState(item.initialName);
+  const nameRef = useRef(item.initialName);
   const typeIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const cycle = useCallback(() => {
-    const prev = current.name;
-    const next = pickUnique(prev);
-    setCurrent(next);
-
-    if (typeIntervalRef.current) clearInterval(typeIntervalRef.current);
-    let charIndex = 0;
-    setTyped('');
-    typeIntervalRef.current = setInterval(() => {
-      charIndex++;
-      setTyped(next.name.slice(0, charIndex));
-      if (charIndex >= next.name.length) {
-        if (typeIntervalRef.current) clearInterval(typeIntervalRef.current);
-        typeIntervalRef.current = null;
-      }
-    }, 50 + Math.random() * 40);
-  }, [current.name]);
-
   useEffect(() => {
+    const cycle = () => {
+      const prev = nameRef.current;
+      const next = pickUnique(prev);
+      nameRef.current = next.name;
+
+      if (typeIntervalRef.current) clearInterval(typeIntervalRef.current);
+
+      let charIndex = prev.length;
+      const typeSpeed = 55 + Math.random() * 35;
+
+      const type = () => {
+        typeIntervalRef.current = setInterval(() => {
+          charIndex++;
+          setTyped(next.name.slice(0, charIndex));
+          if (charIndex >= next.name.length && typeIntervalRef.current) {
+            clearInterval(typeIntervalRef.current);
+            typeIntervalRef.current = null;
+          }
+        }, typeSpeed);
+      };
+
+      typeIntervalRef.current = setInterval(() => {
+        charIndex--;
+        setTyped(prev.slice(0, Math.max(charIndex, 0)));
+        if (charIndex <= 0) {
+          if (typeIntervalRef.current) clearInterval(typeIntervalRef.current);
+          setColor(next.color);
+          type();
+        }
+      }, 30);
+    };
+
     const timer = setInterval(cycle, item.cycleInterval);
     return () => {
       clearInterval(timer);
       if (typeIntervalRef.current) clearInterval(typeIntervalRef.current);
     };
-  }, [cycle, item.cycleInterval]);
+  }, [item.cycleInterval]);
 
   const parallaxX = useTransform(springX, (v) => v * item.depth * 30);
   const parallaxY = useTransform(springY, (v) => v * item.depth * 20);
@@ -220,7 +246,7 @@ function FloatingUsername({
         top: `${item.top}%`,
         left: `${item.left}%`,
         fontSize: item.size,
-        color: colorMap[current.color],
+        color: colorMap[color],
         opacity: item.baseOpacity,
         rotate: item.rotate,
         x: parallaxX,

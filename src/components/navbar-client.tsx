@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -16,38 +16,75 @@ const navLinks = [
 
 export function NavbarClient({ blogCount }: { blogCount: number }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
   const pathname = usePathname();
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const activeHref = navLinks.find((link) => pathname.startsWith(link.href))?.href ?? null;
+  const highlighted = hovered ?? activeHref;
+  const solid = scrolled || open;
+
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/[0.06] bg-black/80 backdrop-blur-md">
-      <div className="container mx-auto flex items-center justify-between px-4 py-2.5 md:py-4">
-        <Link href="/" className="flex items-center gap-2.5" onClick={() => { setOpen(false); window.scrollTo(0, 0); }}>
+    <nav
+      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
+        solid
+          ? 'border-white/[0.06] bg-black/80 backdrop-blur-md'
+          : 'border-transparent bg-transparent'
+      }`}
+    >
+      <div
+        className={`container mx-auto flex items-center justify-between px-4 transition-[padding] duration-300 ${
+          scrolled ? 'py-2 md:py-2.5' : 'py-2.5 md:py-4'
+        }`}
+      >
+        <Link href="/" className="group flex items-center gap-2.5" onClick={() => { setOpen(false); window.scrollTo(0, 0); }}>
           <Image src="/favicon-32x32.png" alt="" width={24} height={24} className="shrink-0" />
           <span className="text-xl font-bold tracking-tight">
             <span className="text-white">Nick</span>
             <span className="text-brand-400">Checkr</span>
+            <span className="ml-0.5 font-mono text-brand-400 opacity-0 transition-opacity group-hover:animate-pulse group-hover:opacity-100">
+              _
+            </span>
           </span>
         </Link>
 
         {/* Desktop nav */}
         <div className="hidden items-center md:flex">
-          <div className="flex items-center gap-0.5 rounded-full border border-white/[0.06] bg-white/[0.02] px-1 py-1">
+          <div
+            className="flex items-center gap-0.5 rounded-full border border-white/[0.06] bg-white/[0.02] px-1 py-1"
+            onMouseLeave={() => setHovered(null)}
+          >
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-full px-4 py-1.5 text-[13px] tracking-wide transition-all hover:bg-white/[0.06] hover:text-white/90 ${
-                  pathname.startsWith(link.href)
-                    ? 'bg-white/[0.06] text-white/90'
-                    : 'text-white/40'
+                onMouseEnter={() => setHovered(link.href)}
+                className={`relative rounded-full px-4 py-1.5 text-[13px] tracking-wide transition-colors ${
+                  highlighted === link.href ? 'text-white/90' : 'text-white/40'
                 }`}
               >
-                {link.label}
-                {link.showCount && blogCount > 0 && (
-                  <span className="ml-1.5 font-mono text-[10px] text-white/20">
-                    {blogCount}
-                  </span>
+                {highlighted === link.href && (
+                  <motion.span
+                    layoutId="nav-highlight"
+                    className="absolute inset-0 rounded-full bg-white/[0.07]"
+                    transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+                  />
                 )}
+                <span className="relative">
+                  {link.label}
+                  {link.showCount && blogCount > 0 && (
+                    <span className="ml-1.5 font-mono text-[10px] text-white/20">
+                      {blogCount}
+                    </span>
+                  )}
+                </span>
               </Link>
             ))}
           </div>
