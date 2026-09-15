@@ -54,6 +54,7 @@ export function CheckStreamProvider({ nick, serviceNames, children }: ProviderPr
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
         let carry = '';
+        let checkCount: number | undefined;
 
         for (;;) {
           const { done, value } = await reader.read();
@@ -66,13 +67,15 @@ export function CheckStreamProvider({ nick, serviceNames, children }: ProviderPr
             const message = JSON.parse(line);
             if (message.type === 'result') {
               buffer.push([message.service, { status: message.status, detail: message.detail }]);
+            } else if (message.type === 'done') {
+              checkCount = message.checkCount;
             }
           }
           if (buffer.length > 0) schedule();
         }
 
         flush();
-        store.finish();
+        store.finish(undefined, checkCount);
       } catch (err) {
         if (abort.signal.aborted) return;
         flush();

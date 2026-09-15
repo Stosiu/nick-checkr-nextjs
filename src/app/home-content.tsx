@@ -9,7 +9,6 @@ import { ProgressBar } from '@/components/progress-bar';
 import { ResultsGrid, type ServiceEntry } from '@/components/results-grid';
 import { SearchForm } from '@/components/search-form';
 import { CheckStreamProvider, useCheckProgress } from '@/hooks/use-check-stream';
-import { useBlobCache } from '@/hooks/use-blob-cache';
 import { cn } from '@/lib/utils';
 
 interface Props {
@@ -18,7 +17,6 @@ interface Props {
 
 function Results({ nickname, services }: { nickname: string | null; services: ServiceEntry[] }) {
   const progress = useCheckProgress();
-  const { checkCount } = useBlobCache(nickname, progress.isComplete);
 
   return (
     <section className="space-y-6">
@@ -31,7 +29,7 @@ function Results({ nickname, services }: { nickname: string | null; services: Se
           unknown={progress.unknown}
         />
       )}
-      {nickname && <CheckSummary checkCount={checkCount} isComplete={progress.isComplete} />}
+      {nickname && <CheckSummary checkCount={progress.checkCount} isComplete={progress.isComplete} />}
       <ResultsGrid nickname={nickname} services={services} />
     </section>
   );

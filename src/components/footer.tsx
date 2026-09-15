@@ -2,7 +2,6 @@ import { Github, Star } from 'lucide-react';
 import Link from 'next/link';
 
 import { siteConfig } from '@/config/site';
-import { getGitHubStars } from '@/lib/github-stars';
 const VERSION = process.env.NEXT_PUBLIC_APP_VERSION ?? '0.0.0';
 const COMMIT_HASH =
   process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? 'dev';
@@ -50,10 +49,10 @@ const CATEGORIES = [
   { name: 'Community', slug: 'community' },
 ];
 
-export async function Footer() {
+export function Footer() {
   const year = new Date().getFullYear();
   const quote = getQuote();
-  const stars = await getGitHubStars();
+  const stars = process.env.GITHUB_STARS ? Number(process.env.GITHUB_STARS) : null;
 
   return (
     <footer className="mt-auto">

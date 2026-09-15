@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { list } from '@vercel/blob';
-import { getServicesHash } from '@/lib/services-hash';
+import { checkBlobPathname, readCheckBlob } from '@/lib/check-blob';
 import { CheckMethod, unverifiableReasonText } from '@/services';
 import { services } from '@/services/data/services';
 import { rateLimit } from '@/utils/rate-limit';
@@ -51,12 +50,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Rate limit exceeded. Max 100 requests per minute.' }, { status: 429 });
   }
 
-  const key = `checks/${getServicesHash()}/${nick.toLowerCase()}.json`;
-
   try {
-    const { blobs } = await list({ prefix: key, limit: 1 });
+    const data = await readCheckBlob(checkBlobPathname(nick));
 
-    if (blobs.length === 0) {
+    if (!data) {
       return NextResponse.json({
         cached: false,
         nick: nick.toLowerCase(),
@@ -64,9 +61,6 @@ export async function GET(request: NextRequest) {
         checkUrl: `https://nickcheckr.stosiu.dev/?nick=${encodeURIComponent(nick)}`,
       });
     }
-
-    const res = await fetch(blobs[0].url);
-    const data = await res.json();
 
     const unknownHere = Object.fromEntries(
       Object.entries(unverifiable).filter(([name]) => data.results?.[name] === 'unknown'),

@@ -14,6 +14,7 @@ export interface CheckProgress {
   checked: number;
   isStreaming: boolean;
   isComplete: boolean;
+  checkCount: number | null;
 }
 
 const EMPTY_PROGRESS: CheckProgress = {
@@ -25,6 +26,7 @@ const EMPTY_PROGRESS: CheckProgress = {
   checked: 0,
   isStreaming: false,
   isComplete: false,
+  checkCount: null,
 };
 
 export class CheckStore {
@@ -33,6 +35,7 @@ export class CheckStore {
   private progressListeners = new Set<() => void>();
   private progress: CheckProgress = EMPTY_PROGRESS;
   private serviceNames: string[] = [];
+  private checkCount: number | null = null;
 
   getService = (service: string): ServiceResult | undefined => this.results.get(service);
 
@@ -60,6 +63,7 @@ export class CheckStore {
   reset(serviceNames: string[], isStreaming: boolean) {
     this.results.clear();
     this.serviceNames = serviceNames;
+    this.checkCount = null;
     this.progress = { ...EMPTY_PROGRESS, total: serviceNames.length, isStreaming };
     for (const set of this.serviceListeners.values()) {
       for (const listener of set) listener();
@@ -76,7 +80,8 @@ export class CheckStore {
     this.recomputeProgress(this.progress.isStreaming);
   }
 
-  finish(failureDetail?: string) {
+  finish(failureDetail?: string, checkCount?: number) {
+    this.checkCount = checkCount ?? null;
     if (failureDetail) {
       const orphans: Array<[string, ServiceResult]> = [];
       for (const service of this.serviceNames) {
@@ -116,6 +121,7 @@ export class CheckStore {
       checked,
       isStreaming,
       isComplete: this.serviceNames.length > 0 && checked === this.serviceNames.length,
+      checkCount: this.checkCount,
     };
     this.notifyProgress();
   }

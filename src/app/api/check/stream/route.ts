@@ -1,8 +1,8 @@
 import { NextRequest } from 'next/server';
 import { put } from '@vercel/blob';
 
+import { checkBlobPathname, readCheckBlob } from '@/lib/check-blob';
 import { getCached, setCache } from '@/lib/cache';
-import { getServicesHash } from '@/lib/services-hash';
 import { AvailabilityStatus } from '@/services';
 import { nicknameChecker } from '@/services/nickname-checker';
 import { rateLimit } from '@/utils/rate-limit';
@@ -120,15 +120,16 @@ export async function GET(request: NextRequest) {
         );
       }
 
+      let checkCount: number | undefined;
       if (!request.signal.aborted && Object.keys(results).length === serviceNames.length) {
         try {
-          await persist(nick, results);
+          checkCount = await persist(nick, results);
         } catch (err) {
           console.error(`[check/stream] failed to persist results for "${nick}":`, err);
         }
       }
 
-      send({ type: 'done' });
+      send({ type: 'done', checkCount });
       closed = true;
       try {
         controller.close();
@@ -147,12 +148,15 @@ export async function GET(request: NextRequest) {
   });
 }
 
-async function persist(nick: string, results: Record<string, string>) {
+async function persist(nick: string, results: Record<string, string>): Promise<number> {
+  const pathname = checkBlobPathname(nick);
+  const existing = await readCheckBlob(pathname);
+  const checkCount = (existing?.checkCount ?? 0) + 1;
   const values = Object.values(results);
   const payload = {
     nick: nick.toLowerCase(),
     checkedAt: new Date().toISOString(),
-    checkCount: (await readCheckCount(nick)) + 1,
+    checkCount,
     results,
     summary: {
       available: values.filter((s) => s === 'available').length,
@@ -163,19 +167,13 @@ async function persist(nick: string, results: Record<string, string>) {
     },
   };
 
-  await put(`checks/${getServicesHash()}/${nick.toLowerCase()}.json`, JSON.stringify(payload), {
+  await put(pathname, JSON.stringify(payload), {
     access: 'public',
     contentType: 'application/json',
     addRandomSuffix: false,
+    allowOverwrite: true,
+    cacheControlMaxAge: 60,
   });
-}
 
-async function readCheckCount(nick: string): Promise<number> {
-  const { list } = await import('@vercel/blob');
-  const key = `checks/${getServicesHash()}/${nick.toLowerCase()}.json`;
-  const { blobs } = await list({ prefix: key, limit: 1 });
-  if (blobs.length === 0) return 0;
-  const res = await fetch(blobs[0].url);
-  const existing = await res.json();
-  return existing.checkCount ?? 1;
+  return checkCount;
 }
