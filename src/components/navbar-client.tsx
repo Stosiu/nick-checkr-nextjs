@@ -65,9 +65,10 @@ export function NavbarClient({ blogCount }: { blogCount: number }) {
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={false}
                 onMouseEnter={() => setHovered(link.href)}
                 className={`relative rounded-full px-4 py-1.5 text-[13px] tracking-wide transition-colors ${
-                  highlighted === link.href ? 'text-white/90' : 'text-white/40'
+                  highlighted === link.href ? 'text-white/90' : 'text-white/60'
                 }`}
               >
                 {highlighted === link.href && (
@@ -80,7 +81,7 @@ export function NavbarClient({ blogCount }: { blogCount: number }) {
                 <span className="relative">
                   {link.label}
                   {link.showCount && blogCount > 0 && (
-                    <span className="ml-1.5 font-mono text-[10px] text-white/20">
+                    <span className="ml-1.5 font-mono text-[11px] text-white/50">
                       {blogCount}
                     </span>
                   )}
@@ -93,7 +94,7 @@ export function NavbarClient({ blogCount }: { blogCount: number }) {
 
           <Link
             href="/"
-            className="group flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2 text-[13px] font-semibold tracking-wide text-white shadow-[0_0_20px_rgba(16,185,129,0.15)] transition-all hover:bg-brand-400 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]"
+            className="group flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2 text-[13px] font-semibold tracking-wide text-gray-950 shadow-[0_0_20px_rgba(16,185,129,0.15)] transition-all hover:bg-brand-400 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]"
           >
             Check Nickname
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -161,6 +162,7 @@ export function NavbarClient({ blogCount }: { blogCount: number }) {
                 >
                   <Link
                     href={link.href}
+                    prefetch={false}
                     onClick={() => { setOpen(false); window.scrollTo(0, 0); }}
                     className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm tracking-wide transition-colors hover:bg-white/[0.06] ${
                       pathname.startsWith(link.href)
@@ -170,7 +172,7 @@ export function NavbarClient({ blogCount }: { blogCount: number }) {
                   >
                     {link.label}
                     {link.showCount && blogCount > 0 && (
-                      <span className="font-mono text-[10px] text-white/20">
+                      <span className="font-mono text-[11px] text-white/50">
                         {blogCount}
                       </span>
                     )}
@@ -187,7 +189,7 @@ export function NavbarClient({ blogCount }: { blogCount: number }) {
                 <Link
                   href="/"
                   onClick={() => { setOpen(false); window.scrollTo(0, 0); }}
-                  className="flex items-center justify-center gap-2 rounded-lg bg-brand-500 px-5 py-3 text-sm font-semibold tracking-wide text-white shadow-[0_0_20px_rgba(16,185,129,0.15)] transition-all hover:bg-brand-400"
+                  className="flex items-center justify-center gap-2 rounded-lg bg-brand-500 px-5 py-3 text-sm font-semibold tracking-wide text-gray-950 shadow-[0_0_20px_rgba(16,185,129,0.15)] transition-all hover:bg-brand-400"
                 >
                   Check Nickname
                   <ArrowRight className="h-3.5 w-3.5" />

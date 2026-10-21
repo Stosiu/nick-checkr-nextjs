@@ -61,15 +61,16 @@ export function Footer() {
         <div className="mx-auto max-w-6xl space-y-8">
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
             <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/60">
                 Popular Checkers
               </h3>
               <ul className="space-y-1.5">
                 {POPULAR_PLATFORMS.map((p) => (
                   <li key={p.slug}>
                     <Link
+                      prefetch={false}
                       href={`/check/${p.slug}`}
-                      className="text-xs text-white/30 transition-colors hover:text-white/60"
+                      className="text-xs text-white/55 transition-colors hover:text-white/85"
                     >
                       {p.name}
                     </Link>
@@ -78,15 +79,16 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/60">
                 Categories
               </h3>
               <ul className="space-y-1.5">
                 {CATEGORIES.map((c) => (
                   <li key={c.slug}>
                     <Link
+                      prefetch={false}
                       href={`/check/category/${c.slug}`}
-                      className="text-xs text-white/30 transition-colors hover:text-white/60"
+                      className="text-xs text-white/55 transition-colors hover:text-white/85"
                     >
                       {c.name}
                     </Link>
@@ -95,30 +97,33 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/60">
                 Resources
               </h3>
               <ul className="space-y-1.5">
                 <li>
                   <Link
+                    prefetch={false}
                     href="/check"
-                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                    className="text-xs text-white/55 transition-colors hover:text-white/85"
                   >
                     All Platforms
                   </Link>
                 </li>
                 <li>
                   <Link
+                    prefetch={false}
                     href="/blog"
-                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                    className="text-xs text-white/55 transition-colors hover:text-white/85"
                   >
                     Blog
                   </Link>
                 </li>
                 <li>
                   <Link
+                    prefetch={false}
                     href="/blog/feed.xml"
-                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                    className="text-xs text-white/55 transition-colors hover:text-white/85"
                   >
                     RSS Feed
                   </Link>
@@ -128,15 +133,16 @@ export function Footer() {
                     href={siteConfig.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                    className="text-xs text-white/55 transition-colors hover:text-white/85"
                   >
                     GitHub
                   </a>
                 </li>
                 <li>
                   <Link
+                    prefetch={false}
                     href="/llms.txt"
-                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                    className="text-xs text-white/55 transition-colors hover:text-white/85"
                   >
                     LLM API
                   </Link>
@@ -144,30 +150,33 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/60">
                 Company
               </h3>
               <ul className="space-y-1.5">
                 <li>
                   <Link
+                    prefetch={false}
                     href="/about"
-                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                    className="text-xs text-white/55 transition-colors hover:text-white/85"
                   >
                     About
                   </Link>
                 </li>
                 <li>
                   <Link
+                    prefetch={false}
                     href="/contact"
-                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                    className="text-xs text-white/55 transition-colors hover:text-white/85"
                   >
                     Contact
                   </Link>
                 </li>
                 <li>
                   <Link
+                    prefetch={false}
                     href="/changelog"
-                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                    className="text-xs text-white/55 transition-colors hover:text-white/85"
                   >
                     Changelog
                   </Link>
@@ -175,22 +184,24 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/60">
                 Legal
               </h3>
               <ul className="space-y-1.5">
                 <li>
                   <Link
+                    prefetch={false}
                     href="/privacy"
-                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                    className="text-xs text-white/55 transition-colors hover:text-white/85"
                   >
                     Privacy Policy
                   </Link>
                 </li>
                 <li>
                   <Link
+                    prefetch={false}
                     href="/disclaimer"
-                    className="text-xs text-white/30 transition-colors hover:text-white/60"
+                    className="text-xs text-white/55 transition-colors hover:text-white/85"
                   >
                     Disclaimer
                   </Link>
@@ -217,14 +228,14 @@ export function Footer() {
               <Github className="h-3.5 w-3.5" aria-hidden />
               <span>Star on GitHub</span>
               {stars !== null && (
-                <span className="flex items-center gap-1 border-l border-white/[0.08] pl-2 font-mono text-white/40 transition-colors group-hover:text-brand-400">
+                <span className="flex items-center gap-1 border-l border-white/[0.08] pl-2 font-mono text-white/60 transition-colors group-hover:text-brand-400">
                   <Star className="h-3 w-3" aria-hidden />
                   {stars.toLocaleString()}
                 </span>
               )}
             </a>
 
-            <p className="text-xs text-white/30">
+            <p className="text-xs text-white/55">
               &copy; {year}{' '}
               <a
                 href="https://stosiu.dev"
@@ -239,17 +250,17 @@ export function Footer() {
                 href="https://stosiu.dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/40 transition-colors hover:text-white/60"
+                className="text-white/60 transition-colors hover:text-white/85"
               >
                 stosiu.dev
               </a>
             </p>
 
-            <p className="font-mono text-[11px] italic text-white/20">
+            <p className="font-mono text-[11px] italic text-white/50">
               &ldquo;{quote}&rdquo;
             </p>
 
-            <p className="font-mono text-[10px] text-white/15">
+            <p className="font-mono text-[11px] text-white/50">
               v{VERSION}
               <span className="mx-1.5">&middot;</span>
               {COMMIT_HASH}
