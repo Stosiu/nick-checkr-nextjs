@@ -2,7 +2,7 @@ import { CheckMethod, UnverifiableReason, type ServiceDefinition } from '../abst
 
 export const services: ServiceDefinition[] = [
   // Social Media
-  { name: 'Instagram', url: 'https://www.instagram.com/{}/', category: 'Social Media', checkMethod: CheckMethod.BodyMatch, bodyMatch: '"pageID":"httpErrorPage"', testAvailableNick: 'oaskfofkda2123', testTakenNick: 'aleolek' },
+  { name: 'Instagram', url: 'https://www.instagram.com/{}/', category: 'Social Media', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.BotProtected, testAvailableNick: 'oaskfofkda2123', testTakenNick: 'aleolek' },
   { name: 'Reddit', url: 'https://www.reddit.com/user/{}', category: 'Social Media', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.BotProtected, testTakenNick: 'stosiu', testAvailableNick: 'oaskfofkda2123' },
   { name: 'Mastodon', url: 'https://mastodon.social/@{}', apiUrl: 'https://mastodon.social/api/v1/accounts/lookup?acct={}', category: 'Social Media', checkMethod: CheckMethod.JsonApi, jsonPath: 'id', testTakenNick: 'Gargron', testAvailableNick: 'zqvx8841mkw' },
   { name: 'VK', url: 'https://vk.com/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
