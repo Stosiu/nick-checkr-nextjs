@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Search, X } from 'lucide-react';
-import { getCategoryIcon, getCategorySlug, getPlatformIcon, getServiceSlug } from '@/lib/platform-utils';
+import { getCategoryIcon, getCategorySlug, getServiceSlug } from '@/lib/platform-utils';
 type PlatformService = { name: string; category: string };
 type CategoryGroup = { category: string; services: PlatformService[] };
 
@@ -68,6 +68,7 @@ export function PlatformSearch({ groups }: { groups: CategoryGroup[] }) {
                 <CatIcon className="h-4.5 w-4.5 text-brand-400" />
                 <Link
                   href={`/check/category/${getCategorySlug(group.category)}`}
+                  prefetch={false}
                   className="transition-colors hover:text-brand-400"
                 >
                   {group.category}
@@ -77,19 +78,16 @@ export function PlatformSearch({ groups }: { groups: CategoryGroup[] }) {
                 </span>
               </h2>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                {group.services.map((service) => {
-                  const Icon = getPlatformIcon(service.name, service.category);
-                  return (
-                    <Link
-                      key={service.name}
-                      href={`/check/${getServiceSlug(service.name)}`}
-                      className="flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2.5 text-sm font-medium text-white/60 transition-colors hover:border-brand-400/30 hover:text-white"
-                    >
-                      <Icon className="h-3.5 w-3.5 shrink-0 text-white/30" />
-                      {service.name}
-                    </Link>
-                  );
-                })}
+                {group.services.map((service) => (
+                  <Link
+                    key={service.name}
+                    href={`/check/${getServiceSlug(service.name)}`}
+                    prefetch={false}
+                    className="rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2.5 text-sm font-medium text-white/60 transition-colors hover:border-brand-400/30 hover:text-white"
+                  >
+                    {service.name}
+                  </Link>
+                ))}
               </div>
             </section>
           );

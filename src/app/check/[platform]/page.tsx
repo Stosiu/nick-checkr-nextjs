@@ -22,6 +22,8 @@ import {
 import { CheckMethod, unverifiableReasonText } from '@/services';
 import { services } from '@/services/data/services';
 
+const RELATED_PLATFORM_LIMIT = 12;
+
 interface Props {
   params: Promise<{ platform: string }>;
 }
@@ -358,12 +360,13 @@ export default async function PlatformPage({ params }: Props) {
               {getCategoryDescription(service.category)}
             </p>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-              {categoryServices.map((s) => {
+              {categoryServices.slice(0, RELATED_PLATFORM_LIMIT).map((s) => {
                 const Icon = getPlatformIcon(s.name, s.category);
                 return (
                   <Link
                     key={s.name}
                     href={`/check/${getServiceSlug(s.name)}`}
+                    prefetch={false}
                     className="flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2.5 text-sm font-medium text-white/60 transition-colors hover:border-brand-400/30 hover:text-white"
                   >
                     <Icon className="h-3.5 w-3.5 shrink-0 text-white/30" />
@@ -372,6 +375,16 @@ export default async function PlatformPage({ params }: Props) {
                 );
               })}
             </div>
+            {categoryServices.length > RELATED_PLATFORM_LIMIT && (
+              <Link
+                href={`/check/category/${getCategorySlug(service.category)}`}
+                prefetch={false}
+                className="inline-flex items-center gap-1.5 text-sm text-brand-400 hover:underline"
+              >
+                See all {categoryServices.length + 1} {service.category} platforms
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            )}
           </section>
         )}
 
@@ -387,6 +400,7 @@ export default async function PlatformPage({ params }: Props) {
                   <Link
                     key={category}
                     href={`/check/category/${getCategorySlug(category)}`}
+                    prefetch={false}
                     className="flex items-center gap-1.5 rounded-full border border-white/[0.06] bg-white/[0.02] px-3.5 py-1.5 text-sm text-white/50 transition-colors hover:border-white/[0.12] hover:text-white/70"
                   >
                     <CatIcon className="h-3.5 w-3.5 text-white/30" />
