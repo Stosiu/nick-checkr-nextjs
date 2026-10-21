@@ -7,6 +7,30 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: '2.1.1',
+    date: '2026-10-21',
+    summary:
+      'Platform and category pages are lighter. The full platform index is about half its previous size, and a domain extension page is less than half.',
+    changes: [
+      {
+        kind: 'changed',
+        text: 'Each platform page now suggests twelve other platforms from its category, followed by a link to the full category page, instead of listing every one. Domain extension pages used to list all 174 other extensions.',
+      },
+      {
+        kind: 'changed',
+        text: 'The cards on the platform index and on category pages no longer carry an icon each. Those icons made up nearly half of the platform index page.',
+      },
+      {
+        kind: 'changed',
+        text: 'Links in the platform grids no longer load their target page in the background as they scroll into view.',
+      },
+      {
+        kind: 'fixed',
+        text: 'Pages are no longer rebuilt every hour. The GitHub star count in the footer was the only reason they were, and it is now fetched once when the site is built.',
+      },
+    ],
+  },
+  {
     version: '2.1.0',
     date: '2026-08-31',
     summary:
