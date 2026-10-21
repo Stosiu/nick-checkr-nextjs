@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 
+import { PageShell, Panel } from '@/components/page-shell';
 import { siteConfig } from '@/config/site';
 import { getServiceSlug } from '@/lib/platform-utils';
 import { AvailabilityStatus, CheckMethod } from '@/services';
@@ -104,59 +105,82 @@ export default async function StatusPage() {
   const working = rows.filter((r) => r.verdict === 'working').length;
   const unverifiable = services.filter((s) => s.checkMethod === CheckMethod.Unverifiable).length;
 
+  const allWorking = working === rows.length;
+
   return (
-    <div className="container mx-auto max-w-3xl px-4 py-8 md:py-16">
-      <h1 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">Status</h1>
-      <p className="mb-2 text-lg text-white/70">
-        {working} of {rows.length} popular platforms answered correctly on the last run.
-      </p>
-      <p className="mb-10 text-sm text-white/60">
-        Each platform is asked about an account that exists and a name that does not, from the
-        same servers that run your searches. Last run{' '}
-        <time dateTime={checkedAt.toISOString()} className="font-mono text-white/80">
-          {checkedAt.toISOString().slice(0, 16).replace('T', ' ')} UTC
-        </time>
-        , repeated every six hours.
-      </p>
-
-      <ul className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
-        {rows.map((row) => {
-          const style = verdictStyle[row.verdict];
-          return (
-            <li key={row.name} className="flex items-center justify-between gap-4 py-3">
-              <span className="min-w-0">
-                <Link
-                  href={`/check/${getServiceSlug(row.name)}`}
-                  prefetch={false}
-                  className="font-medium text-white transition-colors hover:text-brand-400"
-                >
-                  {row.name}
-                </Link>
-                <span className="mt-0.5 block truncate text-sm text-white/60">{row.detail}</span>
-              </span>
-              <span
-                className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium ${style.className}`}
-              >
-                <style.icon className="h-3.5 w-3.5" />
-                {style.label}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
-
-      <p className="mt-8 text-sm text-white/60">
-        Across the whole catalogue, {unverifiable} of {services.length} entries are marked
-        &ldquo;Can&apos;t verify&rdquo; because the platform shows the same page for every name or
-        blocks automated checks. See a result that looks wrong?{' '}
-        <Link
-          href="/contact"
-          className="text-brand-400 underline decoration-brand-400/40 underline-offset-4 transition-colors hover:decoration-brand-400"
+    <PageShell
+      title="Status"
+      intro={
+        <p>
+          Each popular platform is asked about an account that exists and a name that does not,
+          from the same servers that run your searches. The check repeats every six hours.
+        </p>
+      }
+      aside={
+        <div
+          className={`flex items-center gap-3 rounded-xl border px-5 py-4 ${
+            allWorking ? 'border-brand-400/25 bg-brand-400/[0.06]' : 'border-yellow-400/25 bg-yellow-400/[0.06]'
+          }`}
         >
-          Report it
-        </Link>
-        .
-      </p>
-    </div>
+          {allWorking ? (
+            <CheckCircle2 className="h-6 w-6 shrink-0 text-brand-400" />
+          ) : (
+            <AlertCircle className="h-6 w-6 shrink-0 text-yellow-400" />
+          )}
+          <div>
+            <p className="font-semibold text-white">
+              {working} of {rows.length} answering correctly
+            </p>
+            <p className="text-sm text-white/60">
+              Last run{' '}
+              <time dateTime={checkedAt.toISOString()} className="font-mono text-white/80">
+                {checkedAt.toISOString().slice(0, 16).replace('T', ' ')} UTC
+              </time>
+            </p>
+          </div>
+        </div>
+      }
+    >
+      <Panel>
+        <ul className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
+          {rows.map((row) => {
+            const style = verdictStyle[row.verdict];
+            return (
+              <li key={row.name} className="flex items-center justify-between gap-4 border-b border-white/[0.06] py-3">
+                <div className="min-w-0 flex-1">
+                  <Link
+                    href={`/check/${getServiceSlug(row.name)}`}
+                    prefetch={false}
+                    className="font-medium text-white transition-colors hover:text-brand-400"
+                  >
+                    {row.name}
+                  </Link>
+                  <span className="mt-0.5 block truncate text-sm text-white/60">{row.detail}</span>
+                </div>
+                <span
+                  className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium ${style.className}`}
+                >
+                  <style.icon className="h-3.5 w-3.5" />
+                  {style.label}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+
+        <p className="mt-8 max-w-3xl text-sm text-white/60">
+          Across the whole catalogue, {unverifiable} of {services.length} entries are marked
+          &ldquo;Can&apos;t verify&rdquo; because the platform shows the same page for every name or
+          blocks automated checks. See a result that looks wrong?{' '}
+          <Link
+            href="/contact"
+            className="text-brand-400 underline decoration-brand-400/40 underline-offset-4 transition-colors hover:decoration-brand-400"
+          >
+            Report it
+          </Link>
+          .
+        </p>
+      </Panel>
+    </PageShell>
   );
 }
