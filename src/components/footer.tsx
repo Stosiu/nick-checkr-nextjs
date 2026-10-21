@@ -175,6 +175,15 @@ export function Footer() {
                 <li>
                   <Link
                     prefetch={false}
+                    href="/status"
+                    className="text-xs text-white/55 transition-colors hover:text-white/85"
+                  >
+                    Status
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    prefetch={false}
                     href="/changelog"
                     className="text-xs text-white/55 transition-colors hover:text-white/85"
                   >
