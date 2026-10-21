@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Search, X } from 'lucide-react';
 import { getCategoryIcon, getCategorySlug, getServiceSlug } from '@/lib/platform-utils';
+import { SuggestPlatform } from './suggest-platform';
 type PlatformService = { name: string; category: string };
 type CategoryGroup = { category: string; services: PlatformService[] };
 
@@ -51,7 +52,10 @@ export function PlatformSearch({ groups }: { groups: CategoryGroup[] }) {
       )}
 
       {filtered.length === 0 ? (
-        <p className="py-12 text-center text-sm text-white/30">No platforms match &ldquo;{query}&rdquo;</p>
+        <div className="space-y-6 py-6">
+          <p className="text-center text-sm text-white/30">No platforms match &ldquo;{query}&rdquo;</p>
+          <SuggestPlatform platform={query} />
+        </div>
       ) : (
         filtered.map((group) => {
           const CatIcon = getCategoryIcon(group.category);

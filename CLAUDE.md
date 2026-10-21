@@ -22,7 +22,7 @@ All source files live under `src/`:
 - `src/app/api/check/stream/` - Streaming NDJSON endpoint used by the homepage; also persists results to Vercel Blob
 - `src/components/` - React components (`ui/` for shadcn)
 - `src/services/` - Nickname checking services (AbstractService pattern)
-- `src/services/data/services.ts` - 687 services with categories (including 175 domain TLDs and 10 package registries)
+- `src/services/data/services.ts` - 719 services with categories (including 175 domain TLDs and 10 package registries)
 - `src/hooks/` - Custom React hooks
 - `src/lib/` - Utilities: `cache.ts` (server cache), `check-store.ts` (client result store), `fetch-queue.ts` (client concurrency limiter), `blog.ts` (blog processing), `utils.ts` (shadcn `cn()`)
 - `src/config/` - Site configuration
