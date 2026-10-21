@@ -4,6 +4,7 @@ import { siteConfig } from '@/config/site';
 import { omit } from 'es-toolkit';
 import { getAllPosts } from '@/lib/blog';
 import { BlogList } from '@/components/blog-list';
+import { PageShell } from '@/components/page-shell';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -43,17 +44,14 @@ export default async function BlogPage() {
   };
 
   return (
-    <div className="noise dot-grid">
+    <PageShell
+      title="Blog"
+      intro={<p>Tips and guides on usernames, online identity, and the platforms we use.</p>}
+    >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="mx-auto max-w-5xl px-4 pb-20 pt-6 md:pt-12">
-        <h1 className="mb-2 text-3xl font-bold">Blog</h1>
-        <p className="mb-8 text-sm text-white/40">
-          Tips and guides on usernames, online identity, and the platforms we use.
-        </p>
-        <Suspense>
-          <BlogList posts={posts.map((post) => omit(post, ['content']))} />
-        </Suspense>
-      </div>
-    </div>
+      <Suspense>
+        <BlogList posts={posts.map((post) => omit(post, ['content']))} />
+      </Suspense>
+    </PageShell>
   );
 }
