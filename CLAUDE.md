@@ -22,7 +22,7 @@ All source files live under `src/`:
 - `src/app/api/check/stream/` - Streaming NDJSON endpoint used by the homepage; also persists results to Vercel Blob
 - `src/components/` - React components (`ui/` for shadcn)
 - `src/services/` - Nickname checking services (AbstractService pattern)
-- `src/services/data/services.ts` - 701 services with categories (including 175 domain TLDs and 10 package registries)
+- `src/services/data/services.ts` - 687 services with categories (including 175 domain TLDs and 10 package registries)
 - `src/hooks/` - Custom React hooks
 - `src/lib/` - Utilities: `cache.ts` (server cache), `check-store.ts` (client result store), `fetch-queue.ts` (client concurrency limiter), `blog.ts` (blog processing), `utils.ts` (shadcn `cn()`)
 - `src/config/` - Site configuration
@@ -87,15 +87,16 @@ Probing at high concurrency makes upstream hosts rate-limit and answer 403/429, 
 
 ## Architecture Notes
 
-- **Vercel Hobby limits**: serverless functions may not declare `maxDuration` above 60. A higher value builds fine locally and in GitHub Actions but fails the Vercel deploy at the `patchBuild` step with `invalid_max_duration`, so the site silently keeps serving the previous build. A full 701-service stream finishes in about 21 seconds, well inside the cap
+- **Vercel Hobby limits**: serverless functions may not declare `maxDuration` above 60. A higher value builds fine locally and in GitHub Actions but fails the Vercel deploy at the `patchBuild` step with `invalid_max_duration`, so the site silently keeps serving the previous build. A full 687-service stream finishes in about 21 seconds, well inside the cap
 - **Corepack on Vercel**: the project sets `ENABLE_EXPERIMENTAL_COREPACK=1` so Vercel honours `packageManager: pnpm@11.3.0`. Without it Vercel picks pnpm 9 by project creation date, and pnpm 9 rejects `pnpm-workspace.yaml` with "packages field missing or empty" because the file carries only `allowBuilds` and `overrides`
 - **Datacenter IP blocking**: roughly 65 platforms answer 403 to Vercel's IP ranges while working fine from a home connection. They are marked `Unverifiable`/`BotProtected` rather than left to error, so a local `pnpm probe` will show them as passing where production could not check them. Verify any candidate fix against production, not localhost — `curl https://nickcheckr.stosiu.dev/api/check/stream?nick=<x>` and read the failures
 - **Host spreading**: `getServiceNamesSpreadByHost()` interleaves the queue so services sharing a hostname are not requested together. One registry serves 78 domain extensions; bursting it tripped a rate limit that failed all of them at once
 - **Retries**: `/api/check/stream` retries a failed check twice (400ms, 1500ms), or once for a timeout so a slow host cannot consume the 60-second budget
-- **Streaming checks**: a search opens one request to `/api/check/stream`, which runs all upstream checks server-side (32 concurrent) and streams NDJSON results back as they land. One function invocation per search instead of one per platform. `src/lib/check-store.ts` holds results in an external store so each card re-renders only when its own result arrives; `src/hooks/use-check-stream.tsx` owns the stream and batches updates every 80ms
+- **Streaming checks**: a search opens one request to `/api/check/stream`, which runs all upstream checks server-side (16 concurrent) and streams NDJSON results back as they land. One function invocation per search instead of one per platform. `src/lib/check-store.ts` holds results in an external store so each card re-renders only when its own result arrives; `src/hooks/use-check-stream.tsx` owns the stream and batches updates every 80ms
 - **Streaming layout shift**: the homepage renders inside `<Suspense>` (nuqs needs it). Without a space-reserving fallback the shell paints with the footer near the top and everything drops a full viewport when the content streams in — measured CLS 0.93. The fallback holds `min-h-screen`
 - **ISR writes**: the layout and footer render on all ~750 prerendered routes, so a `fetch` with `next: { revalidate }` there turns every page into hourly ISR. That exceeded the Hobby cap of 200K ISR writes in September 2026. The GitHub star count is fetched once in `next.config.ts` and inlined as `GITHUB_STARS`; check `.next/prerender-manifest.json` for `initialRevalidateSeconds` after touching shared components
 - **Blob operations**: Hobby allows 2,000 advanced operations (`put`, `list`, `copy`) a month, and exceeding it blocks the store for 30 days. Reads go through `head()` plus a versioned URL fetch in `src/lib/check-blob.ts`, which count as simple operations. A search costs one `put`, and the stream's `done` message carries `checkCount` so the client needs no extra request
+- **Status page**: `/status` checks 21 popular platforms against their test fixtures at render time and revalidates every 6 hours, so it costs at most 4 ISR writes a day. It calls `nicknameChecker` directly and bypasses the server cache
 - **Single checks**: `/api/check` and `src/hooks/use-check.ts` remain for the one-off check on `/check/[platform]` pages
 - **Request concurrency**: `src/lib/fetch-queue.ts` limits to 8 concurrent fetches, used by the single-check path
 - **Server cache**: `src/lib/cache.ts` — in-memory TTL cache (30 min for success, 5 min for errors) to avoid redundant upstream requests
