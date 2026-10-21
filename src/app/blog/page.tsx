@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { siteConfig } from '@/config/site';
+import { omit } from 'es-toolkit';
 import { getAllPosts } from '@/lib/blog';
 import { BlogList } from '@/components/blog-list';
 
@@ -50,7 +51,7 @@ export default async function BlogPage() {
           Tips and guides on usernames, online identity, and the platforms we use.
         </p>
         <Suspense>
-          <BlogList posts={posts} />
+          <BlogList posts={posts.map((post) => omit(post, ['content']))} />
         </Suspense>
       </div>
     </div>

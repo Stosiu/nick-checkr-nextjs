@@ -13,7 +13,7 @@ const PAGE_SIZE = 12;
 const MotionLink = motion.create(NextLink);
 
 type Props = {
-  posts: PostMeta[];
+  posts: Omit<PostMeta, 'content'>[];
 };
 
 export function BlogList({ posts }: Props) {
@@ -46,7 +46,7 @@ export function BlogList({ posts }: Props) {
         !q ||
         post.title.toLowerCase().includes(q) ||
         post.tags.some((tag) => tag.toLowerCase().includes(q)) ||
-        post.content.toLowerCase().includes(q);
+        (post.description?.toLowerCase().includes(q) ?? false);
 
       const matchesTags =
         activeTags.length === 0 ||
