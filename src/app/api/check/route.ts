@@ -3,10 +3,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getCached, setCache } from '@/lib/cache';
 import { nicknameChecker } from '@/services/nickname-checker';
 import { AvailabilityStatus } from '@/services';
-import { rateLimit } from '@/utils/rate-limit';
+import { clientIp, rateLimit } from '@/utils/rate-limit';
 
 const NICK_PATTERN = /^[a-zA-Z0-9]([a-zA-Z0-9._-]{0,38}[a-zA-Z0-9])?$/;
 const validServices = new Set(nicknameChecker.getServiceNames());
+
+function cacheControlFor(status: AvailabilityStatus): string {
+  const failed = status === AvailabilityStatus.Error || status === AvailabilityStatus.Timeout;
+  return failed ? 's-maxage=300' : 's-maxage=3600';
+}
 
 const limiter = rateLimit({
   interval: 60_000,
@@ -30,8 +35,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Unknown service' }, { status: 400 });
   }
 
-  const forwarded = request.headers.get('x-forwarded-for');
-  const ip = forwarded ? forwarded.split(',')[0].trim() : 'anonymous';
+  const ip = clientIp(request.headers);
   const { success, remaining } = limiter.check(1000, ip);
 
   if (!success) {
@@ -41,10 +45,10 @@ export async function GET(request: NextRequest) {
   const cacheKey = `${nick.toLowerCase()}:${service}`;
   const cached = getCached<AvailabilityStatus>(cacheKey);
 
-  if (cached) {
+  if (cached && cached !== AvailabilityStatus.Unknown) {
     return NextResponse.json(cached, {
       headers: {
-        'Cache-Control': 's-maxage=3600',
+        'Cache-Control': cacheControlFor(cached),
         'X-RateLimit-Remaining': String(remaining),
         'X-Cache': 'HIT',
       },
@@ -76,7 +80,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(result, {
       headers: {
-        'Cache-Control': 's-maxage=3600',
+        'Cache-Control': cacheControlFor(result),
         'X-RateLimit-Remaining': String(remaining),
         'X-Cache': 'MISS',
       },
