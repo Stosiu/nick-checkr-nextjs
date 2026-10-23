@@ -93,7 +93,7 @@ export const services: ServiceDefinition[] = [
   { name: 'Linktree', url: 'https://linktr.ee/{}', category: 'Link in Bio', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Gumroad', url: 'https://www.gumroad.com/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Patreon', url: 'https://www.patreon.com/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'juicyscoop', testAvailableNick: 'juicyscoop3232asdock' },
-  { name: 'SlideShare', url: 'https://slideshare.net/{}', category: 'Professional', checkMethod: CheckMethod.NickInTitle, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'SlideShare', url: 'https://slideshare.net/{}', category: 'Professional', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.BotProtected, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Houzz', url: 'https://houzz.com/user/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Freelancer', url: 'https://www.freelancer.com/u/{}', apiUrl: 'https://www.freelancer.com/api/users/0.1/users?usernames[]={}', category: 'Professional', checkMethod: CheckMethod.BodyMatch, bodyMatch: '"users":{}}', testTakenNick: 'devsp', testAvailableNick: 'zqvx8841mkw' },
   { name: 'Fiverr', url: 'https://www.fiverr.com/{}', category: 'Professional', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.BotProtected, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
@@ -148,7 +148,7 @@ export const services: ServiceDefinition[] = [
   { name: 'YouTube', url: 'https://www.youtube.com/@{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Flipboard', url: 'https://flipboard.com/@{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Taringa', url: 'https://www.taringa.net/{}', category: 'Social Media', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.ClientRendered, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
-  { name: 'Gab', url: 'https://gab.com/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
+  { name: 'Gab', url: 'https://gab.com/{}', category: 'Social Media', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.BotProtected, testTakenNick: 'alex', testAvailableNick: 'alex3232e2e2e' },
   { name: 'Parler', url: 'https://parler.com/user/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testAvailableNick: 'alex3232e2e2e' },
   { name: 'Coub', url: 'https://coub.com/{}', category: 'Social Media', checkMethod: CheckMethod.Standard, testTakenNick: 'admin', testAvailableNick: 'alex3232e2e2e' },
 
@@ -487,7 +487,7 @@ export const services: ServiceDefinition[] = [
   { name: 'Casting Call Club', url: 'https://www.castingcall.club/{}', category: 'Professional', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.BotProtected, testTakenNick: 'Lindz', testAvailableNick: 'zqvx8841mkw' },
   { name: 'MyBuilder', url: 'https://www.mybuilder.com/profile/view/{}', category: 'Professional', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.BotProtected, testTakenNick: 'blue', testAvailableNick: 'zqvx8841mkw' },
   { name: 'Habr Career', url: 'https://career.habr.com/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'sergey-kobets3', testAvailableNick: 'zqvx8841mkw' },
-  { name: 'FL.ru', url: 'https://www.fl.ru/users/{}/portfolio/', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'makediffdev', testAvailableNick: 'zqvx8841mkw' },
+  { name: 'FL.ru', url: 'https://www.fl.ru/users/{}/portfolio/', category: 'Professional', checkMethod: CheckMethod.Unverifiable, unverifiableReason: UnverifiableReason.BotProtected, testTakenNick: 'makediffdev', testAvailableNick: 'zqvx8841mkw' },
   { name: 'SEOClerks', url: 'https://www.seoclerks.com/user/{}', category: 'Professional', checkMethod: CheckMethod.RedirectMatch, redirectMatch: 'https://www.seoclerks.com/', testTakenNick: 'Vfmseo', testAvailableNick: 'zqvx8841mkw' },
   { name: 'Poll Everywhere', url: 'https://pollev.com/proxy/api/users/{}', category: 'Professional', checkMethod: CheckMethod.Standard, testTakenNick: 'josh', testAvailableNick: 'zqvx8841mkw' },
 
