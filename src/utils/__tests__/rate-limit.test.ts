@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { rateLimit } from '../rate-limit';
+import { clientIp, rateLimit } from '../rate-limit';
 
 describe('rateLimit', () => {
   it('allows requests up to the limit and reports remaining', () => {
@@ -31,5 +31,16 @@ describe('rateLimit', () => {
     limiter.check(2, 'ip-a');
 
     expect(limiter.check(2, 'ip-b')).toEqual({ success: true, remaining: 1 });
+  });
+});
+
+describe('clientIp', () => {
+  it('prefers the visitor address Cloudflare passes on over the proxy address', () => {
+    const headers = new Headers({ 'cf-connecting-ip': '203.0.113.7', 'x-forwarded-for': '188.114.97.9' });
+    expect(clientIp(headers)).toBe('203.0.113.7');
+  });
+
+  it('falls back to the first forwarded address without Cloudflare', () => {
+    expect(clientIp(new Headers({ 'x-forwarded-for': '203.0.113.7, 10.0.0.1' }))).toBe('203.0.113.7');
   });
 });

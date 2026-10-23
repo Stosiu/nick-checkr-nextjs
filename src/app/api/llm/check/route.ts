@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { checkBlobPathname, readCheckBlob } from '@/lib/check-blob';
 import { CheckMethod, unverifiableReasonText } from '@/services';
 import { services } from '@/services/data/services';
-import { rateLimit } from '@/utils/rate-limit';
+import { clientIp, rateLimit } from '@/utils/rate-limit';
 
 const unverifiable = Object.fromEntries(
   services
@@ -42,8 +42,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid nickname format. Use 1-40 alphanumeric characters, dots, hyphens, or underscores.' }, { status: 400 });
   }
 
-  const forwarded = request.headers.get('x-forwarded-for');
-  const ip = forwarded ? forwarded.split(',')[0].trim() : 'anonymous';
+  const ip = clientIp(request.headers);
   const { success } = limiter.check(100, ip);
 
   if (!success) {

@@ -5,7 +5,7 @@ import { checkBlobPathname, readCheckBlob } from '@/lib/check-blob';
 import { getCached, setCache } from '@/lib/cache';
 import { AvailabilityStatus } from '@/services';
 import { nicknameChecker } from '@/services/nickname-checker';
-import { rateLimit } from '@/utils/rate-limit';
+import { clientIp, rateLimit } from '@/utils/rate-limit';
 
 export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
@@ -45,8 +45,7 @@ export async function GET(request: NextRequest) {
     return Response.json({ error: 'Invalid nickname format' }, { status: 400 });
   }
 
-  const forwarded = request.headers.get('x-forwarded-for');
-  const ip = forwarded ? forwarded.split(',')[0].trim() : 'anonymous';
+  const ip = clientIp(request.headers);
 
   if (!limiter.check(20, ip).success) {
     return Response.json({ error: 'Rate limit exceeded' }, { status: 429 });

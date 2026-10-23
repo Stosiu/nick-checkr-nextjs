@@ -24,3 +24,8 @@ export function rateLimit(options?: RateLimitOptions) {
     },
   };
 }
+
+export function clientIp(headers: Headers): string {
+  const forwarded = headers.get('x-forwarded-for');
+  return headers.get('cf-connecting-ip') ?? (forwarded ? forwarded.split(',')[0].trim() : 'anonymous');
+}
