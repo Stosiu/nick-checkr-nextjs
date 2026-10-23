@@ -1,8 +1,16 @@
 import { Impit } from 'impit';
 
-import { AbstractService, CheckMethod, TimeoutError, type CheckResult, type HttpClient } from './abstract-service';
+import {
+  AbstractService,
+  AvailabilityStatus,
+  CheckMethod,
+  TimeoutError,
+  type CheckResult,
+  type HttpClient,
+} from './abstract-service';
 import { services } from './data/services';
 
+const RDAP_DOMAIN = /\/domain\/([^/]+)$/;
 const TIMEOUT_MS = 10_000;
 const DNS_TIMEOUT_MS = 5_000;
 const RDAP_TIMEOUT_MS = 8_000;
@@ -73,6 +81,7 @@ function clientFor(
 
 class NicknameChecker {
   private readonly services: AbstractService[];
+  private readonly dnsFallbacks = new Map<string, AbstractService>();
 
   constructor() {
     const clients = {
@@ -99,6 +108,21 @@ class NicknameChecker {
         },
       ),
     );
+
+    for (const s of services) {
+      const domain = s.checkMethod === CheckMethod.Rdap ? s.url.match(RDAP_DOMAIN)?.[1] : undefined;
+      if (!domain) continue;
+      this.dnsFallbacks.set(
+        s.name,
+        new AbstractService(
+          clients.dns,
+          s.name,
+          `https://cloudflare-dns.com/dns-query?name=${domain}&type=A`,
+          s.category,
+          CheckMethod.DNS,
+        ),
+      );
+    }
   }
 
   getServiceNames(): string[] {
@@ -142,7 +166,13 @@ class NicknameChecker {
     if (!service) {
       throw new Error(`Service "${serviceName}" not found`);
     }
-    return service.check(nick);
+    const fallback = this.dnsFallbacks.get(serviceName);
+    if (!fallback) return service.check(nick);
+    return service.check(nick).then((result) =>
+      result.status === AvailabilityStatus.Error || result.status === AvailabilityStatus.Timeout
+        ? fallback.check(nick)
+        : result,
+    );
   }
 }
 

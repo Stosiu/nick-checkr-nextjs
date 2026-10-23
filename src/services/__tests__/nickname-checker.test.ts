@@ -185,6 +185,28 @@ describe('NicknameChecker with mocked responses', () => {
     });
 });
 
+describe('RDAP fallback', () => {
+  it('answers from DNS when the registry rate-limits', async () => {
+    mockDnsFetch
+      .mockResolvedValueOnce(new Response('', { status: 429 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ Status: 3 }), { status: 200 }));
+
+    const result = await nicknameChecker.check('freename', '.io');
+
+    expect(result.status).toBe(AvailabilityStatus.Available);
+    expect(mockDnsFetch.mock.calls[1][0]).toBe('https://cloudflare-dns.com/dns-query?name=freename.io&type=A');
+  });
+
+  it('keeps the RDAP answer when the registry responds', async () => {
+    mockDnsFetch.mockResolvedValueOnce(new Response('', { status: 404 }));
+
+    const result = await nicknameChecker.check('freename', '.io');
+
+    expect(result.status).toBe(AvailabilityStatus.Available);
+    expect(mockDnsFetch).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe('service catalogue integrity', () => {
   it('has no duplicate service names', () => {
     const seen = new Map<string, number>();
