@@ -34,7 +34,7 @@ const MONITORED = [
   'PyPI',
   'Medium',
   'Steam',
-  'Xbox',
+  'Mastodon',
   'Roblox',
   'SoundCloud',
   'Behance',
