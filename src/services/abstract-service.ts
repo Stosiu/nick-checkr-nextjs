@@ -339,6 +339,7 @@ export class AbstractService {
         };
 
       default:
+        if (status === 410) return { status: AvailabilityStatus.Taken };
         if (status !== 200 && status !== 404) {
           return { status: AvailabilityStatus.Error, errorDetail: `HTTP ${status}` };
         }

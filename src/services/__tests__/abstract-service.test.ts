@@ -204,6 +204,14 @@ describe('JsonApi check method', () => {
   });
 });
 
+describe('Standard check method', () => {
+  const service = new AbstractService(noop, 'Mastodon', 'https://example.social/@{}', 'Social Media', CheckMethod.Standard);
+
+  it('treats a gone (suspended) profile as taken', () => {
+    expect(service.parseResponse(410, '')).toMatchObject({ status: AvailabilityStatus.Taken });
+  });
+});
+
 describe('Rdap check method', () => {
   const service = new AbstractService(noop, '.com', 'https://rdap.example/{}.com', 'Domain Names', CheckMethod.Rdap);
 
