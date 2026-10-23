@@ -1916,8 +1916,8 @@ export function getCategoryDescription(category: string): string {
   );
 }
 
-export function hasCustomPlatformInfo(name: string): boolean {
-  return platformInfo[name] !== undefined;
+export function isThinPlatformPage(service: ServiceDefinition): boolean {
+  return service.checkMethod === CheckMethod.Unverifiable && platformInfo[service.name] === undefined;
 }
 
 type UrlShape = 'subdomain' | 'at-prefix' | 'query' | 'path';

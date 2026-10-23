@@ -12,15 +12,15 @@ import {
   getCategoryDescription,
   getCategoryIcon,
   getCategorySlug,
-  hasCustomPlatformInfo,
   getPlatformIcon,
   getPlatformInfo,
   getServiceBySlug,
   getServiceSlug,
   getServicesInCategory,
   getServicesByCategory,
+  isThinPlatformPage,
 } from '@/lib/platform-utils';
-import { CheckMethod, unverifiableReasonText } from '@/services';
+import { unverifiableReasonText } from '@/services';
 import { services } from '@/services/data/services';
 
 const RELATED_PLATFORM_LIMIT = 12;
@@ -41,8 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${service.name} Username Checker — Is Your Name Available?`;
   const description = `Check if your desired username is available on ${service.name}. Instant results, no signup required. Also check ${services.length - 1} other platforms.`;
 
-  const thin =
-    service.checkMethod === CheckMethod.Unverifiable && !hasCustomPlatformInfo(service.name);
+  const thin = isThinPlatformPage(service);
 
   return {
     title,

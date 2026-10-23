@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 import { siteConfig } from '@/config/site';
 import { getAllPosts } from '@/lib/blog';
-import { getAllCategories, getCategorySlug, getServiceSlug } from '@/lib/platform-utils';
+import { getAllCategories, getCategorySlug, getServiceSlug, isThinPlatformPage } from '@/lib/platform-utils';
 import { services } from '@/services/data/services';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -23,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
-  const checkPages: MetadataRoute.Sitemap = services.map((service) => ({
+  const checkPages: MetadataRoute.Sitemap = services.filter((service) => !isThinPlatformPage(service)).map((service) => ({
     url: `${siteConfig.url}/check/${getServiceSlug(service.name)}`,
     lastModified: now,
     changeFrequency: 'weekly' as const,
